@@ -1,0 +1,5155 @@
+{
+ "schemaVersion": 1,
+ "what": "Places and creatures Malfoid reacts to, with her lines. The rules for using this data are Addendum F of MALFOID_MASTER_SPEC.md.",
+ "areaTableSource": {
+  "file": "runelite-client/src/main/java/net/runelite/client/plugins/discord/DiscordGameEventType.java",
+  "sha256": "38c227cf9900de96f2484eb171a9f889182e47249611350dcd4e8fe2b3fda24d",
+  "runeLiteVersion": "runelite-parent-1.12.28-2-gd9023f936",
+  "note": "Region ids and display names are copied from RuneLite's own table of named areas. No place was added by hand."
+ },
+ "lineRules": {
+  "maximumCharacters": 110,
+  "emotions": [
+   "APPROVING",
+   "CONCERNED",
+   "CURIOUS",
+   "EXCITED",
+   "INDIGNANT",
+   "QUIET",
+   "TEASING"
+  ],
+  "potterAtMostOneLineIn": 8,
+  "potterLines": 44,
+  "lineCount": 446
+ },
+ "creaturePriority": [
+  "F01",
+  "CR-DRAGON",
+  "CR-DEMON",
+  "F02",
+  "CR-UNDEAD",
+  "CR-GIANT",
+  "CR-GAZE",
+  "CR-GARGOYLE",
+  "CR-ELEMENTAL",
+  "CR-GOLEM",
+  "CR-ENT",
+  "CR-DISGUST",
+  "CR-UNICORN",
+  "CR-FAIRY",
+  "CR-FOND",
+  "CR-PET",
+  "CR-WIZARD",
+  "CR-ELF",
+  "CR-TZHAAR",
+  "CR-LEPRECHAUN",
+  "CR-CHINCHOMPA",
+  "CR-MONKEY",
+  "CR-IMP",
+  "CR-GOBLIN",
+  "CR-GUARD",
+  "CR-FARM",
+  "CR-SEAGULL"
+ ],
+ "places": [
+  {
+   "id": "PL-LUMBRIDGE",
+   "name": "Lumbridge",
+   "regionIds": [
+    12850
+   ],
+   "facts": [
+    "A castle town on a river.",
+    "New adventurers begin here.",
+    "Cows, chickens and goblins live in the fields around it."
+   ],
+   "lines": [
+    {
+     "id": "PL-LUMBRIDGE-01",
+     "text": "So this is where everyone starts. Quaint.",
+     "emotion": "TEASING",
+     "authorship": "Claude, 12 October 2026; kept after the Gemini pass of the same day (job gemini-world-lines-6)"
+    },
+    {
+     "id": "PL-LUMBRIDGE-02",
+     "text": "Cows, chickens, goblins. And you, I suppose.",
+     "emotion": "TEASING",
+     "authorship": "Claude, 12 October 2026; kept after the Gemini pass of the same day (job gemini-world-lines-6)"
+    }
+   ]
+  },
+  {
+   "id": "PL-VARROCK",
+   "name": "Varrock",
+   "regionIds": [
+    12596,
+    12597,
+    12852,
+    12853,
+    12854,
+    13108,
+    13109,
+    13110
+   ],
+   "facts": [
+    "The capital city: a palace, a museum, a square with a fountain, guards at the gates.",
+    "Crowded and noisy."
+   ],
+   "lines": [
+    {
+     "id": "PL-VARROCK-01",
+     "text": "A proper city. Finally.",
+     "emotion": "APPROVING",
+     "authorship": "Claude, 12 October 2026; kept after the Gemini pass of the same day (job gemini-world-lines-6)"
+    },
+    {
+     "id": "PL-VARROCK-02",
+     "text": "Stay close. Not for my sake. It's crowded.",
+     "emotion": "INDIGNANT",
+     "authorship": "Claude, 12 October 2026; kept after the Gemini pass of the same day (job gemini-world-lines-6)"
+    }
+   ]
+  },
+  {
+   "id": "PL-GRAND_EXCHANGE",
+   "name": "Grand Exchange",
+   "regionIds": [
+    12598
+   ],
+   "facts": [
+    "A large open trading floor, usually packed with adventurers buying and selling."
+   ],
+   "lines": [
+    {
+     "id": "PL-GRAND_EXCHANGE-01",
+     "text": "Must they all shout at once?",
+     "emotion": "INDIGNANT",
+     "authorship": "Claude, 12 October 2026; kept after the Gemini pass of the same day (job gemini-world-lines-6)"
+    },
+    {
+     "id": "PL-GRAND_EXCHANGE-02",
+     "text": "Don't lose me in this. I mean it.",
+     "emotion": "CONCERNED",
+     "authorship": "Claude, 12 October 2026; kept after the Gemini pass of the same day (job gemini-world-lines-6)"
+    },
+    {
+     "id": "PL-GRAND_EXCHANGE-03",
+     "text": "Hold your purse tightly.",
+     "emotion": "CONCERNED",
+     "authorship": "Gemini 3.8 Flash High via AGY, 12 October 2026 (job gemini-world-lines-6); chosen by Claude"
+    }
+   ]
+  },
+  {
+   "id": "PL-FALADOR",
+   "name": "Falador",
+   "regionIds": [
+    11828,
+    11572,
+    11827,
+    12084
+   ],
+   "facts": [
+    "A city with white stone walls and the castle of the White Knights.",
+    "It has a park."
+   ],
+   "lines": [
+    {
+     "id": "PL-FALADOR-01",
+     "text": "White stone. Clean. I approve.",
+     "emotion": "APPROVING",
+     "authorship": "Claude, 12 October 2026; kept after the Gemini pass of the same day (job gemini-world-lines-6)"
+    },
+    {
+     "id": "PL-FALADOR-02",
+     "text": "The knights keep it tidy, at least.",
+     "emotion": "APPROVING",
+     "authorship": "Claude, 12 October 2026; kept after the Gemini pass of the same day (job gemini-world-lines-6)"
+    },
+    {
+     "id": "PL-FALADOR-03",
+     "text": "Take me past the park.",
+     "emotion": "QUIET",
+     "authorship": "Gemini 3.8 Flash High via AGY, 12 October 2026 (job gemini-world-lines-6); chosen by Claude"
+    }
+   ]
+  },
+  {
+   "id": "PL-DRAYNOR",
+   "name": "Draynor",
+   "regionIds": [
+    12338,
+    12339
+   ],
+   "facts": [
+    "A small village with a market, a bank and willow trees by the water.",
+    "A haunted manor stands just north of it."
+   ],
+   "lines": [
+    {
+     "id": "PL-DRAYNOR-01",
+     "text": "A market, a bank and some willows. Is that all?",
+     "emotion": "TEASING",
+     "authorship": "Claude, 12 October 2026; kept after the Gemini pass of the same day (job gemini-world-lines-6)"
+    },
+    {
+     "id": "PL-DRAYNOR-02",
+     "text": "We're not going up to that manor. ...Are we?",
+     "emotion": "CONCERNED",
+     "authorship": "Claude, 12 October 2026; kept after the Gemini pass of the same day (job gemini-world-lines-6)"
+    }
+   ]
+  },
+  {
+   "id": "PL-DRAYNOR_MANOR",
+   "name": "Draynor Manor",
+   "regionIds": [
+    12340
+   ],
+   "facts": [
+    "A haunted manor behind a fence.",
+    "The trees in its grounds lash out at people who walk past."
+   ],
+   "lines": [
+    {
+     "id": "PL-DRAYNOR_MANOR-01",
+     "text": "That tree moved. Don't tell me it didn't.",
+     "emotion": "CONCERNED",
+     "authorship": "Claude, 12 October 2026; kept after the Gemini pass of the same day (job gemini-world-lines-6)"
+    },
+    {
+     "id": "PL-DRAYNOR_MANOR-02",
+     "text": "I'm not frightened. Walk faster.",
+     "emotion": "INDIGNANT",
+     "authorship": "Claude, 12 October 2026; kept after the Gemini pass of the same day (job gemini-world-lines-6)"
+    }
+   ]
+  },
+  {
+   "id": "PL-AL_KHARID",
+   "name": "Al Kharid",
+   "regionIds": [
+    13105,
+    13106
+   ],
+   "facts": [
+    "A desert town with a palace, a kebab seller and a toll gate.",
+    "Hot and sandy."
+   ],
+   "lines": [
+    {
+     "id": "PL-AL_KHARID-01",
+     "text": "There is sand in my robe already.",
+     "emotion": "INDIGNANT",
+     "authorship": "Claude, 12 October 2026; kept after the Gemini pass of the same day (job gemini-world-lines-6)"
+    },
+    {
+     "id": "PL-AL_KHARID-02",
+     "text": "A toll gate. To come in here. In this heat.",
+     "emotion": "INDIGNANT",
+     "authorship": "Claude, 12 October 2026; kept after the Gemini pass of the same day (job gemini-world-lines-6)"
+    },
+    {
+     "id": "PL-AL_KHARID-03",
+     "text": "That kebab seller smells questionable.",
+     "emotion": "INDIGNANT",
+     "authorship": "Gemini 3.8 Flash High via AGY, 12 October 2026 (job gemini-world-lines-6); chosen by Claude"
+    }
+   ]
+  },
+  {
+   "id": "PL-PORT_SARIM",
+   "name": "Port Sarim",
+   "regionIds": [
+    12081,
+    12082
+   ],
+   "facts": [
+    "A harbour town: docks, sailors and ships.",
+    "A jail stands at its south end."
+   ],
+   "lines": [
+    {
+     "id": "PL-PORT_SARIM-01",
+     "text": "Sailors, ships and a jail. Charming company you keep.",
+     "emotion": "TEASING",
+     "authorship": "Claude, 12 October 2026; kept after the Gemini pass of the same day (job gemini-world-lines-6)"
+    },
+    {
+     "id": "PL-PORT_SARIM-02",
+     "text": "Don't even think about putting me on one of those ships.",
+     "emotion": "INDIGNANT",
+     "authorship": "Claude, 12 October 2026; kept after the Gemini pass of the same day (job gemini-world-lines-6)"
+    },
+    {
+     "id": "PL-PORT_SARIM-03",
+     "text": "That jail would suit you.",
+     "emotion": "TEASING",
+     "authorship": "Gemini 3.8 Flash High via AGY, 12 October 2026 (job gemini-world-lines-6); chosen by Claude; edited by Claude",
+     "geminiText": "That jail at the southern end suits you."
+    }
+   ]
+  },
+  {
+   "id": "PL-KARAMJA",
+   "name": "Karamja",
+   "regionIds": [
+    10801,
+    10802,
+    11054,
+    11311,
+    11312,
+    11313,
+    11566,
+    11567,
+    11568,
+    11569,
+    11822
+   ],
+   "facts": [
+    "A tropical island: jungle, banana trees and a volcano."
+   ],
+   "lines": [
+    {
+     "id": "PL-KARAMJA-01",
+     "text": "Bananas and a volcano. What a combination.",
+     "emotion": "TEASING",
+     "authorship": "Claude, 12 October 2026; kept after the Gemini pass of the same day (job gemini-world-lines-6)"
+    },
+    {
+     "id": "PL-KARAMJA-02",
+     "text": "It's too hot. I am not complaining. I am informing you.",
+     "emotion": "INDIGNANT",
+     "authorship": "Claude, 12 October 2026; kept after the Gemini pass of the same day (job gemini-world-lines-6)"
+    }
+   ]
+  },
+  {
+   "id": "PL-EDGEVILLE",
+   "name": "Edgeville",
+   "regionIds": [
+    12342
+   ],
+   "facts": [
+    "A small town on the southern edge of the Wilderness."
+   ],
+   "lines": [
+    {
+     "id": "PL-EDGEVILLE-01",
+     "text": "I know exactly what's north of here.",
+     "emotion": "CONCERNED",
+     "authorship": "Claude, 12 October 2026; kept after the Gemini pass of the same day (job gemini-world-lines-6)"
+    },
+    {
+     "id": "PL-EDGEVILLE-02",
+     "text": "We're only passing through. ...Aren't we, Potter?",
+     "emotion": "CONCERNED",
+     "authorship": "Claude, 12 October 2026; kept after the Gemini pass of the same day (job gemini-world-lines-6)"
+    },
+    {
+     "id": "PL-EDGEVILLE-03",
+     "text": "Do not step past this town.",
+     "emotion": "CONCERNED",
+     "authorship": "Gemini 3.8 Flash High via AGY, 12 October 2026 (job gemini-world-lines-6); chosen by Claude"
+    }
+   ]
+  },
+  {
+   "id": "PL-BARBARIAN_VILLAGE",
+   "name": "Barbarian Village",
+   "regionIds": [
+    12341
+   ],
+   "facts": [
+    "A rough village of barbarians with a long hall, beside a river."
+   ],
+   "lines": [
+    {
+     "id": "PL-BARBARIAN_VILLAGE-01",
+     "text": "Barbarians. Keep walking.",
+     "emotion": "INDIGNANT",
+     "authorship": "Claude, 12 October 2026; kept after the Gemini pass of the same day (job gemini-world-lines-6)"
+    },
+    {
+     "id": "PL-BARBARIAN_VILLAGE-02",
+     "text": "I'd rather not be invited into that hall.",
+     "emotion": "QUIET",
+     "authorship": "Claude, 12 October 2026; kept after the Gemini pass of the same day (job gemini-world-lines-6)"
+    },
+    {
+     "id": "PL-BARBARIAN_VILLAGE-03",
+     "text": "Utterly uncouth.",
+     "emotion": "INDIGNANT",
+     "authorship": "Gemini 3.8 Flash High via AGY, 12 October 2026 (job gemini-world-lines-6); chosen by Claude"
+    }
+   ]
+  },
+  {
+   "id": "PL-WIZARDS_TOWER",
+   "name": "Wizards' Tower",
+   "regionIds": [
+    12337
+   ],
+   "facts": [
+    "A tall tower of wizards on an island, reached by a bridge.",
+    "Rune magic is studied here."
+   ],
+   "lines": [
+    {
+     "id": "PL-WIZARDS_TOWER-01",
+     "text": "Now this is a proper place.",
+     "emotion": "EXCITED",
+     "authorship": "Claude, 12 October 2026; kept after the Gemini pass of the same day (job gemini-world-lines-6)"
+    },
+    {
+     "id": "PL-WIZARDS_TOWER-02",
+     "text": "I'm not excited. It's an academic interest.",
+     "emotion": "INDIGNANT",
+     "authorship": "Claude, 12 October 2026; kept after the Gemini pass of the same day (job gemini-world-lines-6)"
+    }
+   ]
+  },
+  {
+   "id": "PL-CANIFIS",
+   "name": "Canifis",
+   "regionIds": [
+    13878
+   ],
+   "facts": [
+    "A gloomy town whose people are werewolves."
+   ],
+   "lines": [
+    {
+     "id": "PL-CANIFIS-01",
+     "text": "They're all looking at us. Stay next to me.",
+     "emotion": "CONCERNED",
+     "authorship": "Claude, 12 October 2026; kept after the Gemini pass of the same day (job gemini-world-lines-6)"
+    },
+    {
+     "id": "PL-CANIFIS-02",
+     "text": "Werewolves. A whole town of them. Lovely choice.",
+     "emotion": "TEASING",
+     "authorship": "Claude, 12 October 2026; kept after the Gemini pass of the same day (job gemini-world-lines-6)"
+    },
+    {
+     "id": "PL-CANIFIS-03",
+     "text": "Watch their eyes, Potter.",
+     "emotion": "CONCERNED",
+     "authorship": "Gemini 3.8 Flash High via AGY, 12 October 2026 (job gemini-world-lines-6); chosen by Claude"
+    }
+   ]
+  },
+  {
+   "id": "PL-SEERS_VILLAGE",
+   "name": "Seers' Village",
+   "regionIds": [
+    10806
+   ],
+   "facts": [
+    "A quiet village of seers with flax fields nearby.",
+    "A castle stands to the east."
+   ],
+   "lines": [
+    {
+     "id": "PL-SEERS_VILLAGE-01",
+     "text": "I don't need a seer to tell me how today ends.",
+     "emotion": "TEASING",
+     "authorship": "Claude, 12 October 2026; kept after the Gemini pass of the same day (job gemini-world-lines-6)"
+    },
+    {
+     "id": "PL-SEERS_VILLAGE-02",
+     "text": "It's quiet here. ...I don't hate it.",
+     "emotion": "QUIET",
+     "authorship": "Claude, 12 October 2026; kept after the Gemini pass of the same day (job gemini-world-lines-6)"
+    }
+   ]
+  },
+  {
+   "id": "PL-CATHERBY",
+   "name": "Catherby",
+   "regionIds": [
+    11317,
+    11318,
+    11061
+   ],
+   "facts": [
+    "A fishing village on a beach."
+   ],
+   "lines": [
+    {
+     "id": "PL-CATHERBY-01",
+     "text": "A beach. I suppose it's tolerable.",
+     "emotion": "APPROVING",
+     "authorship": "Claude, 12 October 2026; kept after the Gemini pass of the same day (job gemini-world-lines-6)"
+    },
+    {
+     "id": "PL-CATHERBY-02",
+     "text": "If you tell anyone I liked it here, I'll deny it.",
+     "emotion": "TEASING",
+     "authorship": "Claude, 12 October 2026; kept after the Gemini pass of the same day (job gemini-world-lines-6)"
+    },
+    {
+     "id": "PL-CATHERBY-03",
+     "text": "Acceptable sea air.",
+     "emotion": "APPROVING",
+     "authorship": "Gemini 3.8 Flash High via AGY, 12 October 2026 (job gemini-world-lines-6); chosen by Claude"
+    }
+   ]
+  },
+  {
+   "id": "PL-ARDOUGNE",
+   "name": "Ardougne",
+   "regionIds": [
+    9779,
+    9780,
+    10035,
+    10036,
+    10291,
+    10292,
+    10547,
+    10548
+   ],
+   "facts": [
+    "A large city with a busy market square and a zoo."
+   ],
+   "lines": [
+    {
+     "id": "PL-ARDOUGNE-01",
+     "text": "Keep a hand on your coins in that market.",
+     "emotion": "CONCERNED",
+     "authorship": "Claude, 12 October 2026; kept after the Gemini pass of the same day (job gemini-world-lines-6)"
+    },
+    {
+     "id": "PL-ARDOUGNE-02",
+     "text": "They have a zoo. Not that I want to see it.",
+     "emotion": "CURIOUS",
+     "authorship": "Claude, 12 October 2026; kept after the Gemini pass of the same day (job gemini-world-lines-6)"
+    }
+   ]
+  },
+  {
+   "id": "PL-YANILLE",
+   "name": "Yanille",
+   "regionIds": [
+    10288,
+    10032
+   ],
+   "facts": [
+    "A walled town in the south with a guild of wizards."
+   ],
+   "lines": [
+    {
+     "id": "PL-YANILLE-01",
+     "text": "A guild of wizards. I wonder what their standards are.",
+     "emotion": "CURIOUS",
+     "authorship": "Claude, 12 October 2026; kept after the Gemini pass of the same day (job gemini-world-lines-6)"
+    },
+    {
+     "id": "PL-YANILLE-02",
+     "text": "I could teach in there. Probably.",
+     "emotion": "TEASING",
+     "authorship": "Claude, 12 October 2026; kept after the Gemini pass of the same day (job gemini-world-lines-6)"
+    }
+   ]
+  },
+  {
+   "id": "PL-RELLEKKA",
+   "name": "Rellekka",
+   "regionIds": [
+    10297,
+    10553
+   ],
+   "facts": [
+    "A cold northern town of the Fremennik, with a longhall and longboats."
+   ],
+   "lines": [
+    {
+     "id": "PL-RELLEKKA-01",
+     "text": "It's freezing. You might have warned me.",
+     "emotion": "INDIGNANT",
+     "authorship": "Claude, 12 October 2026; kept after the Gemini pass of the same day (job gemini-world-lines-6)"
+    },
+    {
+     "id": "PL-RELLEKKA-02",
+     "text": "Longboats, a longhall and the cold. Mostly the cold.",
+     "emotion": "INDIGNANT",
+     "authorship": "Claude, 12 October 2026; kept after the Gemini pass of the same day (job gemini-world-lines-6)"
+    }
+   ]
+  },
+  {
+   "id": "PL-TAVERLEY",
+   "name": "Taverley",
+   "regionIds": [
+    11574,
+    11573
+   ],
+   "facts": [
+    "A village of druids with a herb shop; a stone circle stands nearby."
+   ],
+   "lines": [
+    {
+     "id": "PL-TAVERLEY-01",
+     "text": "Druids. Everything smells of herbs.",
+     "emotion": "CURIOUS",
+     "authorship": "Claude, 12 October 2026; kept after the Gemini pass of the same day (job gemini-world-lines-6)"
+    },
+    {
+     "id": "PL-TAVERLEY-02",
+     "text": "A stone circle. Hm.",
+     "emotion": "CURIOUS",
+     "authorship": "Claude, 12 October 2026; kept after the Gemini pass of the same day (job gemini-world-lines-6)"
+    }
+   ]
+  },
+  {
+   "id": "PL-BURTHORPE",
+   "name": "Burthorpe",
+   "regionIds": [
+    11319,
+    11575
+   ],
+   "facts": [
+    "A military camp and castle below mountains held by trolls."
+   ],
+   "lines": [
+    {
+     "id": "PL-BURTHORPE-01",
+     "text": "Soldiers everywhere, and trolls up the hill. Restful.",
+     "emotion": "TEASING",
+     "authorship": "Claude, 12 October 2026; kept after the Gemini pass of the same day (job gemini-world-lines-6)"
+    },
+    {
+     "id": "PL-BURTHORPE-02",
+     "text": "Is this a town or a parade ground?",
+     "emotion": "TEASING",
+     "authorship": "Claude, 12 October 2026; kept after the Gemini pass of the same day (job gemini-world-lines-6)"
+    },
+    {
+     "id": "PL-BURTHORPE-03",
+     "text": "Constant drilling.",
+     "emotion": "INDIGNANT",
+     "authorship": "Gemini 3.8 Flash High via AGY, 12 October 2026 (job gemini-world-lines-6); chosen by Claude"
+    }
+   ]
+  },
+  {
+   "id": "PL-RIMMINGTON",
+   "name": "Rimmington",
+   "regionIds": [
+    11826,
+    11570
+   ],
+   "facts": [
+    "A sleepy village with a mine nearby."
+   ],
+   "lines": [
+    {
+     "id": "PL-RIMMINGTON-01",
+     "text": "Does anything ever happen here?",
+     "emotion": "TEASING",
+     "authorship": "Claude, 12 October 2026; kept after the Gemini pass of the same day (job gemini-world-lines-6)"
+    },
+    {
+     "id": "PL-RIMMINGTON-02",
+     "text": "Sleepy. ...It's almost pleasant.",
+     "emotion": "QUIET",
+     "authorship": "Claude, 12 October 2026; kept after the Gemini pass of the same day (job gemini-world-lines-6)"
+    }
+   ]
+  },
+  {
+   "id": "PL-ZANARIS",
+   "name": "Zanaris",
+   "regionIds": [
+    9285,
+    9541,
+    9540,
+    9797
+   ],
+   "facts": [
+    "The hidden city of the fairies."
+   ],
+   "lines": [
+    {
+     "id": "PL-ZANARIS-01",
+     "text": "Oh. ...It's rather beautiful. Don't look at me.",
+     "emotion": "QUIET",
+     "authorship": "Claude, 12 October 2026; kept after the Gemini pass of the same day (job gemini-world-lines-6)"
+    },
+    {
+     "id": "PL-ZANARIS-02",
+     "text": "A whole city, hidden. I knew it.",
+     "emotion": "EXCITED",
+     "authorship": "Claude, 12 October 2026; kept after the Gemini pass of the same day (job gemini-world-lines-6)"
+    }
+   ]
+  },
+  {
+   "id": "PL-TREE_GNOME_STRONGHOLD",
+   "name": "Tree Gnome Stronghold",
+   "regionIds": [
+    9525,
+    9526,
+    9782,
+    9781
+   ],
+   "facts": [
+    "The home of the gnomes, built around one enormous tree."
+   ],
+   "lines": [
+    {
+     "id": "PL-TREE_GNOME_STRONGHOLD-01",
+     "text": "Everything is tiny except the tree.",
+     "emotion": "CURIOUS",
+     "authorship": "Claude, 12 October 2026; kept after the Gemini pass of the same day (job gemini-world-lines-6)"
+    },
+    {
+     "id": "PL-TREE_GNOME_STRONGHOLD-02",
+     "text": "Mind where you step. They're small.",
+     "emotion": "CONCERNED",
+     "authorship": "Claude, 12 October 2026; kept after the Gemini pass of the same day (job gemini-world-lines-6)"
+    }
+   ]
+  },
+  {
+   "id": "PL-KELDAGRIM",
+   "name": "Keldagrim",
+   "regionIds": [
+    11423,
+    11422,
+    11679,
+    11678
+   ],
+   "facts": [
+    "The underground city of the dwarves, with mine carts and a palace."
+   ],
+   "lines": [
+    {
+     "id": "PL-KELDAGRIM-01",
+     "text": "No sky. I don't care for it.",
+     "emotion": "QUIET",
+     "authorship": "Claude, 12 October 2026; kept after the Gemini pass of the same day (job gemini-world-lines-6)"
+    },
+    {
+     "id": "PL-KELDAGRIM-02",
+     "text": "A palace, underground. Dwarves don't do things by halves.",
+     "emotion": "APPROVING",
+     "authorship": "Claude, 12 October 2026; kept after the Gemini pass of the same day (job gemini-world-lines-6)"
+    }
+   ]
+  },
+  {
+   "id": "PL-MOR_UL_REK",
+   "name": "Mor Ul Rek",
+   "regionIds": [
+    9808,
+    9807,
+    10064,
+    10063
+   ],
+   "facts": [
+    "A city inside a volcano: black rock, lava and heat."
+   ],
+   "lines": [
+    {
+     "id": "PL-MOR_UL_REK-01",
+     "text": "We are standing inside a volcano, Potter. I'd like that noted.",
+     "emotion": "INDIGNANT",
+     "authorship": "Claude, 12 October 2026; kept after the Gemini pass of the same day (job gemini-world-lines-6)"
+    },
+    {
+     "id": "PL-MOR_UL_REK-02",
+     "text": "The heat is unreasonable.",
+     "emotion": "INDIGNANT",
+     "authorship": "Claude, 12 October 2026; kept after the Gemini pass of the same day (job gemini-world-lines-6)"
+    },
+    {
+     "id": "PL-MOR_UL_REK-03",
+     "text": "Step away from the lava.",
+     "emotion": "CONCERNED",
+     "authorship": "Gemini 3.8 Flash High via AGY, 12 October 2026 (job gemini-world-lines-6); chosen by Claude; edited by Claude",
+     "geminiText": "Step away from the magma."
+    }
+   ]
+  },
+  {
+   "id": "PL-PRIFDDINAS",
+   "name": "Prifddinas",
+   "regionIds": [
+    8499,
+    8500,
+    8755,
+    8756,
+    9011,
+    9012,
+    9013,
+    12894,
+    12895,
+    13150,
+    13151
+   ],
+   "facts": [
+    "The elves' city of crystal."
+   ],
+   "lines": [
+    {
+     "id": "PL-PRIFDDINAS-01",
+     "text": "Crystal. All of it. ...Fine. It's impressive.",
+     "emotion": "APPROVING",
+     "authorship": "Claude, 12 October 2026; kept after the Gemini pass of the same day (job gemini-world-lines-6)"
+    },
+    {
+     "id": "PL-PRIFDDINAS-02",
+     "text": "I'm not staring.",
+     "emotion": "INDIGNANT",
+     "authorship": "Claude, 12 October 2026; kept after the Gemini pass of the same day (job gemini-world-lines-6)"
+    },
+    {
+     "id": "PL-PRIFDDINAS-03",
+     "text": "Dazzling craftsmanship, I suppose.",
+     "emotion": "APPROVING",
+     "authorship": "Gemini 3.8 Flash High via AGY, 12 October 2026 (job gemini-world-lines-6); chosen by Claude"
+    }
+   ]
+  },
+  {
+   "id": "PL-MOS_LEHARMLESS",
+   "name": "Mos Le'Harmless",
+   "regionIds": [
+    14637,
+    14638,
+    14639,
+    14894,
+    14895,
+    15151,
+    15406,
+    15407
+   ],
+   "facts": [
+    "An island of pirates."
+   ],
+   "lines": [
+    {
+     "id": "PL-MOS_LEHARMLESS-01",
+     "text": "Pirates. You do pick your friends.",
+     "emotion": "TEASING",
+     "authorship": "Claude, 12 October 2026; kept after the Gemini pass of the same day (job gemini-world-lines-6)"
+    },
+    {
+     "id": "PL-MOS_LEHARMLESS-02",
+     "text": "Nobody here is getting my purse.",
+     "emotion": "INDIGNANT",
+     "authorship": "Claude, 12 October 2026; kept after the Gemini pass of the same day (job gemini-world-lines-6)"
+    }
+   ]
+  },
+  {
+   "id": "PL-PORT_PHASMATYS",
+   "name": "Port Phasmatys",
+   "regionIds": [
+    14646
+   ],
+   "facts": [
+    "A port town of ghosts."
+   ],
+   "lines": [
+    {
+     "id": "PL-PORT_PHASMATYS-01",
+     "text": "I don't mind ghosts. I just prefer them elsewhere.",
+     "emotion": "CONCERNED",
+     "authorship": "Claude, 12 October 2026; kept after the Gemini pass of the same day (job gemini-world-lines-6)"
+    },
+    {
+     "id": "PL-PORT_PHASMATYS-02",
+     "text": "Don't walk off. Not here.",
+     "emotion": "CONCERNED",
+     "authorship": "Claude, 12 October 2026; kept after the Gemini pass of the same day (job gemini-world-lines-6)"
+    },
+    {
+     "id": "PL-PORT_PHASMATYS-03",
+     "text": "Walk right beside me.",
+     "emotion": "CONCERNED",
+     "authorship": "Gemini 3.8 Flash High via AGY, 12 October 2026 (job gemini-world-lines-6); chosen by Claude"
+    }
+   ]
+  },
+  {
+   "id": "PL-LUMBRIDGE_SWAMP",
+   "name": "Lumbridge Swamp",
+   "regionIds": [
+    12593,
+    12849
+   ],
+   "facts": [
+    "A marsh with frogs and giant rats."
+   ],
+   "lines": [
+    {
+     "id": "PL-LUMBRIDGE_SWAMP-01",
+     "text": "Giant rats. You brought me somewhere with giant rats.",
+     "emotion": "INDIGNANT",
+     "authorship": "Claude, 12 October 2026; kept after the Gemini pass of the same day (job gemini-world-lines-6)"
+    },
+    {
+     "id": "PL-LUMBRIDGE_SWAMP-02",
+     "text": "Mud, frogs and worse. Let's be quick.",
+     "emotion": "CONCERNED",
+     "authorship": "Claude, 12 October 2026; kept after the Gemini pass of the same day (job gemini-world-lines-6)"
+    }
+   ]
+  },
+  {
+   "id": "PL-ENTRANA",
+   "name": "Entrana",
+   "regionIds": [
+    11060,
+    11316
+   ],
+   "facts": [
+    "A holy island of monks.",
+    "No weapons or armour may be brought here."
+   ],
+   "lines": [
+    {
+     "id": "PL-ENTRANA-01",
+     "text": "It's very peaceful. Suspiciously.",
+     "emotion": "CURIOUS",
+     "authorship": "Claude, 12 October 2026; kept after the Gemini pass of the same day (job gemini-world-lines-6)"
+    },
+    {
+     "id": "PL-ENTRANA-02",
+     "text": "No weapons allowed. I rather like the monks.",
+     "emotion": "APPROVING",
+     "authorship": "Claude, 12 October 2026; kept after the Gemini pass of the same day (job gemini-world-lines-6)"
+    }
+   ]
+  },
+  {
+   "id": "PL-LUNAR_ISLE",
+   "name": "Lunar Isle",
+   "regionIds": [
+    8253,
+    8252,
+    8509,
+    8508
+   ],
+   "facts": [
+    "An island of mages who draw their magic from the moon."
+   ],
+   "lines": [
+    {
+     "id": "PL-LUNAR_ISLE-01",
+     "text": "Moon magic. I'd like to see how it's done.",
+     "emotion": "CURIOUS",
+     "authorship": "Claude, 12 October 2026; kept after the Gemini pass of the same day (job gemini-world-lines-6)"
+    },
+    {
+     "id": "PL-LUNAR_ISLE-02",
+     "text": "They're good. I'm better. Probably.",
+     "emotion": "TEASING",
+     "authorship": "Claude, 12 October 2026; kept after the Gemini pass of the same day (job gemini-world-lines-6)"
+    }
+   ]
+  },
+  {
+   "id": "PL-DORGESHKAAN",
+   "name": "Dorgesh-Kaan",
+   "regionIds": [
+    10835,
+    10834
+   ],
+   "facts": [
+    "The underground city of the cave goblins."
+   ],
+   "lines": [
+    {
+     "id": "PL-DORGESHKAAN-01",
+     "text": "Goblins built this? Really?",
+     "emotion": "CURIOUS",
+     "authorship": "Claude, 12 October 2026; kept after the Gemini pass of the same day (job gemini-world-lines-6)"
+    },
+    {
+     "id": "PL-DORGESHKAAN-02",
+     "text": "I may owe a few goblins an apology.",
+     "emotion": "QUIET",
+     "authorship": "Claude, 12 October 2026; kept after the Gemini pass of the same day (job gemini-world-lines-6)"
+    }
+   ]
+  },
+  {
+   "id": "PL-SLAYER_TOWER",
+   "name": "Slayer Tower",
+   "regionIds": [
+    13623,
+    13723
+   ],
+   "facts": [
+    "A tower full of monsters kept for slayers to hunt."
+   ],
+   "lines": [
+    {
+     "id": "PL-SLAYER_TOWER-01",
+     "text": "A tower full of monsters. On purpose.",
+     "emotion": "INDIGNANT",
+     "authorship": "Claude, 12 October 2026; kept after the Gemini pass of the same day (job gemini-world-lines-6)"
+    },
+    {
+     "id": "PL-SLAYER_TOWER-02",
+     "text": "Do what you came for. Quickly.",
+     "emotion": "CONCERNED",
+     "authorship": "Claude, 12 October 2026; kept after the Gemini pass of the same day (job gemini-world-lines-6)"
+    }
+   ]
+  },
+  {
+   "id": "PL-VARROCK_SEWERS",
+   "name": "Varrock Sewers",
+   "regionIds": [
+    12954,
+    13210
+   ],
+   "facts": [
+    "Sewers under the capital: damp tunnels with rats and spiders."
+   ],
+   "lines": [
+    {
+     "id": "PL-VARROCK_SEWERS-01",
+     "text": "Rats and spiders. In a sewer. I'm thrilled.",
+     "emotion": "INDIGNANT",
+     "authorship": "Claude, 12 October 2026; kept after the Gemini pass of the same day (job gemini-world-lines-6)"
+    },
+    {
+     "id": "PL-VARROCK_SEWERS-02",
+     "text": "I will remember that you brought me here.",
+     "emotion": "INDIGNANT",
+     "authorship": "Claude, 12 October 2026; kept after the Gemini pass of the same day (job gemini-world-lines-6)"
+    }
+   ]
+  },
+  {
+   "id": "PL-FALADOR_FARM",
+   "name": "Falador Farm",
+   "regionIds": [
+    12083
+   ],
+   "facts": [
+    "A farm with cows and chickens."
+   ],
+   "lines": [
+    {
+     "id": "PL-FALADOR_FARM-01",
+     "text": "Cows and chickens. Don't expect me to help.",
+     "emotion": "TEASING",
+     "authorship": "Claude, 12 October 2026; kept after the Gemini pass of the same day (job gemini-world-lines-6)"
+    },
+    {
+     "id": "PL-FALADOR_FARM-02",
+     "text": "It's a farm. I've seen it. Shall we?",
+     "emotion": "TEASING",
+     "authorship": "Claude, 12 October 2026; kept after the Gemini pass of the same day (job gemini-world-lines-6)"
+    },
+    {
+     "id": "PL-FALADOR_FARM-03",
+     "text": "Agricultural filth.",
+     "emotion": "INDIGNANT",
+     "authorship": "Gemini 3.8 Flash High via AGY, 12 October 2026 (job gemini-world-lines-6); chosen by Claude"
+    }
+   ]
+  },
+  {
+   "id": "PL-DIGSITE",
+   "name": "Digsite",
+   "regionIds": [
+    13365
+   ],
+   "facts": [
+    "An archaeological dig with students and their examiners."
+   ],
+   "lines": [
+    {
+     "id": "PL-DIGSITE-01",
+     "text": "Students. Good. Dirt. Less good.",
+     "emotion": "APPROVING",
+     "authorship": "Claude, 12 October 2026; kept after the Gemini pass of the same day (job gemini-world-lines-6)"
+    },
+    {
+     "id": "PL-DIGSITE-02",
+     "text": "I'd pass their exam.",
+     "emotion": "TEASING",
+     "authorship": "Claude, 12 October 2026; kept after the Gemini pass of the same day (job gemini-world-lines-6)"
+    }
+   ]
+  },
+  {
+   "id": "PL-BRIMHAVEN",
+   "name": "Brimhaven",
+   "regionIds": [
+    11057,
+    11058
+   ],
+   "facts": [
+    "A lawless port on a tropical island, with pirates."
+   ],
+   "lines": [
+    {
+     "id": "PL-BRIMHAVEN-01",
+     "text": "Lawless, they said. And you still came.",
+     "emotion": "TEASING",
+     "authorship": "Claude, 12 October 2026; kept after the Gemini pass of the same day (job gemini-world-lines-6)"
+    },
+    {
+     "id": "PL-BRIMHAVEN-02",
+     "text": "Keep walking. Don't make eye contact.",
+     "emotion": "CONCERNED",
+     "authorship": "Claude, 12 October 2026; kept after the Gemini pass of the same day (job gemini-world-lines-6)"
+    }
+   ]
+  },
+  {
+   "id": "PL-TROLLHEIM",
+   "name": "Trollheim",
+   "regionIds": [
+    11577
+   ],
+   "facts": [
+    "A cold mountain held by trolls."
+   ],
+   "lines": [
+    {
+     "id": "PL-TROLLHEIM-01",
+     "text": "Cold, steep, and full of trolls. Well done.",
+     "emotion": "TEASING",
+     "authorship": "Claude, 12 October 2026; kept after the Gemini pass of the same day (job gemini-world-lines-6)"
+    },
+    {
+     "id": "PL-TROLLHEIM-02",
+     "text": "If a troll so much as looks at me, we're leaving.",
+     "emotion": "CONCERNED",
+     "authorship": "Claude, 12 October 2026; kept after the Gemini pass of the same day (job gemini-world-lines-6)"
+    }
+   ]
+  },
+  {
+   "id": "PL-FOSSIL_ISLAND",
+   "name": "Fossil Island",
+   "regionIds": [
+    14650,
+    14651,
+    14652,
+    14906,
+    14907,
+    14908,
+    15162,
+    15163,
+    15164
+   ],
+   "facts": [
+    "An island of old bones and fossils."
+   ],
+   "lines": [
+    {
+     "id": "PL-FOSSIL_ISLAND-01",
+     "text": "Old bones everywhere. ...What was that one?",
+     "emotion": "CURIOUS",
+     "authorship": "Claude, 12 October 2026; kept after the Gemini pass of the same day (job gemini-world-lines-6)"
+    },
+    {
+     "id": "PL-FOSSIL_ISLAND-02",
+     "text": "I'm only a little curious.",
+     "emotion": "CURIOUS",
+     "authorship": "Claude, 12 October 2026; kept after the Gemini pass of the same day (job gemini-world-lines-6)"
+    }
+   ]
+  },
+  {
+   "id": "PL-TUTORIAL_ISLAND",
+   "name": "Tutorial Island",
+   "regionIds": [
+    12079,
+    12080,
+    12335,
+    12336,
+    12436,
+    12592
+   ],
+   "facts": [
+    "The island where new adventurers are taught the basics."
+   ],
+   "lines": [
+    {
+     "id": "PL-TUTORIAL_ISLAND-01",
+     "text": "Back to learn the basics, Potter?",
+     "emotion": "TEASING",
+     "authorship": "Claude, 12 October 2026; kept after the Gemini pass of the same day (job gemini-world-lines-6)"
+    },
+    {
+     "id": "PL-TUTORIAL_ISLAND-02",
+     "text": "I could have taught you all this.",
+     "emotion": "TEASING",
+     "authorship": "Claude, 12 October 2026; kept after the Gemini pass of the same day (job gemini-world-lines-6)"
+    },
+    {
+     "id": "PL-TUTORIAL_ISLAND-03",
+     "text": "Need refresher lessons?",
+     "emotion": "TEASING",
+     "authorship": "Gemini 3.8 Flash High via AGY, 12 October 2026 (job gemini-world-lines-6); chosen by Claude"
+    }
+   ]
+  }
+ ],
+ "placeKinds": [
+  {
+   "id": "PT-DESERT",
+   "facts": [
+    "Open desert or a desert settlement: sand, heat, little water."
+   ],
+   "places": [
+    {
+     "name": "Kharidian Desert",
+     "regionIds": [
+      12587,
+      12844,
+      12845,
+      12846,
+      12847,
+      12848,
+      13100,
+      13101,
+      13102,
+      13103,
+      13104,
+      13357,
+      13359,
+      13360,
+      13614,
+      13615,
+      13616,
+      13869,
+      13870
+     ]
+    },
+    {
+     "name": "Pollnivneach",
+     "regionIds": [
+      13358
+     ]
+    },
+    {
+     "name": "Nardah",
+     "regionIds": [
+      13613
+     ]
+    },
+    {
+     "name": "Sophanem",
+     "regionIds": [
+      13099
+     ]
+    },
+    {
+     "name": "Menaphos",
+     "regionIds": [
+      12843
+     ]
+    },
+    {
+     "name": "Uzer",
+     "regionIds": [
+      13872
+     ]
+    },
+    {
+     "name": "Uzer Oasis",
+     "regionIds": [
+      13871
+     ]
+    },
+    {
+     "name": "Bandit Camp",
+     "regionIds": [
+      12590
+     ]
+    },
+    {
+     "name": "Bedabin Camp",
+     "regionIds": [
+      12591
+     ]
+    },
+    {
+     "name": "Agility Pyramid",
+     "regionIds": [
+      12105,
+      13356
+     ]
+    },
+    {
+     "name": "Quarry",
+     "regionIds": [
+      12589
+     ]
+    },
+    {
+     "name": "Desert Plateau",
+     "regionIds": [
+      13361,
+      13617
+     ]
+    },
+    {
+     "name": "Ruins of Unkah",
+     "regionIds": [
+      12588
+     ]
+    },
+    {
+     "name": "Ruins of Ullek",
+     "regionIds": [
+      13355,
+      13611,
+      13612
+     ]
+    },
+    {
+     "name": "Necropolis",
+     "regionIds": [
+      13098,
+      13353,
+      13354,
+      13609,
+      13610
+     ]
+    }
+   ],
+   "lines": [
+    {
+     "id": "PT-DESERT-01",
+     "text": "Sand. In everything.",
+     "emotion": "INDIGNANT",
+     "authorship": "Claude, 12 October 2026; kept after the Gemini pass of the same day (job gemini-world-lines-6)"
+    },
+    {
+     "id": "PT-DESERT-02",
+     "text": "You do have water. Tell me you have water.",
+     "emotion": "CONCERNED",
+     "authorship": "Claude, 12 October 2026; kept after the Gemini pass of the same day (job gemini-world-lines-6)"
+    },
+    {
+     "id": "PT-DESERT-03",
+     "text": "It's too hot to argue with you.",
+     "emotion": "QUIET",
+     "authorship": "Claude, 12 October 2026; kept after the Gemini pass of the same day (job gemini-world-lines-6)"
+    },
+    {
+     "id": "PT-DESERT-04",
+     "text": "My robe was not made for this.",
+     "emotion": "INDIGNANT",
+     "authorship": "Claude, 12 October 2026; kept after the Gemini pass of the same day (job gemini-world-lines-6)"
+    },
+    {
+     "id": "PT-DESERT-05",
+     "text": "Share your water, Potter.",
+     "emotion": "INDIGNANT",
+     "authorship": "Gemini 3.8 Flash High via AGY, 12 October 2026 (job gemini-world-lines-6); chosen by Claude"
+    }
+   ]
+  },
+  {
+   "id": "PT-SWAMP",
+   "facts": [
+    "A swamp: mud, standing water, bad air."
+   ],
+   "places": [
+    {
+     "name": "Kebos Swamp",
+     "regionIds": [
+      4664,
+      4920,
+      5174,
+      5175,
+      5176,
+      5430,
+      5431
+     ]
+    },
+    {
+     "name": "Poison Waste",
+     "regionIds": [
+      8752,
+      9008
+     ]
+    }
+   ],
+   "lines": [
+    {
+     "id": "PT-SWAMP-01",
+     "text": "My boots. Look at my boots.",
+     "emotion": "INDIGNANT",
+     "authorship": "Claude, 12 October 2026; kept after the Gemini pass of the same day (job gemini-world-lines-6)"
+    },
+    {
+     "id": "PT-SWAMP-02",
+     "text": "Don't breathe too deeply.",
+     "emotion": "CONCERNED",
+     "authorship": "Claude, 12 October 2026; kept after the Gemini pass of the same day (job gemini-world-lines-6)"
+    },
+    {
+     "id": "PT-SWAMP-03",
+     "text": "Of all the places.",
+     "emotion": "INDIGNANT",
+     "authorship": "Claude, 12 October 2026; kept after the Gemini pass of the same day (job gemini-world-lines-6)"
+    },
+    {
+     "id": "PT-SWAMP-04",
+     "text": "If I sink, you're coming in after me.",
+     "emotion": "TEASING",
+     "authorship": "Claude, 12 October 2026; kept after the Gemini pass of the same day (job gemini-world-lines-6)"
+    }
+   ]
+  },
+  {
+   "id": "PT-HAUNTED",
+   "facts": [
+    "A gloomy land of swamps and graves, home to vampyres, werewolves and ghosts."
+   ],
+   "places": [
+    {
+     "name": "Morytania",
+     "regionIds": [
+      13619,
+      13620,
+      13621,
+      13622,
+      13876,
+      13877,
+      13879,
+      14133,
+      14134,
+      14389,
+      14390,
+      14391,
+      14645,
+      14647
+     ]
+    },
+    {
+     "name": "Slepe",
+     "regionIds": [
+      14643,
+      14899,
+      14900,
+      14901
+     ]
+    },
+    {
+     "name": "Darkmeyer",
+     "regionIds": [
+      14388,
+      14644
+     ]
+    },
+    {
+     "name": "Meiyerditch",
+     "regionIds": [
+      14132,
+      14387,
+      14386,
+      14385
+     ]
+    },
+    {
+     "name": "Mort'ton",
+     "regionIds": [
+      13875
+     ]
+    },
+    {
+     "name": "Burgh de Rott",
+     "regionIds": [
+      13874,
+      13873,
+      14130,
+      14129
+     ]
+    },
+    {
+     "name": "Fenkenstrain's Castle",
+     "regionIds": [
+      14135
+     ]
+    },
+    {
+     "name": "Icyene Graveyard",
+     "regionIds": [
+      14641,
+      14897,
+      14898
+     ]
+    },
+    {
+     "name": "Abandoned Mine",
+     "regionIds": [
+      13618,
+      13718,
+      11079,
+      11078,
+      11077,
+      10823,
+      10822,
+      10821
+     ]
+    },
+    {
+     "name": "Shade Catacombs",
+     "regionIds": [
+      13975
+     ]
+    },
+    {
+     "name": "Ectofuntus",
+     "regionIds": [
+      14746
+     ]
+    },
+    {
+     "name": "Ver Sinhaza",
+     "regionIds": [
+      14642
+     ]
+    }
+   ],
+   "lines": [
+    {
+     "id": "PT-HAUNTED-01",
+     "text": "I'm not scared. I'm staying close for your sake.",
+     "emotion": "INDIGNANT",
+     "authorship": "Claude, 12 October 2026; kept after the Gemini pass of the same day (job gemini-world-lines-6)"
+    },
+    {
+     "id": "PT-HAUNTED-02",
+     "text": "It's too quiet here.",
+     "emotion": "CONCERNED",
+     "authorship": "Claude, 12 October 2026; kept after the Gemini pass of the same day (job gemini-world-lines-6)"
+    },
+    {
+     "id": "PT-HAUNTED-03",
+     "text": "Did you hear that? ...Never mind.",
+     "emotion": "CONCERNED",
+     "authorship": "Claude, 12 October 2026; kept after the Gemini pass of the same day (job gemini-world-lines-6)"
+    },
+    {
+     "id": "PT-HAUNTED-04",
+     "text": "Let's not linger, Potter.",
+     "emotion": "CONCERNED",
+     "authorship": "Claude, 12 October 2026; kept after the Gemini pass of the same day (job gemini-world-lines-6)"
+    },
+    {
+     "id": "PT-HAUNTED-05",
+     "text": "I am merely keeping pace, Potter.",
+     "emotion": "INDIGNANT",
+     "authorship": "Gemini 3.8 Flash High via AGY, 12 October 2026 (job gemini-world-lines-6); chosen by Claude"
+    }
+   ]
+  },
+  {
+   "id": "PT-SNOW",
+   "facts": [
+    "Snow and ice; bitterly cold."
+   ],
+   "places": [
+    {
+     "name": "Death Plateau",
+     "regionIds": [
+      11320
+     ]
+    },
+    {
+     "name": "Ice Path",
+     "regionIds": [
+      11322,
+      11323
+     ]
+    },
+    {
+     "name": "Iceberg",
+     "regionIds": [
+      10558,
+      10559
+     ]
+    },
+    {
+     "name": "Northern Tundras",
+     "regionIds": [
+      6204,
+      6205,
+      6717
+     ]
+    },
+    {
+     "name": "Weiss",
+     "regionIds": [
+      11325,
+      11581
+     ]
+    },
+    {
+     "name": "Trollweiss Mountain",
+     "regionIds": [
+      11066,
+      11067,
+      11068
+     ]
+    },
+    {
+     "name": "Troll Stronghold",
+     "regionIds": [
+      11321,
+      11421
+     ]
+    },
+    {
+     "name": "Mountain Camp",
+     "regionIds": [
+      11065
+     ]
+    },
+    {
+     "name": "Fremennik Province",
+     "regionIds": [
+      10296,
+      10552,
+      10808,
+      10809,
+      10810,
+      10811,
+      11064
+     ]
+    },
+    {
+     "name": "Fremennik Isles",
+     "regionIds": [
+      9276,
+      9532
+     ]
+    },
+    {
+     "name": "Neitiznot",
+     "regionIds": [
+      9275
+     ]
+    },
+    {
+     "name": "Jatizso",
+     "regionIds": [
+      9531
+     ]
+    },
+    {
+     "name": "Waterbirth Island",
+     "regionIds": [
+      10042
+     ]
+    },
+    {
+     "name": "Asgarnian Ice Caves",
+     "regionIds": [
+      11925,
+      12181
+     ]
+    },
+    {
+     "name": "Ghorrock Dungeon",
+     "regionIds": [
+      11681
+     ]
+    }
+   ],
+   "lines": [
+    {
+     "id": "PT-SNOW-01",
+     "text": "It's freezing.",
+     "emotion": "INDIGNANT",
+     "authorship": "Claude, 12 October 2026; kept after the Gemini pass of the same day (job gemini-world-lines-6)"
+    },
+    {
+     "id": "PT-SNOW-02",
+     "text": "I did not dress for this.",
+     "emotion": "INDIGNANT",
+     "authorship": "Claude, 12 October 2026; kept after the Gemini pass of the same day (job gemini-world-lines-6)"
+    },
+    {
+     "id": "PT-SNOW-03",
+     "text": "My hands have gone numb. Not that you asked.",
+     "emotion": "INDIGNANT",
+     "authorship": "Claude, 12 October 2026; kept after the Gemini pass of the same day (job gemini-world-lines-6)"
+    },
+    {
+     "id": "PT-SNOW-04",
+     "text": "Walk faster. It's warmer.",
+     "emotion": "TEASING",
+     "authorship": "Claude, 12 October 2026; kept after the Gemini pass of the same day (job gemini-world-lines-6)"
+    }
+   ]
+  },
+  {
+   "id": "PT-JUNGLE",
+   "facts": [
+    "Thick, hot jungle."
+   ],
+   "places": [
+    {
+     "name": "Tai Bwo Wannai",
+     "regionIds": [
+      11056,
+      11055
+     ]
+    },
+    {
+     "name": "Shilo Village",
+     "regionIds": [
+      11310
+     ]
+    },
+    {
+     "name": "Kharazi Jungle",
+     "regionIds": [
+      11053,
+      11309,
+      11565,
+      11821
+     ]
+    },
+    {
+     "name": "Ape Atoll",
+     "regionIds": [
+      10794,
+      10795,
+      10974,
+      11050
+     ]
+    },
+    {
+     "name": "Feldip Hills",
+     "regionIds": [
+      9773,
+      9774,
+      10029,
+      10030,
+      10285,
+      10286,
+      10287,
+      10542,
+      10543
+     ]
+    }
+   ],
+   "lines": [
+    {
+     "id": "PT-JUNGLE-01",
+     "text": "It's like breathing soup.",
+     "emotion": "INDIGNANT",
+     "authorship": "Claude, 12 October 2026; kept after the Gemini pass of the same day (job gemini-world-lines-6)"
+    },
+    {
+     "id": "PT-JUNGLE-02",
+     "text": "My hair will never recover.",
+     "emotion": "INDIGNANT",
+     "authorship": "Claude, 12 October 2026; kept after the Gemini pass of the same day (job gemini-world-lines-6)"
+    },
+    {
+     "id": "PT-JUNGLE-03",
+     "text": "Do you actually know the way out, Potter?",
+     "emotion": "CONCERNED",
+     "authorship": "Claude, 12 October 2026; kept after the Gemini pass of the same day (job gemini-world-lines-6)"
+    },
+    {
+     "id": "PT-JUNGLE-04",
+     "text": "Hot, thick and endless. Wonderful.",
+     "emotion": "TEASING",
+     "authorship": "Claude, 12 October 2026; kept after the Gemini pass of the same day (job gemini-world-lines-6)"
+    }
+   ]
+  },
+  {
+   "id": "PT-COAST",
+   "facts": [
+    "A harbour or a stretch of coast: boats, salt air, gulls."
+   ],
+   "places": [
+    {
+     "name": "Port Khazard",
+     "regionIds": [
+      10545
+     ]
+    },
+    {
+     "name": "Port Piscarilius",
+     "regionIds": [
+      6969,
+      6971,
+      7227,
+      6970,
+      7225,
+      7226
+     ]
+    },
+    {
+     "name": "Corsair Cove",
+     "regionIds": [
+      10028,
+      10284
+     ]
+    },
+    {
+     "name": "Land's End",
+     "regionIds": [
+      5941
+     ]
+    },
+    {
+     "name": "Ship Yard",
+     "regionIds": [
+      11823
+     ]
+    },
+    {
+     "name": "Piscatoris",
+     "regionIds": [
+      9273
+     ]
+    },
+    {
+     "name": "Port Tyras",
+     "regionIds": [
+      8496
+     ]
+    },
+    {
+     "name": "Witchaven",
+     "regionIds": [
+      10803
+     ]
+    },
+    {
+     "name": "Mudskipper Point",
+     "regionIds": [
+      11824
+     ]
+    },
+    {
+     "name": "Pirates' Cove",
+     "regionIds": [
+      8763
+     ]
+    },
+    {
+     "name": "Fishing Guild",
+     "regionIds": [
+      10293
+     ]
+    },
+    {
+     "name": "Fishing Platform",
+     "regionIds": [
+      11059
+     ]
+    },
+    {
+     "name": "Miscellania",
+     "regionIds": [
+      10044
+     ]
+    },
+    {
+     "name": "Etceteria",
+     "regionIds": [
+      10300
+     ]
+    },
+    {
+     "name": "Sunset Coast",
+     "regionIds": [
+      5934,
+      6190
+     ]
+    }
+   ],
+   "lines": [
+    {
+     "id": "PT-COAST-01",
+     "text": "Salt in the air. It ruins everything.",
+     "emotion": "INDIGNANT",
+     "authorship": "Claude, 12 October 2026; kept after the Gemini pass of the same day (job gemini-world-lines-6)"
+    },
+    {
+     "id": "PT-COAST-02",
+     "text": "I'm not getting on a boat.",
+     "emotion": "INDIGNANT",
+     "authorship": "Claude, 12 October 2026; kept after the Gemini pass of the same day (job gemini-world-lines-6)"
+    },
+    {
+     "id": "PT-COAST-03",
+     "text": "The gulls are judging us.",
+     "emotion": "TEASING",
+     "authorship": "Claude, 12 October 2026; kept after the Gemini pass of the same day (job gemini-world-lines-6)"
+    },
+    {
+     "id": "PT-COAST-04",
+     "text": "It's almost pleasant. Almost.",
+     "emotion": "QUIET",
+     "authorship": "Claude, 12 October 2026; kept after the Gemini pass of the same day (job gemini-world-lines-6)"
+    }
+   ]
+  },
+  {
+   "id": "PT-FARM",
+   "facts": [
+    "Farmland: fields, crops and animals."
+   ],
+   "places": [
+    {
+     "name": "Hosidius",
+     "regionIds": [
+      6710,
+      6711,
+      6712,
+      6455,
+      6456,
+      6966,
+      6967,
+      6968,
+      7221,
+      7223,
+      7224,
+      7478,
+      7479
+     ]
+    },
+    {
+     "name": "Ortus Farm",
+     "regionIds": [
+      6192,
+      6193
+     ]
+    },
+    {
+     "name": "Farming Guild",
+     "regionIds": [
+      4922
+     ]
+    }
+   ],
+   "lines": [
+    {
+     "id": "PT-FARM-01",
+     "text": "Honest work. I'll watch.",
+     "emotion": "TEASING",
+     "authorship": "Claude, 12 October 2026; kept after the Gemini pass of the same day (job gemini-world-lines-6)"
+    },
+    {
+     "id": "PT-FARM-02",
+     "text": "Mind the animals.",
+     "emotion": "CONCERNED",
+     "authorship": "Claude, 12 October 2026; kept after the Gemini pass of the same day (job gemini-world-lines-6)"
+    },
+    {
+     "id": "PT-FARM-03",
+     "text": "So this is where food comes from.",
+     "emotion": "CURIOUS",
+     "authorship": "Claude, 12 October 2026; kept after the Gemini pass of the same day (job gemini-world-lines-6)"
+    },
+    {
+     "id": "PT-FARM-04",
+     "text": "Don't hand me a spade.",
+     "emotion": "INDIGNANT",
+     "authorship": "Claude, 12 October 2026; kept after the Gemini pass of the same day (job gemini-world-lines-6)"
+    }
+   ]
+  },
+  {
+   "id": "PT-CAVE",
+   "facts": [
+    "Underground: dark, damp tunnels and caves."
+   ],
+   "places": [
+    {
+     "name": "Taverley Dungeon",
+     "regionIds": [
+      11416,
+      11417,
+      11671,
+      11672,
+      11673,
+      11928,
+      11929
+     ]
+    },
+    {
+     "name": "Edgeville Dungeon",
+     "regionIds": [
+      12441,
+      12442,
+      12443,
+      12698
+     ]
+    },
+    {
+     "name": "Brimhaven Dungeon",
+     "regionIds": [
+      10901,
+      10900,
+      10899,
+      10645,
+      10644,
+      10643
+     ]
+    },
+    {
+     "name": "Karamja Dungeon",
+     "regionIds": [
+      11413
+     ]
+    },
+    {
+     "name": "Lumbridge Swamp Caves",
+     "regionIds": [
+      12693,
+      12949
+     ]
+    },
+    {
+     "name": "Fremennik Slayer Dungeon",
+     "regionIds": [
+      10907,
+      10908,
+      11164
+     ]
+    },
+    {
+     "name": "Stronghold of Security",
+     "regionIds": [
+      7505,
+      8017,
+      8530,
+      9297
+     ]
+    },
+    {
+     "name": "Catacombs of Kourend",
+     "regionIds": [
+      6557,
+      6556,
+      6813,
+      6812
+     ]
+    },
+    {
+     "name": "Ancient Cavern",
+     "regionIds": [
+      6483,
+      6995
+     ]
+    },
+    {
+     "name": "Waterfall Dungeon",
+     "regionIds": [
+      10394
+     ]
+    },
+    {
+     "name": "Underground Pass",
+     "regionIds": [
+      9369,
+      9370
+     ]
+    },
+    {
+     "name": "Goblin Cave",
+     "regionIds": [
+      10393
+     ]
+    },
+    {
+     "name": "White Wolf Mountain Caves",
+     "regionIds": [
+      11418,
+      11419
+     ]
+    },
+    {
+     "name": "Crandor Dungeon",
+     "regionIds": [
+      11414
+     ]
+    },
+    {
+     "name": "Smoke Dungeon",
+     "regionIds": [
+      12946,
+      13202
+     ]
+    }
+   ],
+   "lines": [
+    {
+     "id": "PT-CAVE-01",
+     "text": "It's dark. Stay where I can see you.",
+     "emotion": "CONCERNED",
+     "authorship": "Claude, 12 October 2026; kept after the Gemini pass of the same day (job gemini-world-lines-6)"
+    },
+    {
+     "id": "PT-CAVE-02",
+     "text": "Something is dripping. I refuse to know what.",
+     "emotion": "INDIGNANT",
+     "authorship": "Claude, 12 October 2026; kept after the Gemini pass of the same day (job gemini-world-lines-6)"
+    },
+    {
+     "id": "PT-CAVE-03",
+     "text": "How far down does this go?",
+     "emotion": "CONCERNED",
+     "authorship": "Claude, 12 October 2026; kept after the Gemini pass of the same day (job gemini-world-lines-6)"
+    },
+    {
+     "id": "PT-CAVE-04",
+     "text": "Damp. Dark. Delightful.",
+     "emotion": "TEASING",
+     "authorship": "Claude, 12 October 2026; kept after the Gemini pass of the same day (job gemini-world-lines-6)"
+    }
+   ]
+  },
+  {
+   "id": "PT-SEWER",
+   "facts": [
+    "A sewer."
+   ],
+   "places": [
+    {
+     "name": "Ardougne Sewers",
+     "regionIds": [
+      10134,
+      10136,
+      10391,
+      10647
+     ]
+    },
+    {
+     "name": "Draynor Sewers",
+     "regionIds": [
+      12439,
+      12438
+     ]
+    }
+   ],
+   "lines": [
+    {
+     "id": "PT-SEWER-01",
+     "text": "A sewer. You brought me to a sewer, Potter.",
+     "emotion": "INDIGNANT",
+     "authorship": "Claude, 12 October 2026; kept after the Gemini pass of the same day (job gemini-world-lines-6)"
+    },
+    {
+     "id": "PT-SEWER-02",
+     "text": "I'm holding my breath until we leave.",
+     "emotion": "INDIGNANT",
+     "authorship": "Claude, 12 October 2026; kept after the Gemini pass of the same day (job gemini-world-lines-6)"
+    },
+    {
+     "id": "PT-SEWER-03",
+     "text": "Don't touch anything. Then don't touch me.",
+     "emotion": "INDIGNANT",
+     "authorship": "Claude, 12 October 2026; kept after the Gemini pass of the same day (job gemini-world-lines-6)"
+    },
+    {
+     "id": "PT-SEWER-04",
+     "text": "I will remember this.",
+     "emotion": "INDIGNANT",
+     "authorship": "Claude, 12 October 2026; kept after the Gemini pass of the same day (job gemini-world-lines-6)"
+    },
+    {
+     "id": "PT-SEWER-05",
+     "text": "Never bring me here again.",
+     "emotion": "INDIGNANT",
+     "authorship": "Gemini 3.8 Flash High via AGY, 12 October 2026 (job gemini-world-lines-6); chosen by Claude"
+    }
+   ]
+  },
+  {
+   "id": "PT-MINE",
+   "facts": [
+    "A mine: rock, ore and pickaxes."
+   ],
+   "places": [
+    {
+     "name": "Dwarven Mines",
+     "regionIds": [
+      12185,
+      12184,
+      12183
+     ]
+    },
+    {
+     "name": "Motherlode Mine",
+     "regionIds": [
+      14679,
+      14680,
+      14681,
+      14935,
+      14936,
+      14937,
+      15191,
+      15192,
+      15193
+     ]
+    },
+    {
+     "name": "Al Kharid Mine",
+     "regionIds": [
+      13107
+     ]
+    },
+    {
+     "name": "Lunar Isle Mine",
+     "regionIds": [
+      9377
+     ]
+    },
+    {
+     "name": "Jatizso Mines",
+     "regionIds": [
+      9631
+     ]
+    },
+    {
+     "name": "Salt Mine",
+     "regionIds": [
+      11425
+     ]
+    },
+    {
+     "name": "Trahaearn Mine",
+     "regionIds": [
+      13250
+     ]
+    },
+    {
+     "name": "Heroes' Guild Mine",
+     "regionIds": [
+      11674
+     ]
+    },
+    {
+     "name": "Rune Essence Mine",
+     "regionIds": [
+      11595
+     ]
+    },
+    {
+     "name": "Dense Essence Mine",
+     "regionIds": [
+      6972
+     ]
+    },
+    {
+     "name": "Blast Mine",
+     "regionIds": [
+      5948
+     ]
+    }
+   ],
+   "lines": [
+    {
+     "id": "PT-MINE-01",
+     "text": "Dust. Everywhere.",
+     "emotion": "INDIGNANT",
+     "authorship": "Claude, 12 October 2026; kept after the Gemini pass of the same day (job gemini-world-lines-6)"
+    },
+    {
+     "id": "PT-MINE-02",
+     "text": "All this noise for some rocks.",
+     "emotion": "TEASING",
+     "authorship": "Claude, 12 October 2026; kept after the Gemini pass of the same day (job gemini-world-lines-6)"
+    },
+    {
+     "id": "PT-MINE-03",
+     "text": "Don't hand me a pickaxe.",
+     "emotion": "INDIGNANT",
+     "authorship": "Claude, 12 October 2026; kept after the Gemini pass of the same day (job gemini-world-lines-6)"
+    },
+    {
+     "id": "PT-MINE-04",
+     "text": "I'll stand over here. Away from the rocks.",
+     "emotion": "QUIET",
+     "authorship": "Claude, 12 October 2026; kept after the Gemini pass of the same day (job gemini-world-lines-6)"
+    }
+   ]
+  },
+  {
+   "id": "PT-GUILD",
+   "facts": [
+    "A guild hall: only skilled members are let in."
+   ],
+   "places": [
+    {
+     "name": "Crafting Guild",
+     "regionIds": [
+      11571
+     ]
+    },
+    {
+     "name": "Ranging Guild",
+     "regionIds": [
+      10549
+     ]
+    },
+    {
+     "name": "Legends' Guild",
+     "regionIds": [
+      10804
+     ]
+    },
+    {
+     "name": "Myths' Guild",
+     "regionIds": [
+      9772
+     ]
+    },
+    {
+     "name": "Woodcutting Guild",
+     "regionIds": [
+      6198,
+      6454
+     ]
+    },
+    {
+     "name": "Hunter Guild",
+     "regionIds": [
+      6191
+     ]
+    }
+   ],
+   "lines": [
+    {
+     "id": "PT-GUILD-01",
+     "text": "Standards. How refreshing.",
+     "emotion": "APPROVING",
+     "authorship": "Claude, 12 October 2026; kept after the Gemini pass of the same day (job gemini-world-lines-6)"
+    },
+    {
+     "id": "PT-GUILD-02",
+     "text": "They let you in? ...Good.",
+     "emotion": "APPROVING",
+     "authorship": "Claude, 12 October 2026; kept after the Gemini pass of the same day (job gemini-world-lines-6)"
+    },
+    {
+     "id": "PT-GUILD-03",
+     "text": "A place for people who are actually good at something.",
+     "emotion": "APPROVING",
+     "authorship": "Claude, 12 October 2026; kept after the Gemini pass of the same day (job gemini-world-lines-6)"
+    },
+    {
+     "id": "PT-GUILD-04",
+     "text": "Try not to embarrass us.",
+     "emotion": "TEASING",
+     "authorship": "Claude, 12 October 2026; kept after the Gemini pass of the same day (job gemini-world-lines-6)"
+    }
+   ]
+  },
+  {
+   "id": "PT-ALTAR",
+   "facts": [
+    "A rune altar: a place of old magic where runes are made."
+   ],
+   "places": [
+    {
+     "name": "Air Altar",
+     "regionIds": [
+      11339
+     ]
+    },
+    {
+     "name": "Mind Altar",
+     "regionIds": [
+      11083
+     ]
+    },
+    {
+     "name": "Water Altar",
+     "regionIds": [
+      10827
+     ]
+    },
+    {
+     "name": "Earth Altar",
+     "regionIds": [
+      10571
+     ]
+    },
+    {
+     "name": "Fire Altar",
+     "regionIds": [
+      10315
+     ]
+    },
+    {
+     "name": "Body Altar",
+     "regionIds": [
+      10059
+     ]
+    },
+    {
+     "name": "Cosmic Altar",
+     "regionIds": [
+      8523
+     ]
+    },
+    {
+     "name": "Chaos Altar",
+     "regionIds": [
+      9035
+     ]
+    },
+    {
+     "name": "Nature Altar",
+     "regionIds": [
+      9547
+     ]
+    },
+    {
+     "name": "Law Altar",
+     "regionIds": [
+      9803
+     ]
+    },
+    {
+     "name": "Death Altar",
+     "regionIds": [
+      8779
+     ]
+    },
+    {
+     "name": "Wrath Altar",
+     "regionIds": [
+      9291
+     ]
+    },
+    {
+     "name": "Soul Altar",
+     "regionIds": [
+      7228
+     ]
+    },
+    {
+     "name": "Dark Altar",
+     "regionIds": [
+      6716
+     ]
+    }
+   ],
+   "lines": [
+    {
+     "id": "PT-ALTAR-01",
+     "text": "Do you feel that? ...Of course you don't.",
+     "emotion": "CURIOUS",
+     "authorship": "Claude, 12 October 2026; kept after the Gemini pass of the same day (job gemini-world-lines-6)"
+    },
+    {
+     "id": "PT-ALTAR-02",
+     "text": "Old magic. Don't touch anything.",
+     "emotion": "CONCERNED",
+     "authorship": "Claude, 12 October 2026; kept after the Gemini pass of the same day (job gemini-world-lines-6)"
+    },
+    {
+     "id": "PT-ALTAR-03",
+     "text": "I could stay here all day.",
+     "emotion": "QUIET",
+     "authorship": "Claude, 12 October 2026; kept after the Gemini pass of the same day (job gemini-world-lines-6)"
+    },
+    {
+     "id": "PT-ALTAR-04",
+     "text": "Quiet. I'm listening to it.",
+     "emotion": "QUIET",
+     "authorship": "Claude, 12 October 2026; kept after the Gemini pass of the same day (job gemini-world-lines-6)"
+    }
+   ]
+  },
+  {
+   "id": "PT-ELF_FOREST",
+   "facts": [
+    "The forests and towns of the elves."
+   ],
+   "places": [
+    {
+     "name": "Lletya",
+     "regionIds": [
+      9265,
+      11103
+     ]
+    },
+    {
+     "name": "Isafdar",
+     "regionIds": [
+      8497,
+      8753,
+      8754,
+      9009,
+      9010
+     ]
+    },
+    {
+     "name": "Arandar",
+     "regionIds": [
+      9266,
+      9267,
+      9523
+     ]
+    },
+    {
+     "name": "Gwenith",
+     "regionIds": [
+      8757
+     ]
+    },
+    {
+     "name": "Mynydd",
+     "regionIds": [
+      8501
+     ]
+    }
+   ],
+   "lines": [
+    {
+     "id": "PT-ELF_FOREST-01",
+     "text": "Must they be so graceful about everything?",
+     "emotion": "INDIGNANT",
+     "authorship": "Claude, 12 October 2026; kept after the Gemini pass of the same day (job gemini-world-lines-6)"
+    },
+    {
+     "id": "PT-ELF_FOREST-02",
+     "text": "It's lovely. It's irritating how lovely.",
+     "emotion": "APPROVING",
+     "authorship": "Claude, 12 October 2026; kept after the Gemini pass of the same day (job gemini-world-lines-6)"
+    },
+    {
+     "id": "PT-ELF_FOREST-03",
+     "text": "Don't stare at the elves. ...I wasn't.",
+     "emotion": "INDIGNANT",
+     "authorship": "Claude, 12 October 2026; kept after the Gemini pass of the same day (job gemini-world-lines-6)"
+    },
+    {
+     "id": "PT-ELF_FOREST-04",
+     "text": "Even their trees are showing off.",
+     "emotion": "TEASING",
+     "authorship": "Claude, 12 October 2026; kept after the Gemini pass of the same day (job gemini-world-lines-6)"
+    },
+    {
+     "id": "PT-ELF_FOREST-05",
+     "text": "Exasperatingly elegant.",
+     "emotion": "INDIGNANT",
+     "authorship": "Gemini 3.8 Flash High via AGY, 12 October 2026 (job gemini-world-lines-6); chosen by Claude"
+    },
+    {
+     "id": "PT-ELF_FOREST-06",
+     "text": "Do not imitate the elves, Potter.",
+     "emotion": "TEASING",
+     "authorship": "Gemini 3.8 Flash High via AGY, 12 October 2026 (job gemini-world-lines-6); chosen by Claude"
+    }
+   ]
+  },
+  {
+   "id": "PT-OGRE",
+   "facts": [
+    "Ogre country."
+   ],
+   "places": [
+    {
+     "name": "Gu'Tanoth",
+     "regionIds": [
+      10031
+     ]
+    },
+    {
+     "name": "Jiggig",
+     "regionIds": [
+      9775
+     ]
+    }
+   ],
+   "lines": [
+    {
+     "id": "PT-OGRE-01",
+     "text": "Ogres. Stay beside me.",
+     "emotion": "CONCERNED",
+     "authorship": "Claude, 12 October 2026; kept after the Gemini pass of the same day (job gemini-world-lines-6)"
+    },
+    {
+     "id": "PT-OGRE-02",
+     "text": "They're enormous. Why are we here?",
+     "emotion": "CONCERNED",
+     "authorship": "Claude, 12 October 2026; kept after the Gemini pass of the same day (job gemini-world-lines-6)"
+    },
+    {
+     "id": "PT-OGRE-03",
+     "text": "Don't make them angry.",
+     "emotion": "CONCERNED",
+     "authorship": "Claude, 12 October 2026; kept after the Gemini pass of the same day (job gemini-world-lines-6)"
+    },
+    {
+     "id": "PT-OGRE-04",
+     "text": "I'm not hiding. I'm thinking.",
+     "emotion": "INDIGNANT",
+     "authorship": "Claude, 12 October 2026; kept after the Gemini pass of the same day (job gemini-world-lines-6)"
+    },
+    {
+     "id": "PT-OGRE-05",
+     "text": "Pass through quietly.",
+     "emotion": "CONCERNED",
+     "authorship": "Gemini 3.8 Flash High via AGY, 12 October 2026 (job gemini-world-lines-6); chosen by Claude"
+    }
+   ]
+  },
+  {
+   "id": "PT-BIG_CITY",
+   "facts": [
+    "A large city."
+   ],
+   "places": [
+    {
+     "name": "Great Kourend",
+     "regionIds": [
+      6201,
+      6457,
+      6713
+     ]
+    },
+    {
+     "name": "Civitas Illa Fortis",
+     "regionIds": [
+      6448,
+      6449,
+      6704,
+      6705,
+      6960,
+      6961
+     ]
+    },
+    {
+     "name": "Shayzien",
+     "regionIds": [
+      5944,
+      5943,
+      6200,
+      6199,
+      5686,
+      5687,
+      5688,
+      5689,
+      5945
+     ]
+    },
+    {
+     "name": "Lovakengj",
+     "regionIds": [
+      5692,
+      5691,
+      5947,
+      6203,
+      6202,
+      5690,
+      5946
+     ]
+    },
+    {
+     "name": "Arceuus",
+     "regionIds": [
+      6458,
+      6459,
+      6460,
+      6714,
+      6715
+     ]
+    }
+   ],
+   "lines": [
+    {
+     "id": "PT-BIG_CITY-01",
+     "text": "A proper city, at last.",
+     "emotion": "APPROVING",
+     "authorship": "Claude, 12 October 2026; kept after the Gemini pass of the same day (job gemini-world-lines-6)"
+    },
+    {
+     "id": "PT-BIG_CITY-02",
+     "text": "Do try not to get lost.",
+     "emotion": "TEASING",
+     "authorship": "Claude, 12 October 2026; kept after the Gemini pass of the same day (job gemini-world-lines-6)"
+    },
+    {
+     "id": "PT-BIG_CITY-03",
+     "text": "So many people. Stay close.",
+     "emotion": "CONCERNED",
+     "authorship": "Claude, 12 October 2026; kept after the Gemini pass of the same day (job gemini-world-lines-6)"
+    },
+    {
+     "id": "PT-BIG_CITY-04",
+     "text": "Finally. Civilisation.",
+     "emotion": "APPROVING",
+     "authorship": "Claude, 12 October 2026; kept after the Gemini pass of the same day (job gemini-world-lines-6)"
+    },
+    {
+     "id": "PT-BIG_CITY-05",
+     "text": "Try to look cosmopolitan, Potter.",
+     "emotion": "TEASING",
+     "authorship": "Gemini 3.8 Flash High via AGY, 12 October 2026 (job gemini-world-lines-6); chosen by Claude"
+    }
+   ]
+  }
+ ],
+ "creatures": [
+  {
+   "id": "F01",
+   "who": "rats",
+   "behaviour": "AFRAID",
+   "equals": [
+    "rat"
+   ],
+   "endsWith": [
+    " rat",
+    "-rat"
+   ],
+   "lines": [],
+   "linesNote": "Her lines for this group are in review/MALFOID_LINES_E9.json (master spec E.5 and E.9)."
+  },
+  {
+   "id": "CR-DRAGON",
+   "who": "dragons",
+   "behaviour": "AFRAID_AT_DISTANCE",
+   "containsWord": [
+    "dragon"
+   ],
+   "minimumCombatLevel": 40,
+   "lines": [
+    {
+     "id": "CR-DRAGON-01",
+     "text": "That is a dragon. Why are we near a dragon?",
+     "emotion": "CONCERNED",
+     "authorship": "Claude, 12 October 2026; kept after the Gemini pass of the same day (job gemini-world-lines-6)"
+    },
+    {
+     "id": "CR-DRAGON-02",
+     "text": "You first, Potter.",
+     "emotion": "CONCERNED",
+     "authorship": "Claude, 12 October 2026; kept after the Gemini pass of the same day (job gemini-world-lines-6)"
+    },
+    {
+     "id": "CR-DRAGON-03",
+     "text": "I'm not hiding. I'm behind you. It's different.",
+     "emotion": "INDIGNANT",
+     "authorship": "Claude, 12 October 2026; kept after the Gemini pass of the same day (job gemini-world-lines-6)"
+    },
+    {
+     "id": "CR-DRAGON-04",
+     "text": "If it so much as breathes, we run.",
+     "emotion": "CONCERNED",
+     "authorship": "Claude, 12 October 2026; kept after the Gemini pass of the same day (job gemini-world-lines-6)"
+    },
+    {
+     "id": "CR-DRAGON-05",
+     "text": "Don't wake it. Don't annoy it. Don't.",
+     "emotion": "CONCERNED",
+     "authorship": "Claude, 12 October 2026; kept after the Gemini pass of the same day (job gemini-world-lines-6)"
+    },
+    {
+     "id": "CR-DRAGON-06",
+     "text": "I am shielding your blind side.",
+     "emotion": "INDIGNANT",
+     "authorship": "Gemini 3.8 Flash High via AGY, 12 October 2026 (job gemini-world-lines-6); chosen by Claude"
+    },
+    {
+     "id": "CR-DRAGON-07",
+     "text": "Back away carefully.",
+     "emotion": "CONCERNED",
+     "authorship": "Gemini 3.8 Flash High via AGY, 12 October 2026 (job gemini-world-lines-6); chosen by Claude"
+    }
+   ]
+  },
+  {
+   "id": "CR-DEMON",
+   "who": "demons",
+   "behaviour": "AFRAID_AT_DISTANCE",
+   "containsWord": [
+    "demon"
+   ],
+   "minimumCombatLevel": 50,
+   "lines": [
+    {
+     "id": "CR-DEMON-01",
+     "text": "Stay in front of me.",
+     "emotion": "CONCERNED",
+     "authorship": "Gemini 3.8 Flash High via AGY, 12 October 2026 (job gemini-world-lines-4); chosen by Claude"
+    },
+    {
+     "id": "CR-DEMON-02",
+     "text": "Those horns...",
+     "emotion": "QUIET",
+     "authorship": "Gemini 3.8 Flash High via AGY, 12 October 2026 (job gemini-world-lines-4); chosen by Claude"
+    },
+    {
+     "id": "CR-DEMON-03",
+     "text": "A demon. Of course it had to be a demon.",
+     "emotion": "INDIGNANT",
+     "authorship": "Gemini 3.8 Flash High via AGY, 12 October 2026 (job gemini-world-lines-4); chosen by Claude"
+    },
+    {
+     "id": "CR-DEMON-04",
+     "text": "I am merely assessing the threat from back here.",
+     "emotion": "INDIGNANT",
+     "authorship": "Gemini 3.8 Flash High via AGY, 12 October 2026 (job gemini-world-lines-4); chosen by Claude"
+    },
+    {
+     "id": "CR-DEMON-05",
+     "text": "Potter. Do something.",
+     "emotion": "CONCERNED",
+     "authorship": "Gemini 3.8 Flash High via AGY, 12 October 2026 (job gemini-world-lines-4); chosen by Claude"
+    },
+    {
+     "id": "CR-DEMON-06",
+     "text": "Don't let it notice us.",
+     "emotion": "QUIET",
+     "authorship": "Gemini 3.8 Flash High via AGY, 12 October 2026 (job gemini-world-lines-4); chosen by Claude"
+    },
+    {
+     "id": "CR-DEMON-07",
+     "text": "Rather large, isn't it?",
+     "emotion": "CURIOUS",
+     "authorship": "Gemini 3.8 Flash High via AGY, 12 October 2026 (job gemini-world-lines-4); chosen by Claude"
+    }
+   ]
+  },
+  {
+   "id": "F02",
+   "who": "wolves, bears, wild dogs and hounds, big cats, spiders, scorpions, snakes, crocodiles and bats",
+   "behaviour": "AFRAID",
+   "equals": [
+    "wolf",
+    "werewolf",
+    "bear",
+    "hellhound",
+    "scorpion",
+    "snake",
+    "crocodile",
+    "bat",
+    "spider",
+    "jackal",
+    "guard dog",
+    "wild dog",
+    "terror dog",
+    "shadow hound",
+    "jaguar",
+    "spined larupia",
+    "horned graahk",
+    "sabre-toothed kyatt"
+   ],
+   "endsWith": [
+    " wolf",
+    " bear",
+    " scorpion",
+    " snake",
+    " crocodile",
+    " bat",
+    " spider"
+   ],
+   "lines": [],
+   "linesNote": "Her lines for this group are in review/MALFOID_LINES_E9.json (master spec E.5 and E.9)."
+  },
+  {
+   "id": "CR-UNDEAD",
+   "who": "ghosts, skeletons, zombies, shades, ghouls, mummies, banshees, revenants, wraiths, spectres and vampyres",
+   "behaviour": "WARY",
+   "containsWord": [
+    "ghost",
+    "skeleton",
+    "zombie",
+    "shade",
+    "ghoul",
+    "mummy",
+    "banshee",
+    "revenant",
+    "wraith",
+    "spectre",
+    "vampyre"
+   ],
+   "lines": [
+    {
+     "id": "CR-UNDEAD-01",
+     "text": "It's dead. It should stay still.",
+     "emotion": "CONCERNED",
+     "authorship": "Claude, 12 October 2026; kept after the Gemini pass of the same day (job gemini-world-lines-6)"
+    },
+    {
+     "id": "CR-UNDEAD-02",
+     "text": "I'm not scared. You looked scared.",
+     "emotion": "INDIGNANT",
+     "authorship": "Claude, 12 October 2026; kept after the Gemini pass of the same day (job gemini-world-lines-6)"
+    },
+    {
+     "id": "CR-UNDEAD-03",
+     "text": "Stay close. In case it needs two of us.",
+     "emotion": "CONCERNED",
+     "authorship": "Claude, 12 October 2026; kept after the Gemini pass of the same day (job gemini-world-lines-6)"
+    },
+    {
+     "id": "CR-UNDEAD-04",
+     "text": "Dead things should stay put.",
+     "emotion": "INDIGNANT",
+     "authorship": "Claude, 12 October 2026; kept after the Gemini pass of the same day (job gemini-world-lines-6)"
+    },
+    {
+     "id": "CR-UNDEAD-05",
+     "text": "Don't let it touch me.",
+     "emotion": "CONCERNED",
+     "authorship": "Claude, 12 October 2026; kept after the Gemini pass of the same day (job gemini-world-lines-6)"
+    }
+   ]
+  },
+  {
+   "id": "CR-GIANT",
+   "who": "giants, ogres, trolls and cyclopes",
+   "behaviour": "WARY",
+   "equals": [
+    "giant",
+    "ogre",
+    "troll",
+    "cyclops"
+   ],
+   "endsWith": [
+    " giant",
+    " ogre",
+    " troll",
+    " cyclops"
+   ],
+   "minimumCombatLevel": 20,
+   "lines": [
+    {
+     "id": "CR-GIANT-01",
+     "text": "What a grotesque brute.",
+     "emotion": "INDIGNANT",
+     "authorship": "Gemini 3.8 Flash High via AGY, 12 October 2026 (job gemini-world-lines-4); chosen by Claude"
+    },
+    {
+     "id": "CR-GIANT-02",
+     "text": "Keep close.",
+     "emotion": "CONCERNED",
+     "authorship": "Gemini 3.8 Flash High via AGY, 12 October 2026 (job gemini-world-lines-4); chosen by Claude"
+    },
+    {
+     "id": "CR-GIANT-03",
+     "text": "That great lump has no business being so large.",
+     "emotion": "INDIGNANT",
+     "authorship": "Gemini 3.8 Flash High via AGY, 12 October 2026 (job gemini-world-lines-4); chosen by Claude"
+    },
+    {
+     "id": "CR-GIANT-04",
+     "text": "Not a single thought in its skull.",
+     "emotion": "TEASING",
+     "authorship": "Gemini 3.8 Flash High via AGY, 12 October 2026 (job gemini-world-lines-4); chosen by Claude"
+    },
+    {
+     "id": "CR-GIANT-05",
+     "text": "Step lightly, Potter.",
+     "emotion": "CONCERNED",
+     "authorship": "Gemini 3.8 Flash High via AGY, 12 October 2026 (job gemini-world-lines-4); chosen by Claude"
+    },
+    {
+     "id": "CR-GIANT-06",
+     "text": "One swing from that and you would be flat.",
+     "emotion": "TEASING",
+     "authorship": "Gemini 3.8 Flash High via AGY, 12 October 2026 (job gemini-world-lines-4); chosen by Claude"
+    },
+    {
+     "id": "CR-GIANT-07",
+     "text": "Quietly, now. Don't draw its attention.",
+     "emotion": "QUIET",
+     "authorship": "Gemini 3.8 Flash High via AGY, 12 October 2026 (job gemini-world-lines-4); chosen by Claude"
+    }
+   ]
+  },
+  {
+   "id": "CR-GAZE",
+   "who": "basilisks and cockatrices",
+   "behaviour": "DISGUSTED",
+   "containsWord": [
+    "basilisk",
+    "cockatrice",
+    "cockathrice"
+   ],
+   "lines": [
+    {
+     "id": "CR-GAZE-01",
+     "text": "My back is turned for a very good reason.",
+     "emotion": "INDIGNANT",
+     "authorship": "Gemini 3.8 Flash High via AGY, 12 October 2026 (job gemini-legend-lines-7); chosen by Claude"
+    },
+    {
+     "id": "CR-GAZE-02",
+     "text": "I am not frightened. I am being sensible.",
+     "emotion": "INDIGNANT",
+     "authorship": "Gemini 3.8 Flash High via AGY, 12 October 2026 (job gemini-legend-lines-7); chosen by Claude"
+    },
+    {
+     "id": "CR-GAZE-03",
+     "text": "Look at me, Potter, not at that.",
+     "emotion": "INDIGNANT",
+     "authorship": "Gemini 3.8 Flash High via AGY, 12 October 2026 (job gemini-legend-lines-7); chosen by Claude; edited by Claude",
+     "geminiText": "Look at me, Potter, not behind us."
+    },
+    {
+     "id": "CR-GAZE-04",
+     "text": "Keep your chin up and don't meet its eyes.",
+     "emotion": "CONCERNED",
+     "authorship": "Gemini 3.8 Flash High via AGY, 12 October 2026 (job gemini-legend-lines-7); chosen by Claude"
+    },
+    {
+     "id": "CR-GAZE-05",
+     "text": "Don't stare. It harms you just to look.",
+     "emotion": "CONCERNED",
+     "authorship": "Gemini 3.8 Flash High via AGY, 12 October 2026 (job gemini-legend-lines-7); chosen by Claude"
+    },
+    {
+     "id": "CR-GAZE-06",
+     "text": "There is nothing to be gained by peeking.",
+     "emotion": "INDIGNANT",
+     "authorship": "Gemini 3.8 Flash High via AGY, 12 October 2026 (job gemini-legend-lines-7); chosen by Claude"
+    }
+   ]
+  },
+  {
+   "id": "CR-GARGOYLE",
+   "who": "gargoyles",
+   "behaviour": "LOOKS_THEM_OVER",
+   "containsWord": [
+    "gargoyle"
+   ],
+   "lines": [
+    {
+     "id": "CR-GARGOYLE-01",
+     "text": "Heavy masonry has no business moving that quietly.",
+     "emotion": "QUIET",
+     "authorship": "Gemini 3.8 Flash High via AGY, 12 October 2026 (job gemini-legend-lines-7); chosen by Claude"
+    },
+    {
+     "id": "CR-GARGOYLE-02",
+     "text": "The binding on the wings is surprisingly neat.",
+     "emotion": "CURIOUS",
+     "authorship": "Gemini 3.8 Flash High via AGY, 12 October 2026 (job gemini-legend-lines-7); chosen by Claude"
+    },
+    {
+     "id": "CR-GARGOYLE-03",
+     "text": "Stone shouldn't have that much give in the joints.",
+     "emotion": "CURIOUS",
+     "authorship": "Gemini 3.8 Flash High via AGY, 12 October 2026 (job gemini-legend-lines-7); chosen by Claude"
+    },
+    {
+     "id": "CR-GARGOYLE-04",
+     "text": "A clumsy chisel, but the charm holds.",
+     "emotion": "APPROVING",
+     "authorship": "Gemini 3.8 Flash High via AGY, 12 October 2026 (job gemini-legend-lines-7); chosen by Claude"
+    },
+    {
+     "id": "CR-GARGOYLE-05",
+     "text": "Watch the wings, Potter. The hinge work is clever.",
+     "emotion": "CURIOUS",
+     "authorship": "Gemini 3.8 Flash High via AGY, 12 October 2026 (job gemini-legend-lines-7); chosen by Claude"
+    },
+    {
+     "id": "CR-GARGOYLE-06",
+     "text": "Passable work. Mine wouldn't slouch.",
+     "emotion": "TEASING",
+     "authorship": "Gemini 3.8 Flash High via AGY, 12 October 2026 (job gemini-legend-lines-7); chosen by Claude"
+    }
+   ]
+  },
+  {
+   "id": "CR-ELEMENTAL",
+   "who": "elementals",
+   "behaviour": "LOOKS_THEM_OVER",
+   "endsWith": [
+    " elemental"
+   ],
+   "lines": [
+    {
+     "id": "CR-ELEMENTAL-01",
+     "text": "Who leaves a living element without a keeper?",
+     "emotion": "INDIGNANT",
+     "authorship": "Gemini 3.8 Flash High via AGY, 12 October 2026 (job gemini-legend-lines-7); chosen by Claude"
+    },
+    {
+     "id": "CR-ELEMENTAL-02",
+     "text": "Raw magic given legs. How did they stabilise it?",
+     "emotion": "CURIOUS",
+     "authorship": "Gemini 3.8 Flash High via AGY, 12 October 2026 (job gemini-legend-lines-7); chosen by Claude"
+    },
+    {
+     "id": "CR-ELEMENTAL-03",
+     "text": "It holds its shape without any vessel at all.",
+     "emotion": "CURIOUS",
+     "authorship": "Gemini 3.8 Flash High via AGY, 12 October 2026 (job gemini-legend-lines-7); chosen by Claude"
+    },
+    {
+     "id": "CR-ELEMENTAL-04",
+     "text": "Keep back, Potter. That is raw, unguided magic.",
+     "emotion": "CONCERNED",
+     "authorship": "Gemini 3.8 Flash High via AGY, 12 October 2026 (job gemini-legend-lines-7); chosen by Claude"
+    },
+    {
+     "id": "CR-ELEMENTAL-05",
+     "text": "I could study that for hours. Not that I will.",
+     "emotion": "CURIOUS",
+     "authorship": "Gemini 3.8 Flash High via AGY, 12 October 2026 (job gemini-legend-lines-7); chosen by Claude; edited by Claude",
+     "geminiText": "I could study that current for hours. Not that I will."
+    },
+    {
+     "id": "CR-ELEMENTAL-06",
+     "text": "Such marvellous focus, completely wasted out here.",
+     "emotion": "APPROVING",
+     "authorship": "Gemini 3.8 Flash High via AGY, 12 October 2026 (job gemini-legend-lines-7); chosen by Claude"
+    }
+   ]
+  },
+  {
+   "id": "CR-GOLEM",
+   "who": "golems and animated armour",
+   "behaviour": "LOOKS_THEM_OVER",
+   "equals": [
+    "golem"
+   ],
+   "endsWith": [
+    " golem"
+   ],
+   "startsWith": [
+    "animated "
+   ],
+   "lines": [
+    {
+     "id": "CR-GOLEM-01",
+     "text": "The enchantment in the joints is terribly stiff.",
+     "emotion": "CURIOUS",
+     "authorship": "Gemini 3.8 Flash High via AGY, 12 October 2026 (job gemini-legend-lines-7); chosen by Claude"
+    },
+    {
+     "id": "CR-GOLEM-02",
+     "text": "A clumsy stride. My animation would glide.",
+     "emotion": "TEASING",
+     "authorship": "Gemini 3.8 Flash High via AGY, 12 October 2026 (job gemini-legend-lines-7); chosen by Claude"
+    },
+    {
+     "id": "CR-GOLEM-03",
+     "text": "I could bind that frame with half the effort.",
+     "emotion": "INDIGNANT",
+     "authorship": "Gemini 3.8 Flash High via AGY, 12 October 2026 (job gemini-legend-lines-7); chosen by Claude"
+    },
+    {
+     "id": "CR-GOLEM-04",
+     "text": "Watch the footing, Potter. Mine would never stumble.",
+     "emotion": "TEASING",
+     "authorship": "Gemini 3.8 Flash High via AGY, 12 October 2026 (job gemini-legend-lines-7); chosen by Claude"
+    },
+    {
+     "id": "CR-GOLEM-05",
+     "text": "Whoever set it moving lacked any real finesse.",
+     "emotion": "INDIGNANT",
+     "authorship": "Gemini 3.8 Flash High via AGY, 12 October 2026 (job gemini-legend-lines-7); chosen by Claude"
+    },
+    {
+     "id": "CR-GOLEM-06",
+     "text": "That locomotion charm is thoroughly second-rate.",
+     "emotion": "INDIGNANT",
+     "authorship": "Gemini 3.8 Flash High via AGY, 12 October 2026 (job gemini-legend-lines-7); chosen by Claude"
+    }
+   ]
+  },
+  {
+   "id": "CR-ENT",
+   "who": "ents and tree spirits",
+   "behaviour": "LOOKS_THEM_OVER",
+   "equals": [
+    "ent",
+    "tree spirit",
+    "dryad",
+    "wood dryad"
+   ],
+   "lines": [
+    {
+     "id": "CR-ENT-01",
+     "text": "Trees ought to stay rooted where they belong.",
+     "emotion": "CONCERNED",
+     "authorship": "Gemini 3.8 Flash High via AGY, 12 October 2026 (job gemini-legend-lines-7); chosen by Claude"
+    },
+    {
+     "id": "CR-ENT-02",
+     "text": "Mind your manners, Potter. It is watching us.",
+     "emotion": "CONCERNED",
+     "authorship": "Gemini 3.8 Flash High via AGY, 12 October 2026 (job gemini-legend-lines-7); chosen by Claude"
+    },
+    {
+     "id": "CR-ENT-03",
+     "text": "I find walking bark distinctly unsettling.",
+     "emotion": "QUIET",
+     "authorship": "Gemini 3.8 Flash High via AGY, 12 October 2026 (job gemini-legend-lines-7); chosen by Claude"
+    },
+    {
+     "id": "CR-ENT-04",
+     "text": "Keep your voice down. Don't offend the canopy.",
+     "emotion": "CONCERNED",
+     "authorship": "Gemini 3.8 Flash High via AGY, 12 October 2026 (job gemini-legend-lines-7); chosen by Claude"
+    },
+    {
+     "id": "CR-ENT-05",
+     "text": "Curious. How does old bark hold such awareness?",
+     "emotion": "CURIOUS",
+     "authorship": "Gemini 3.8 Flash High via AGY, 12 October 2026 (job gemini-legend-lines-7); chosen by Claude"
+    },
+    {
+     "id": "CR-ENT-06",
+     "text": "A forest should keep its feet to itself.",
+     "emotion": "TEASING",
+     "authorship": "Gemini 3.8 Flash High via AGY, 12 October 2026 (job gemini-legend-lines-7); chosen by Claude"
+    }
+   ]
+  },
+  {
+   "id": "CR-DISGUST",
+   "who": "frogs, toads, slugs, leeches, slimes, cockroaches, jellies, bloodvelds and crawling hands",
+   "behaviour": "DISGUSTED",
+   "containsWord": [
+    "frog",
+    "toad",
+    "slug",
+    "rockslug",
+    "leech",
+    "slime",
+    "cockroach",
+    "bloodworm",
+    "jelly",
+    "bloodveld",
+    "crawling"
+   ],
+   "lines": [
+    {
+     "id": "CR-DISGUST-01",
+     "text": "No. Absolutely not.",
+     "emotion": "INDIGNANT",
+     "authorship": "Claude, 12 October 2026; kept after the Gemini pass of the same day (job gemini-world-lines-6)"
+    },
+    {
+     "id": "CR-DISGUST-02",
+     "text": "Tell me when it's gone.",
+     "emotion": "CONCERNED",
+     "authorship": "Claude, 12 October 2026; kept after the Gemini pass of the same day (job gemini-world-lines-6)"
+    },
+    {
+     "id": "CR-DISGUST-03",
+     "text": "It's glistening. Why is it glistening?",
+     "emotion": "INDIGNANT",
+     "authorship": "Claude, 12 October 2026; kept after the Gemini pass of the same day (job gemini-world-lines-6)"
+    },
+    {
+     "id": "CR-DISGUST-04",
+     "text": "Keep it away from my robe.",
+     "emotion": "INDIGNANT",
+     "authorship": "Claude, 12 October 2026; kept after the Gemini pass of the same day (job gemini-world-lines-6)"
+    },
+    {
+     "id": "CR-DISGUST-05",
+     "text": "I'm not looking. You can't make me.",
+     "emotion": "INDIGNANT",
+     "authorship": "Claude, 12 October 2026; kept after the Gemini pass of the same day (job gemini-world-lines-6)"
+    },
+    {
+     "id": "CR-DISGUST-06",
+     "text": "Get that thing away.",
+     "emotion": "INDIGNANT",
+     "authorship": "Gemini 3.8 Flash High via AGY, 12 October 2026 (job gemini-world-lines-6); chosen by Claude"
+    }
+   ]
+  },
+  {
+   "id": "CR-UNICORN",
+   "who": "unicorns",
+   "behaviour": "FOND",
+   "equals": [
+    "unicorn",
+    "black unicorn",
+    "unicorn foal",
+    "black unicorn foal"
+   ],
+   "lines": [
+    {
+     "id": "CR-UNICORN-01",
+     "text": "Storybooks exaggerate, obviously.",
+     "emotion": "QUIET",
+     "authorship": "Gemini 3.8 Flash High via AGY, 12 October 2026 (job gemini-legend-lines-8); chosen by Claude"
+    },
+    {
+     "id": "CR-UNICORN-02",
+     "text": "It is only a horse with a horn.",
+     "emotion": "INDIGNANT",
+     "authorship": "Gemini 3.8 Flash High via AGY, 12 October 2026 (job gemini-legend-lines-8); chosen by Claude"
+    },
+    {
+     "id": "CR-UNICORN-03",
+     "text": "I outgrew picture-books years ago, Potter.",
+     "emotion": "TEASING",
+     "authorship": "Gemini 3.8 Flash High via AGY, 12 October 2026 (job gemini-legend-lines-8); chosen by Claude"
+    },
+    {
+     "id": "CR-UNICORN-04",
+     "text": "I only wanted to see if the horn was sharp.",
+     "emotion": "CURIOUS",
+     "authorship": "Gemini 3.8 Flash High via AGY, 12 October 2026 (job gemini-legend-lines-8); chosen by Claude"
+    },
+    {
+     "id": "CR-UNICORN-05",
+     "text": "A real unicorn. Fancy that.",
+     "emotion": "CURIOUS",
+     "authorship": "Gemini 3.8 Flash High via AGY, 12 October 2026 (job gemini-legend-lines-8); chosen by Claude"
+    },
+    {
+     "id": "CR-UNICORN-06",
+     "text": "Fine. A unicorn is rather magnificent.",
+     "emotion": "APPROVING",
+     "authorship": "Gemini 3.8 Flash High via AGY, 12 October 2026 (job gemini-legend-lines-8); chosen by Claude"
+    }
+   ]
+  },
+  {
+   "id": "CR-FAIRY",
+   "who": "fairies",
+   "behaviour": "FOND",
+   "containsWord": [
+    "fairy"
+   ],
+   "lines": [
+    {
+     "id": "CR-FAIRY-01",
+     "text": "A person that small ought to be thoroughly ridiculous.",
+     "emotion": "TEASING",
+     "authorship": "Gemini 3.8 Flash High via AGY, 12 October 2026 (job gemini-legend-lines-7); chosen by Claude"
+    },
+    {
+     "id": "CR-FAIRY-02",
+     "text": "Hmph. Having wings is hardly an achievement.",
+     "emotion": "INDIGNANT",
+     "authorship": "Gemini 3.8 Flash High via AGY, 12 October 2026 (job gemini-legend-lines-7); chosen by Claude"
+    },
+    {
+     "id": "CR-FAIRY-03",
+     "text": "Don't crowd it, Potter. It is merely tiny.",
+     "emotion": "TEASING",
+     "authorship": "Gemini 3.8 Flash High via AGY, 12 October 2026 (job gemini-legend-lines-7); chosen by Claude"
+    },
+    {
+     "id": "CR-FAIRY-04",
+     "text": "It is rather neat, I suppose. Only slightly.",
+     "emotion": "QUIET",
+     "authorship": "Gemini 3.8 Flash High via AGY, 12 October 2026 (job gemini-legend-lines-7); chosen by Claude"
+    },
+    {
+     "id": "CR-FAIRY-05",
+     "text": "I am not enchanted. I am merely observing.",
+     "emotion": "INDIGNANT",
+     "authorship": "Gemini 3.8 Flash High via AGY, 12 October 2026 (job gemini-legend-lines-7); chosen by Claude"
+    },
+    {
+     "id": "CR-FAIRY-06",
+     "text": "Flight like that would be rather convenient.",
+     "emotion": "CURIOUS",
+     "authorship": "Gemini 3.8 Flash High via AGY, 12 October 2026 (job gemini-legend-lines-7); chosen by Claude"
+    }
+   ]
+  },
+  {
+   "id": "CR-FOND",
+   "who": "cats, kittens, puppies, penguins, ducks, lambs, rabbits and squirrels",
+   "behaviour": "FOND",
+   "equals": [
+    "cat",
+    "kitten",
+    "puppy",
+    "penguin",
+    "duck",
+    "duckling",
+    "lamb",
+    "rabbit",
+    "squirrel"
+   ],
+   "endsWith": [
+    " cat",
+    " kitten",
+    " puppy"
+   ],
+   "neverIfContainsWord": [
+    "hell",
+    "black",
+    "evil",
+    "zombie",
+    "undead"
+   ],
+   "lines": [
+    {
+     "id": "CR-FOND-01",
+     "text": "I'm not looking at it. You're looking at it.",
+     "emotion": "INDIGNANT",
+     "authorship": "Claude, 12 October 2026; kept after the Gemini pass of the same day (job gemini-world-lines-6)"
+    },
+    {
+     "id": "CR-FOND-02",
+     "text": "...It's rather sweet. Don't repeat that.",
+     "emotion": "QUIET",
+     "authorship": "Claude, 12 October 2026; kept after the Gemini pass of the same day (job gemini-world-lines-6)"
+    },
+    {
+     "id": "CR-FOND-03",
+     "text": "It came to me. I didn't call it.",
+     "emotion": "INDIGNANT",
+     "authorship": "Claude, 12 October 2026; kept after the Gemini pass of the same day (job gemini-world-lines-6)"
+    },
+    {
+     "id": "CR-FOND-04",
+     "text": "We're not keeping it. ...Are we?",
+     "emotion": "CURIOUS",
+     "authorship": "Claude, 12 October 2026; kept after the Gemini pass of the same day (job gemini-world-lines-6)"
+    },
+    {
+     "id": "CR-FOND-05",
+     "text": "Hmph. It likes me.",
+     "emotion": "APPROVING",
+     "authorship": "Claude, 12 October 2026; kept after the Gemini pass of the same day (job gemini-world-lines-6)"
+    },
+    {
+     "id": "CR-FOND-06",
+     "text": "I am merely letting it approach.",
+     "emotion": "INDIGNANT",
+     "authorship": "Gemini 3.8 Flash High via AGY, 12 October 2026 (job gemini-world-lines-6); chosen by Claude"
+    }
+   ]
+  },
+  {
+   "id": "CR-PET",
+   "who": "the player's own pet",
+   "behaviour": "LOOKS_THEM_OVER",
+   "localPlayersFollower": true,
+   "lines": [
+    {
+     "id": "CR-PET-01",
+     "text": "Shoo.",
+     "emotion": "INDIGNANT",
+     "authorship": "Gemini 3.8 Flash High via AGY, 12 October 2026 (job gemini-world-lines-4); chosen by Claude"
+    },
+    {
+     "id": "CR-PET-02",
+     "text": "Does it have to follow quite so closely?",
+     "emotion": "INDIGNANT",
+     "authorship": "Gemini 3.8 Flash High via AGY, 12 October 2026 (job gemini-world-lines-4); chosen by Claude"
+    },
+    {
+     "id": "CR-PET-03",
+     "text": "Constantly underfoot.",
+     "emotion": "INDIGNANT",
+     "authorship": "Gemini 3.8 Flash High via AGY, 12 October 2026 (job gemini-world-lines-4); chosen by Claude"
+    },
+    {
+     "id": "CR-PET-04",
+     "text": "Why does it get all your attention, Potter?",
+     "emotion": "INDIGNANT",
+     "authorship": "Gemini 3.8 Flash High via AGY, 12 October 2026 (job gemini-world-lines-4); chosen by Claude"
+    },
+    {
+     "id": "CR-PET-05",
+     "text": "Walking behind that thing is out of the question.",
+     "emotion": "INDIGNANT",
+     "authorship": "Gemini 3.8 Flash High via AGY, 12 October 2026 (job gemini-world-lines-4); chosen by Claude"
+    },
+    {
+     "id": "CR-PET-06",
+     "text": "Never leaves your side, does it?",
+     "emotion": "CURIOUS",
+     "authorship": "Gemini 3.8 Flash High via AGY, 12 October 2026 (job gemini-world-lines-4); chosen by Claude"
+    },
+    {
+     "id": "CR-PET-07",
+     "text": "Hmph. What does it see in you?",
+     "emotion": "TEASING",
+     "authorship": "Gemini 3.8 Flash High via AGY, 12 October 2026 (job gemini-world-lines-4); chosen by Claude"
+    },
+    {
+     "id": "CR-PET-08",
+     "text": "That creature has far too many privileges.",
+     "emotion": "INDIGNANT",
+     "authorship": "Gemini 3.8 Flash High via AGY, 12 October 2026 (job gemini-world-lines-4); chosen by Claude"
+    }
+   ]
+  },
+  {
+   "id": "CR-WIZARD",
+   "who": "wizards, witches and sorceresses",
+   "behaviour": "LOOKS_THEM_OVER",
+   "equals": [
+    "wizard",
+    "dark wizard",
+    "witch",
+    "sorceress"
+   ],
+   "startsWith": [
+    "wizard "
+   ],
+   "lines": [
+    {
+     "id": "CR-WIZARD-01",
+     "text": "Hm. Their robes are fine. Mine are better.",
+     "emotion": "TEASING",
+     "authorship": "Claude, 12 October 2026; kept after the Gemini pass of the same day (job gemini-world-lines-6)"
+    },
+    {
+     "id": "CR-WIZARD-02",
+     "text": "I wonder where they trained.",
+     "emotion": "CURIOUS",
+     "authorship": "Claude, 12 October 2026; kept after the Gemini pass of the same day (job gemini-world-lines-6)"
+    },
+    {
+     "id": "CR-WIZARD-03",
+     "text": "I could out-cast them. Probably.",
+     "emotion": "TEASING",
+     "authorship": "Claude, 12 October 2026; kept after the Gemini pass of the same day (job gemini-world-lines-6)"
+    },
+    {
+     "id": "CR-WIZARD-04",
+     "text": "A colleague. Be polite. I won't be.",
+     "emotion": "TEASING",
+     "authorship": "Claude, 12 October 2026; kept after the Gemini pass of the same day (job gemini-world-lines-6)"
+    },
+    {
+     "id": "CR-WIZARD-05",
+     "text": "Don't introduce me.",
+     "emotion": "INDIGNANT",
+     "authorship": "Claude, 12 October 2026; kept after the Gemini pass of the same day (job gemini-world-lines-6)"
+    },
+    {
+     "id": "CR-WIZARD-06",
+     "text": "I have studied far more advanced incantations.",
+     "emotion": "TEASING",
+     "authorship": "Gemini 3.8 Flash High via AGY, 12 October 2026 (job gemini-world-lines-6); chosen by Claude"
+    },
+    {
+     "id": "CR-WIZARD-07",
+     "text": "Do not praise their magic, Potter.",
+     "emotion": "INDIGNANT",
+     "authorship": "Gemini 3.8 Flash High via AGY, 12 October 2026 (job gemini-world-lines-6); chosen by Claude"
+    }
+   ]
+  },
+  {
+   "id": "CR-ELF",
+   "who": "elves",
+   "behaviour": "SPEAKS_ONLY",
+   "equals": [
+    "elf"
+   ],
+   "startsWith": [
+    "elf "
+   ],
+   "endsWith": [
+    " elf"
+   ],
+   "lines": [
+    {
+     "id": "CR-ELF-01",
+     "text": "That hair cannot be natural.",
+     "emotion": "QUIET",
+     "authorship": "Gemini 3.8 Flash High via AGY, 12 October 2026 (job gemini-legend-lines-8); chosen by Claude"
+    },
+    {
+     "id": "CR-ELF-02",
+     "text": "All that graceful gliding is purely for show.",
+     "emotion": "INDIGNANT",
+     "authorship": "Gemini 3.8 Flash High via AGY, 12 October 2026 (job gemini-legend-lines-8); chosen by Claude"
+    },
+    {
+     "id": "CR-ELF-03",
+     "text": "Elves try far too hard to look ethereal, Potter.",
+     "emotion": "INDIGNANT",
+     "authorship": "Gemini 3.8 Flash High via AGY, 12 October 2026 (job gemini-legend-lines-8); chosen by Claude"
+    },
+    {
+     "id": "CR-ELF-04",
+     "text": "I am quite tall enough as I am, thank you.",
+     "emotion": "INDIGNANT",
+     "authorship": "Gemini 3.8 Flash High via AGY, 12 October 2026 (job gemini-legend-lines-8); chosen by Claude"
+    },
+    {
+     "id": "CR-ELF-05",
+     "text": "One brisk breeze and that pristine hair is ruined.",
+     "emotion": "APPROVING",
+     "authorship": "Gemini 3.8 Flash High via AGY, 12 October 2026 (job gemini-legend-lines-8); chosen by Claude"
+    }
+   ]
+  },
+  {
+   "id": "CR-TZHAAR",
+   "who": "the TzHaar",
+   "behaviour": "SPEAKS_ONLY",
+   "startsWith": [
+    "tzhaar"
+   ],
+   "lines": [
+    {
+     "id": "CR-TZHAAR-01",
+     "text": "Living rock. Highly impractical.",
+     "emotion": "CURIOUS",
+     "authorship": "Gemini 3.8 Flash High via AGY, 12 October 2026 (job gemini-legend-lines-8); chosen by Claude"
+    },
+    {
+     "id": "CR-TZHAAR-02",
+     "text": "Stand back, Potter. That molten heat will ruin my hem.",
+     "emotion": "CONCERNED",
+     "authorship": "Gemini 3.8 Flash High via AGY, 12 October 2026 (job gemini-legend-lines-8); chosen by Claude"
+    },
+    {
+     "id": "CR-TZHAAR-03",
+     "text": "Do not shake hands with molten rock.",
+     "emotion": "INDIGNANT",
+     "authorship": "Gemini 3.8 Flash High via AGY, 12 October 2026 (job gemini-legend-lines-8); chosen by Claude"
+    },
+    {
+     "id": "CR-TZHAAR-04",
+     "text": "Living inside a volcano must be dreadfully stifling.",
+     "emotion": "TEASING",
+     "authorship": "Gemini 3.8 Flash High via AGY, 12 October 2026 (job gemini-legend-lines-8); chosen by Claude"
+    },
+    {
+     "id": "CR-TZHAAR-05",
+     "text": "How does living rock not crack from the fire inside?",
+     "emotion": "CURIOUS",
+     "authorship": "Gemini 3.8 Flash High via AGY, 12 October 2026 (job gemini-legend-lines-8); chosen by Claude"
+    }
+   ]
+  },
+  {
+   "id": "CR-LEPRECHAUN",
+   "who": "leprechauns",
+   "behaviour": "SPEAKS_ONLY",
+   "containsWord": [
+    "leprechaun"
+   ],
+   "lines": [
+    {
+     "id": "CR-LEPRECHAUN-01",
+     "text": "I wear rich emerald. He looks like a cabbage.",
+     "emotion": "TEASING",
+     "authorship": "Gemini 3.8 Flash High via AGY, 12 October 2026 (job gemini-legend-lines-8); chosen by Claude"
+    },
+    {
+     "id": "CR-LEPRECHAUN-02",
+     "text": "His green is utterly garish.",
+     "emotion": "INDIGNANT",
+     "authorship": "Gemini 3.8 Flash High via AGY, 12 October 2026 (job gemini-legend-lines-8); chosen by Claude"
+    },
+    {
+     "id": "CR-LEPRECHAUN-03",
+     "text": "Do not dare compare our outfits, Potter.",
+     "emotion": "INDIGNANT",
+     "authorship": "Gemini 3.8 Flash High via AGY, 12 October 2026 (job gemini-legend-lines-8); chosen by Claude"
+    },
+    {
+     "id": "CR-LEPRECHAUN-04",
+     "text": "I would not trust that tiny green fellow an inch.",
+     "emotion": "CONCERNED",
+     "authorship": "Gemini 3.8 Flash High via AGY, 12 October 2026 (job gemini-legend-lines-8); chosen by Claude"
+    },
+    {
+     "id": "CR-LEPRECHAUN-05",
+     "text": "Why must he parade about in green head to toe?",
+     "emotion": "QUIET",
+     "authorship": "Gemini 3.8 Flash High via AGY, 12 October 2026 (job gemini-legend-lines-8); chosen by Claude"
+    }
+   ]
+  },
+  {
+   "id": "CR-CHINCHOMPA",
+   "who": "chinchompas",
+   "behaviour": "SPEAKS_ONLY",
+   "containsWord": [
+    "chinchompa"
+   ],
+   "lines": [
+    {
+     "id": "CR-CHINCHOMPA-01",
+     "text": "A powder puff that detonates.",
+     "emotion": "QUIET",
+     "authorship": "Gemini 3.8 Flash High via AGY, 12 October 2026 (job gemini-legend-lines-8); chosen by Claude"
+    },
+    {
+     "id": "CR-CHINCHOMPA-02",
+     "text": "How can something so soft and round explode?",
+     "emotion": "CURIOUS",
+     "authorship": "Gemini 3.8 Flash High via AGY, 12 October 2026 (job gemini-legend-lines-8); chosen by Claude"
+    },
+    {
+     "id": "CR-CHINCHOMPA-03",
+     "text": "It is dreadfully fluffy, Potter. And volatile.",
+     "emotion": "CONCERNED",
+     "authorship": "Gemini 3.8 Flash High via AGY, 12 October 2026 (job gemini-legend-lines-8); chosen by Claude"
+    },
+    {
+     "id": "CR-CHINCHOMPA-04",
+     "text": "I want to stroke its fur, but it might detonate.",
+     "emotion": "TEASING",
+     "authorship": "Gemini 3.8 Flash High via AGY, 12 October 2026 (job gemini-legend-lines-8); chosen by Claude"
+    },
+    {
+     "id": "CR-CHINCHOMPA-05",
+     "text": "Must something so precious be a walking bomb?",
+     "emotion": "CURIOUS",
+     "authorship": "Gemini 3.8 Flash High via AGY, 12 October 2026 (job gemini-legend-lines-8); chosen by Claude"
+    }
+   ]
+  },
+  {
+   "id": "CR-MONKEY",
+   "who": "monkeys",
+   "behaviour": "SPEAKS_ONLY",
+   "containsWord": [
+    "monkey"
+   ],
+   "neverIfContainsWord": [
+    "guard",
+    "archer",
+    "zombie",
+    "ninja"
+   ],
+   "lines": [
+    {
+     "id": "CR-MONKEY-01",
+     "text": "Hands off my hair, you little thief!",
+     "emotion": "INDIGNANT",
+     "authorship": "Gemini 3.8 Flash High via AGY, 12 October 2026 (job gemini-world-lines-4); chosen by Claude"
+    },
+    {
+     "id": "CR-MONKEY-02",
+     "text": "Watch your purse, Potter.",
+     "emotion": "CONCERNED",
+     "authorship": "Gemini 3.8 Flash High via AGY, 12 October 2026 (job gemini-world-lines-4); chosen by Claude"
+    },
+    {
+     "id": "CR-MONKEY-03",
+     "text": "A monkey. Keep it away.",
+     "emotion": "INDIGNANT",
+     "authorship": "Gemini 3.8 Flash High via AGY, 12 October 2026 (job gemini-world-lines-4); chosen by Claude"
+    },
+    {
+     "id": "CR-MONKEY-04",
+     "text": "Mischievous beast.",
+     "emotion": "INDIGNANT",
+     "authorship": "Gemini 3.8 Flash High via AGY, 12 October 2026 (job gemini-world-lines-4); chosen by Claude"
+    }
+   ]
+  },
+  {
+   "id": "CR-IMP",
+   "who": "imps",
+   "behaviour": "SPEAKS_ONLY",
+   "equals": [
+    "imp"
+   ],
+   "lines": [
+    {
+     "id": "CR-IMP-01",
+     "text": "Wretched little pest.",
+     "emotion": "INDIGNANT",
+     "authorship": "Gemini 3.8 Flash High via AGY, 12 October 2026 (job gemini-world-lines-4); chosen by Claude"
+    },
+    {
+     "id": "CR-IMP-02",
+     "text": "Hold still, you miserable imp!",
+     "emotion": "INDIGNANT",
+     "authorship": "Gemini 3.8 Flash High via AGY, 12 October 2026 (job gemini-world-lines-4); chosen by Claude"
+    },
+    {
+     "id": "CR-IMP-03",
+     "text": "Darting about like a manic fly.",
+     "emotion": "INDIGNANT",
+     "authorship": "Gemini 3.8 Flash High via AGY, 12 October 2026 (job gemini-world-lines-4); chosen by Claude"
+    },
+    {
+     "id": "CR-IMP-04",
+     "text": "Swat it, Potter.",
+     "emotion": "INDIGNANT",
+     "authorship": "Gemini 3.8 Flash High via AGY, 12 October 2026 (job gemini-world-lines-4); chosen by Claude"
+    },
+    {
+     "id": "CR-IMP-05",
+     "text": "Can it not stand in one place for two seconds?",
+     "emotion": "INDIGNANT",
+     "authorship": "Gemini 3.8 Flash High via AGY, 12 October 2026 (job gemini-world-lines-4); chosen by Claude"
+    },
+    {
+     "id": "CR-IMP-06",
+     "text": "Come any closer to my robe and I shall hex you.",
+     "emotion": "INDIGNANT",
+     "authorship": "Gemini 3.8 Flash High via AGY, 12 October 2026 (job gemini-world-lines-4); chosen by Claude"
+    }
+   ]
+  },
+  {
+   "id": "CR-GOBLIN",
+   "who": "goblins",
+   "behaviour": "SPEAKS_ONLY",
+   "containsWord": [
+    "goblin"
+   ],
+   "neverIfContainsWord": [
+    "cave"
+   ],
+   "lines": [
+    {
+     "id": "CR-GOBLIN-01",
+     "text": "A goblin. How exciting.",
+     "emotion": "TEASING",
+     "authorship": "Claude, 12 October 2026; kept after the Gemini pass of the same day (job gemini-world-lines-6)"
+    },
+    {
+     "id": "CR-GOBLIN-02",
+     "text": "It's looking at us. Should I be offended?",
+     "emotion": "TEASING",
+     "authorship": "Claude, 12 October 2026; kept after the Gemini pass of the same day (job gemini-world-lines-6)"
+    },
+    {
+     "id": "CR-GOBLIN-03",
+     "text": "Don't encourage it.",
+     "emotion": "INDIGNANT",
+     "authorship": "Claude, 12 October 2026; kept after the Gemini pass of the same day (job gemini-world-lines-6)"
+    },
+    {
+     "id": "CR-GOBLIN-04",
+     "text": "I've seen better dressed goblins.",
+     "emotion": "TEASING",
+     "authorship": "Claude, 12 October 2026; kept after the Gemini pass of the same day (job gemini-world-lines-6)"
+    },
+    {
+     "id": "CR-GOBLIN-05",
+     "text": "Honestly. Goblins.",
+     "emotion": "INDIGNANT",
+     "authorship": "Claude, 12 October 2026; kept after the Gemini pass of the same day (job gemini-world-lines-6)"
+    },
+    {
+     "id": "CR-GOBLIN-06",
+     "text": "Utterly beneath our dignity.",
+     "emotion": "INDIGNANT",
+     "authorship": "Gemini 3.8 Flash High via AGY, 12 October 2026 (job gemini-world-lines-6); chosen by Claude"
+    },
+    {
+     "id": "CR-GOBLIN-07",
+     "text": "Ignore the wretched creature, Potter.",
+     "emotion": "INDIGNANT",
+     "authorship": "Gemini 3.8 Flash High via AGY, 12 October 2026 (job gemini-world-lines-6); chosen by Claude"
+    }
+   ]
+  },
+  {
+   "id": "CR-GUARD",
+   "who": "guards",
+   "behaviour": "SPEAKS_ONLY",
+   "equals": [
+    "guard"
+   ],
+   "endsWith": [
+    " guard"
+   ],
+   "lines": [
+    {
+     "id": "CR-GUARD-01",
+     "text": "Stand up straight, Potter.",
+     "emotion": "TEASING",
+     "authorship": "Gemini 3.8 Flash High via AGY, 12 October 2026 (job gemini-world-lines-4); chosen by Claude"
+    },
+    {
+     "id": "CR-GUARD-02",
+     "text": "The guard is watching you.",
+     "emotion": "TEASING",
+     "authorship": "Gemini 3.8 Flash High via AGY, 12 October 2026 (job gemini-world-lines-4); chosen by Claude"
+    },
+    {
+     "id": "CR-GUARD-03",
+     "text": "Try not to look so suspicious.",
+     "emotion": "TEASING",
+     "authorship": "Gemini 3.8 Flash High via AGY, 12 October 2026 (job gemini-world-lines-4); chosen by Claude"
+    },
+    {
+     "id": "CR-GUARD-04",
+     "text": "Trouble practically radiates off you.",
+     "emotion": "TEASING",
+     "authorship": "Gemini 3.8 Flash High via AGY, 12 October 2026 (job gemini-world-lines-4); chosen by Claude"
+    },
+    {
+     "id": "CR-GUARD-05",
+     "text": "If they arrest you, I am walking away.",
+     "emotion": "TEASING",
+     "authorship": "Gemini 3.8 Flash High via AGY, 12 October 2026 (job gemini-world-lines-4); chosen by Claude"
+    },
+    {
+     "id": "CR-GUARD-06",
+     "text": "Behave yourself.",
+     "emotion": "TEASING",
+     "authorship": "Gemini 3.8 Flash High via AGY, 12 October 2026 (job gemini-world-lines-4); chosen by Claude"
+    }
+   ]
+  },
+  {
+   "id": "CR-FARM",
+   "who": "cows, chickens, sheep, pigs and goats",
+   "behaviour": "SPEAKS_ONLY",
+   "equals": [
+    "cow",
+    "cow calf",
+    "dairy cow",
+    "bull",
+    "chicken",
+    "rooster",
+    "sheep",
+    "ram",
+    "pig",
+    "piglet",
+    "goat",
+    "billy goat"
+   ],
+   "lines": [
+    {
+     "id": "CR-FARM-01",
+     "text": "Why is it staring at me?",
+     "emotion": "CURIOUS",
+     "authorship": "Gemini 3.8 Flash High via AGY, 12 October 2026 (job gemini-world-lines-4); chosen by Claude"
+    },
+    {
+     "id": "CR-FARM-02",
+     "text": "Heaven only knows what it has been standing in.",
+     "emotion": "INDIGNANT",
+     "authorship": "Gemini 3.8 Flash High via AGY, 12 October 2026 (job gemini-world-lines-4); chosen by Claude"
+    },
+    {
+     "id": "CR-FARM-03",
+     "text": "Such empty eyes, Potter.",
+     "emotion": "TEASING",
+     "authorship": "Gemini 3.8 Flash High via AGY, 12 October 2026 (job gemini-world-lines-4); chosen by Claude"
+    },
+    {
+     "id": "CR-FARM-04",
+     "text": "Mind my boots.",
+     "emotion": "INDIGNANT",
+     "authorship": "Gemini 3.8 Flash High via AGY, 12 October 2026 (job gemini-world-lines-4); chosen by Claude"
+    },
+    {
+     "id": "CR-FARM-05",
+     "text": "Filthy creature.",
+     "emotion": "INDIGNANT",
+     "authorship": "Gemini 3.8 Flash High via AGY, 12 October 2026 (job gemini-world-lines-4); chosen by Claude"
+    },
+    {
+     "id": "CR-FARM-06",
+     "text": "Rustic nonsense.",
+     "emotion": "INDIGNANT",
+     "authorship": "Gemini 3.8 Flash High via AGY, 12 October 2026 (job gemini-world-lines-4); chosen by Claude"
+    }
+   ]
+  },
+  {
+   "id": "CR-SEAGULL",
+   "who": "seagulls",
+   "behaviour": "SPEAKS_ONLY",
+   "equals": [
+    "seagull",
+    "gull"
+   ],
+   "lines": [
+    {
+     "id": "CR-SEAGULL-01",
+     "text": "Vile bird.",
+     "emotion": "INDIGNANT",
+     "authorship": "Gemini 3.8 Flash High via AGY, 12 October 2026 (job gemini-world-lines-4); chosen by Claude"
+    },
+    {
+     "id": "CR-SEAGULL-02",
+     "text": "Tell that seagull to keep its distance.",
+     "emotion": "INDIGNANT",
+     "authorship": "Gemini 3.8 Flash High via AGY, 12 October 2026 (job gemini-world-lines-4); chosen by Claude; edited by Claude",
+     "geminiText": "Tell that seagull to back off."
+    },
+    {
+     "id": "CR-SEAGULL-03",
+     "text": "Ruining my hair will cost someone dearly, Potter.",
+     "emotion": "INDIGNANT",
+     "authorship": "Gemini 3.8 Flash High via AGY, 12 October 2026 (job gemini-world-lines-4); chosen by Claude"
+    },
+    {
+     "id": "CR-SEAGULL-04",
+     "text": "Keep it away from my head.",
+     "emotion": "CONCERNED",
+     "authorship": "Gemini 3.8 Flash High via AGY, 12 October 2026 (job gemini-world-lines-4); chosen by Claude"
+    },
+    {
+     "id": "CR-SEAGULL-05",
+     "text": "It has an evil glint in its eye.",
+     "emotion": "CURIOUS",
+     "authorship": "Gemini 3.8 Flash High via AGY, 12 October 2026 (job gemini-world-lines-4); chosen by Claude"
+    },
+    {
+     "id": "CR-SEAGULL-06",
+     "text": "Shoo, gull!",
+     "emotion": "INDIGNANT",
+     "authorship": "Gemini 3.8 Flash High via AGY, 12 October 2026 (job gemini-world-lines-4); chosen by Claude"
+    }
+   ]
+  }
+ ],
+ "scenery": [
+  {
+   "id": "SC-GRAVE",
+   "objectNames": [
+    "grave",
+    "gravestone",
+    "graves",
+    "tombstone"
+   ],
+   "facts": [
+    "A grave."
+   ],
+   "lines": [
+    {
+     "id": "SC-GRAVE-01",
+     "text": "Someone's grave. Be respectful.",
+     "emotion": "QUIET",
+     "authorship": "Claude, 12 October 2026; kept after the Gemini pass of the same day (job gemini-world-lines-6)"
+    },
+    {
+     "id": "SC-GRAVE-02",
+     "text": "I don't like standing here.",
+     "emotion": "CONCERNED",
+     "authorship": "Claude, 12 October 2026; kept after the Gemini pass of the same day (job gemini-world-lines-6)"
+    },
+    {
+     "id": "SC-GRAVE-03",
+     "text": "I wonder who they were.",
+     "emotion": "CURIOUS",
+     "authorship": "Claude, 12 October 2026; kept after the Gemini pass of the same day (job gemini-world-lines-6)"
+    },
+    {
+     "id": "SC-GRAVE-04",
+     "text": "Tread softly near the grave.",
+     "emotion": "QUIET",
+     "authorship": "Gemini 3.8 Flash High via AGY, 12 October 2026 (job gemini-world-lines-6); chosen by Claude"
+    }
+   ]
+  },
+  {
+   "id": "SC-CAULDRON",
+   "objectNames": [
+    "cauldron"
+   ],
+   "facts": [
+    "A cauldron."
+   ],
+   "lines": [
+    {
+     "id": "SC-CAULDRON-01",
+     "text": "A cauldron. Don't touch, it isn't yours.",
+     "emotion": "INDIGNANT",
+     "authorship": "Claude, 12 October 2026; kept after the Gemini pass of the same day (job gemini-world-lines-6)"
+    },
+    {
+     "id": "SC-CAULDRON-02",
+     "text": "Hm. Someone has been brewing.",
+     "emotion": "CURIOUS",
+     "authorship": "Claude, 12 October 2026; kept after the Gemini pass of the same day (job gemini-world-lines-6)"
+    },
+    {
+     "id": "SC-CAULDRON-03",
+     "text": "Mine was better kept.",
+     "emotion": "TEASING",
+     "authorship": "Claude, 12 October 2026; kept after the Gemini pass of the same day (job gemini-world-lines-6)"
+    },
+    {
+     "id": "SC-CAULDRON-04",
+     "text": "Proper brewing requires clean metal.",
+     "emotion": "INDIGNANT",
+     "authorship": "Gemini 3.8 Flash High via AGY, 12 October 2026 (job gemini-world-lines-6); chosen by Claude"
+    }
+   ]
+  },
+  {
+   "id": "SC-BOOKS",
+   "objectNames": [
+    "bookcase",
+    "bookshelf",
+    "bookshelves"
+   ],
+   "facts": [
+    "Shelves of books."
+   ],
+   "lines": [
+    {
+     "id": "SC-BOOKS-01",
+     "text": "Books. Give me a moment.",
+     "emotion": "EXCITED",
+     "authorship": "Claude, 12 October 2026; kept after the Gemini pass of the same day (job gemini-world-lines-6)"
+    },
+    {
+     "id": "SC-BOOKS-02",
+     "text": "They've shelved these all wrong.",
+     "emotion": "INDIGNANT",
+     "authorship": "Claude, 12 October 2026; kept after the Gemini pass of the same day (job gemini-world-lines-6)"
+    },
+    {
+     "id": "SC-BOOKS-03",
+     "text": "I've read most of these. Probably.",
+     "emotion": "TEASING",
+     "authorship": "Claude, 12 October 2026; kept after the Gemini pass of the same day (job gemini-world-lines-6)"
+    }
+   ]
+  },
+  {
+   "id": "SC-STATUE",
+   "objectNames": [
+    "statue"
+   ],
+   "facts": [
+    "A statue of someone."
+   ],
+   "lines": [
+    {
+     "id": "SC-STATUE-01",
+     "text": "Who is that supposed to be?",
+     "emotion": "CURIOUS",
+     "authorship": "Claude, 12 October 2026; kept after the Gemini pass of the same day (job gemini-world-lines-6)"
+    },
+    {
+     "id": "SC-STATUE-02",
+     "text": "They never get the nose right.",
+     "emotion": "TEASING",
+     "authorship": "Claude, 12 October 2026; kept after the Gemini pass of the same day (job gemini-world-lines-6)"
+    },
+    {
+     "id": "SC-STATUE-03",
+     "text": "I'd want a better sculptor.",
+     "emotion": "TEASING",
+     "authorship": "Claude, 12 October 2026; kept after the Gemini pass of the same day (job gemini-world-lines-6)"
+    },
+    {
+     "id": "SC-STATUE-04",
+     "text": "Sculptors always flatter their subjects.",
+     "emotion": "TEASING",
+     "authorship": "Gemini 3.8 Flash High via AGY, 12 October 2026 (job gemini-world-lines-6); chosen by Claude"
+    },
+    {
+     "id": "SC-STATUE-05",
+     "text": "Rather stiff likeness.",
+     "emotion": "TEASING",
+     "authorship": "Gemini 3.8 Flash High via AGY, 12 October 2026 (job gemini-world-lines-6); chosen by Claude"
+    }
+   ]
+  },
+  {
+   "id": "SC-ALTAR",
+   "objectNames": [
+    "altar"
+   ],
+   "facts": [
+    "An altar."
+   ],
+   "lines": [
+    {
+     "id": "SC-ALTAR-01",
+     "text": "An altar. Mind your manners.",
+     "emotion": "CONCERNED",
+     "authorship": "Claude, 12 October 2026; kept after the Gemini pass of the same day (job gemini-world-lines-6)"
+    },
+    {
+     "id": "SC-ALTAR-02",
+     "text": "Quiet, please.",
+     "emotion": "QUIET",
+     "authorship": "Claude, 12 October 2026; kept after the Gemini pass of the same day (job gemini-world-lines-6)"
+    },
+    {
+     "id": "SC-ALTAR-03",
+     "text": "I'm not praying. I'm looking.",
+     "emotion": "INDIGNANT",
+     "authorship": "Claude, 12 October 2026; kept after the Gemini pass of the same day (job gemini-world-lines-6)"
+    },
+    {
+     "id": "SC-ALTAR-04",
+     "text": "Bow your head slightly.",
+     "emotion": "QUIET",
+     "authorship": "Gemini 3.8 Flash High via AGY, 12 October 2026 (job gemini-world-lines-6); chosen by Claude"
+    }
+   ]
+  },
+  {
+   "id": "SC-WELL",
+   "objectNames": [
+    "well"
+   ],
+   "facts": [
+    "A well."
+   ],
+   "lines": [
+    {
+     "id": "SC-WELL-01",
+     "text": "It's deep. Don't lean.",
+     "emotion": "CONCERNED",
+     "authorship": "Claude, 12 October 2026; kept after the Gemini pass of the same day (job gemini-world-lines-6)"
+    },
+    {
+     "id": "SC-WELL-02",
+     "text": "I'm not making a wish. ...Don't watch.",
+     "emotion": "INDIGNANT",
+     "authorship": "Claude, 12 October 2026; kept after the Gemini pass of the same day (job gemini-world-lines-6)"
+    },
+    {
+     "id": "SC-WELL-03",
+     "text": "Hello? ...Nothing. Good.",
+     "emotion": "CURIOUS",
+     "authorship": "Claude, 12 October 2026; kept after the Gemini pass of the same day (job gemini-world-lines-6)"
+    }
+   ]
+  },
+  {
+   "id": "SC-FIRE",
+   "objectNames": [
+    "fire",
+    "fireplace",
+    "campfire"
+   ],
+   "facts": [
+    "A fire is burning."
+   ],
+   "lines": [
+    {
+     "id": "SC-FIRE-01",
+     "text": "Finally, something warm.",
+     "emotion": "APPROVING",
+     "authorship": "Claude, 12 October 2026; kept after the Gemini pass of the same day (job gemini-world-lines-6)"
+    },
+    {
+     "id": "SC-FIRE-02",
+     "text": "I'm only warming my hands.",
+     "emotion": "INDIGNANT",
+     "authorship": "Claude, 12 October 2026; kept after the Gemini pass of the same day (job gemini-world-lines-6)"
+    },
+    {
+     "id": "SC-FIRE-03",
+     "text": "Don't let it go out.",
+     "emotion": "QUIET",
+     "authorship": "Claude, 12 October 2026; kept after the Gemini pass of the same day (job gemini-world-lines-6)"
+    },
+    {
+     "id": "SC-FIRE-04",
+     "text": "Stand near the fire, Potter.",
+     "emotion": "QUIET",
+     "authorship": "Gemini 3.8 Flash High via AGY, 12 October 2026 (job gemini-world-lines-6); chosen by Claude"
+    }
+   ]
+  },
+  {
+   "id": "SC-TELESCOPE",
+   "objectNames": [
+    "telescope"
+   ],
+   "facts": [
+    "A telescope."
+   ],
+   "lines": [
+    {
+     "id": "SC-TELESCOPE-01",
+     "text": "May I? ...I'm looking anyway.",
+     "emotion": "CURIOUS",
+     "authorship": "Claude, 12 October 2026; kept after the Gemini pass of the same day (job gemini-world-lines-6)"
+    },
+    {
+     "id": "SC-TELESCOPE-02",
+     "text": "You can see a long way. I checked.",
+     "emotion": "APPROVING",
+     "authorship": "Claude, 12 October 2026; kept after the Gemini pass of the same day (job gemini-world-lines-6)"
+    },
+    {
+     "id": "SC-TELESCOPE-03",
+     "text": "Stars are easier than people.",
+     "emotion": "QUIET",
+     "authorship": "Claude, 12 October 2026; kept after the Gemini pass of the same day (job gemini-world-lines-6)"
+    },
+    {
+     "id": "SC-TELESCOPE-04",
+     "text": "Stand aside.",
+     "emotion": "INDIGNANT",
+     "authorship": "Gemini 3.8 Flash High via AGY, 12 October 2026 (job gemini-world-lines-6); chosen by Claude"
+    }
+   ]
+  },
+  {
+   "id": "SC-CRYSTAL_BALL",
+   "objectNames": [
+    "crystal ball"
+   ],
+   "facts": [
+    "A crystal ball."
+   ],
+   "lines": [
+    {
+     "id": "SC-CRYSTAL_BALL-01",
+     "text": "A crystal ball. Amateurs love these.",
+     "emotion": "TEASING",
+     "authorship": "Claude, 12 October 2026; kept after the Gemini pass of the same day (job gemini-world-lines-6)"
+    },
+    {
+     "id": "SC-CRYSTAL_BALL-02",
+     "text": "It's showing me nothing. As expected.",
+     "emotion": "TEASING",
+     "authorship": "Claude, 12 October 2026; kept after the Gemini pass of the same day (job gemini-world-lines-6)"
+    },
+    {
+     "id": "SC-CRYSTAL_BALL-03",
+     "text": "Don't ask it about me.",
+     "emotion": "INDIGNANT",
+     "authorship": "Claude, 12 October 2026; kept after the Gemini pass of the same day (job gemini-world-lines-6)"
+    },
+    {
+     "id": "SC-CRYSTAL_BALL-04",
+     "text": "Charlatans rely on glass baubles.",
+     "emotion": "INDIGNANT",
+     "authorship": "Gemini 3.8 Flash High via AGY, 12 October 2026 (job gemini-world-lines-6); chosen by Claude"
+    }
+   ]
+  },
+  {
+   "id": "SC-SCARECROW",
+   "objectNames": [
+    "scarecrow"
+   ],
+   "facts": [
+    "A scarecrow."
+   ],
+   "lines": [
+    {
+     "id": "SC-SCARECROW-01",
+     "text": "It's staring at me.",
+     "emotion": "CONCERNED",
+     "authorship": "Claude, 12 October 2026; kept after the Gemini pass of the same day (job gemini-world-lines-6)"
+    },
+    {
+     "id": "SC-SCARECROW-02",
+     "text": "That isn't frightening anyone.",
+     "emotion": "TEASING",
+     "authorship": "Claude, 12 October 2026; kept after the Gemini pass of the same day (job gemini-world-lines-6)"
+    },
+    {
+     "id": "SC-SCARECROW-03",
+     "text": "It has better posture than you.",
+     "emotion": "TEASING",
+     "authorship": "Claude, 12 October 2026; kept after the Gemini pass of the same day (job gemini-world-lines-6)"
+    },
+    {
+     "id": "SC-SCARECROW-04",
+     "text": "Remarkable resemblance to you, Potter.",
+     "emotion": "TEASING",
+     "authorship": "Gemini 3.8 Flash High via AGY, 12 October 2026 (job gemini-world-lines-6); chosen by Claude"
+    }
+   ]
+  },
+  {
+   "id": "SC-HAY",
+   "objectNames": [
+    "hay bale",
+    "hay bales",
+    "haystack"
+   ],
+   "facts": [
+    "Hay."
+   ],
+   "lines": [
+    {
+     "id": "SC-HAY-01",
+     "text": "I am not sitting on that.",
+     "emotion": "INDIGNANT",
+     "authorship": "Claude, 12 October 2026; kept after the Gemini pass of the same day (job gemini-world-lines-6)"
+    },
+    {
+     "id": "SC-HAY-02",
+     "text": "It's hay. Why are we looking at hay?",
+     "emotion": "TEASING",
+     "authorship": "Claude, 12 October 2026; kept after the Gemini pass of the same day (job gemini-world-lines-6)"
+    },
+    {
+     "id": "SC-HAY-03",
+     "text": "...It does smell nice.",
+     "emotion": "QUIET",
+     "authorship": "Claude, 12 October 2026; kept after the Gemini pass of the same day (job gemini-world-lines-6)"
+    }
+   ]
+  },
+  {
+   "id": "SC-THRONE",
+   "objectNames": [
+    "throne"
+   ],
+   "facts": [
+    "A throne."
+   ],
+   "lines": [
+    {
+     "id": "SC-THRONE-01",
+     "text": "I could get used to one of these.",
+     "emotion": "APPROVING",
+     "authorship": "Claude, 12 October 2026; kept after the Gemini pass of the same day (job gemini-world-lines-6)"
+    },
+    {
+     "id": "SC-THRONE-02",
+     "text": "It suits me. Don't you think?",
+     "emotion": "TEASING",
+     "authorship": "Claude, 12 October 2026; kept after the Gemini pass of the same day (job gemini-world-lines-6)"
+    },
+    {
+     "id": "SC-THRONE-03",
+     "text": "I'm not sitting. I'm measuring.",
+     "emotion": "INDIGNANT",
+     "authorship": "Claude, 12 October 2026; kept after the Gemini pass of the same day (job gemini-world-lines-6)"
+    }
+   ]
+  },
+  {
+   "id": "SC-BED",
+   "objectNames": [
+    "bed"
+   ],
+   "facts": [
+    "A bed."
+   ],
+   "lines": [
+    {
+     "id": "SC-BED-01",
+     "text": "I could sleep for a week.",
+     "emotion": "QUIET",
+     "authorship": "Claude, 12 October 2026; kept after the Gemini pass of the same day (job gemini-world-lines-6)"
+    },
+    {
+     "id": "SC-BED-02",
+     "text": "Someone actually sleeps on that?",
+     "emotion": "TEASING",
+     "authorship": "Claude, 12 October 2026; kept after the Gemini pass of the same day (job gemini-world-lines-6)"
+    },
+    {
+     "id": "SC-BED-03",
+     "text": "Five minutes. I'm not tired. Five minutes.",
+     "emotion": "INDIGNANT",
+     "authorship": "Claude, 12 October 2026; kept after the Gemini pass of the same day (job gemini-world-lines-6)"
+    }
+   ]
+  },
+  {
+   "id": "SC-ORGAN",
+   "objectNames": [
+    "organ",
+    "church organ",
+    "piano"
+   ],
+   "facts": [
+    "A keyboard instrument."
+   ],
+   "lines": [
+    {
+     "id": "SC-ORGAN-01",
+     "text": "I had lessons, you know.",
+     "emotion": "TEASING",
+     "authorship": "Claude, 12 October 2026; kept after the Gemini pass of the same day (job gemini-world-lines-6)"
+    },
+    {
+     "id": "SC-ORGAN-02",
+     "text": "Don't ask me to play.",
+     "emotion": "INDIGNANT",
+     "authorship": "Claude, 12 October 2026; kept after the Gemini pass of the same day (job gemini-world-lines-6)"
+    },
+    {
+     "id": "SC-ORGAN-03",
+     "text": "Don't touch the keys.",
+     "emotion": "CONCERNED",
+     "authorship": "Claude, 12 October 2026; kept after the Gemini pass of the same day (job gemini-world-lines-6)"
+    }
+   ]
+  },
+  {
+   "id": "SC-WARDROBE",
+   "objectNames": [
+    "wardrobe"
+   ],
+   "facts": [
+    "A wardrobe."
+   ],
+   "lines": [
+    {
+     "id": "SC-WARDROBE-01",
+     "text": "Now this I approve of.",
+     "emotion": "APPROVING",
+     "authorship": "Claude, 12 October 2026; kept after the Gemini pass of the same day (job gemini-world-lines-6)"
+    },
+    {
+     "id": "SC-WARDROBE-02",
+     "text": "I wonder what's inside. Don't open it.",
+     "emotion": "CURIOUS",
+     "authorship": "Claude, 12 October 2026; kept after the Gemini pass of the same day (job gemini-world-lines-6)"
+    },
+    {
+     "id": "SC-WARDROBE-03",
+     "text": "Mine is bigger.",
+     "emotion": "TEASING",
+     "authorship": "Claude, 12 October 2026; kept after the Gemini pass of the same day (job gemini-world-lines-6)"
+    }
+   ]
+  },
+  {
+   "id": "SC-SPINNING_WHEEL",
+   "objectNames": [
+    "spinning wheel"
+   ],
+   "facts": [
+    "A spinning wheel."
+   ],
+   "lines": [
+    {
+     "id": "SC-SPINNING_WHEEL-01",
+     "text": "I know how it works. In theory.",
+     "emotion": "TEASING",
+     "authorship": "Claude, 12 October 2026; kept after the Gemini pass of the same day (job gemini-world-lines-6)"
+    },
+    {
+     "id": "SC-SPINNING_WHEEL-02",
+     "text": "No, I won't spin anything for you.",
+     "emotion": "INDIGNANT",
+     "authorship": "Claude, 12 October 2026; kept after the Gemini pass of the same day (job gemini-world-lines-6)"
+    },
+    {
+     "id": "SC-SPINNING_WHEEL-03",
+     "text": "Mind your fingers.",
+     "emotion": "CONCERNED",
+     "authorship": "Claude, 12 October 2026; kept after the Gemini pass of the same day (job gemini-world-lines-6)"
+    },
+    {
+     "id": "SC-SPINNING_WHEEL-04",
+     "text": "Spinning thread is domestic drudgery.",
+     "emotion": "INDIGNANT",
+     "authorship": "Gemini 3.8 Flash High via AGY, 12 October 2026 (job gemini-world-lines-6); chosen by Claude"
+    }
+   ]
+  },
+  {
+   "id": "SC-FORGE",
+   "objectNames": [
+    "anvil",
+    "furnace"
+   ],
+   "facts": [
+    "An anvil or a furnace: metalwork."
+   ],
+   "lines": [
+    {
+     "id": "SC-FORGE-01",
+     "text": "Hot, loud and heavy. Yours, then.",
+     "emotion": "TEASING",
+     "authorship": "Claude, 12 October 2026; kept after the Gemini pass of the same day (job gemini-world-lines-6)"
+    },
+    {
+     "id": "SC-FORGE-02",
+     "text": "Stand back from the sparks.",
+     "emotion": "CONCERNED",
+     "authorship": "Claude, 12 October 2026; kept after the Gemini pass of the same day (job gemini-world-lines-6)"
+    },
+    {
+     "id": "SC-FORGE-03",
+     "text": "I'll watch from here.",
+     "emotion": "QUIET",
+     "authorship": "Claude, 12 October 2026; kept after the Gemini pass of the same day (job gemini-world-lines-6)"
+    }
+   ]
+  },
+  {
+   "id": "SC-SIGNPOST",
+   "objectNames": [
+    "signpost"
+   ],
+   "facts": [
+    "A signpost."
+   ],
+   "lines": [
+    {
+     "id": "SC-SIGNPOST-01",
+     "text": "You're reading a signpost. We're lost.",
+     "emotion": "TEASING",
+     "authorship": "Claude, 12 October 2026; kept after the Gemini pass of the same day (job gemini-world-lines-6)"
+    },
+    {
+     "id": "SC-SIGNPOST-02",
+     "text": "Which way? ...You don't know either.",
+     "emotion": "TEASING",
+     "authorship": "Claude, 12 October 2026; kept after the Gemini pass of the same day (job gemini-world-lines-6)"
+    },
+    {
+     "id": "SC-SIGNPOST-03",
+     "text": "I knew that already.",
+     "emotion": "INDIGNANT",
+     "authorship": "Claude, 12 October 2026; kept after the Gemini pass of the same day (job gemini-world-lines-6)"
+    }
+   ]
+  },
+  {
+   "id": "SC-FLOWERS",
+   "objectNames": [
+    "flowers",
+    "flower",
+    "daisies",
+    "sunflower",
+    "rosebush",
+    "rose bush"
+   ],
+   "facts": [
+    "Flowers."
+   ],
+   "lines": [
+    {
+     "id": "SC-FLOWERS-01",
+     "text": "They're just flowers. ...They're nice flowers.",
+     "emotion": "QUIET",
+     "authorship": "Claude, 12 October 2026; kept after the Gemini pass of the same day (job gemini-world-lines-6)"
+    },
+    {
+     "id": "SC-FLOWERS-02",
+     "text": "Don't pick them for me.",
+     "emotion": "INDIGNANT",
+     "authorship": "Claude, 12 October 2026; kept after the Gemini pass of the same day (job gemini-world-lines-6)"
+    },
+    {
+     "id": "SC-FLOWERS-03",
+     "text": "Hm. Pretty.",
+     "emotion": "APPROVING",
+     "authorship": "Claude, 12 October 2026; kept after the Gemini pass of the same day (job gemini-world-lines-6)"
+    },
+    {
+     "id": "SC-FLOWERS-04",
+     "text": "Tolerable blooms.",
+     "emotion": "APPROVING",
+     "authorship": "Gemini 3.8 Flash High via AGY, 12 October 2026 (job gemini-world-lines-6); chosen by Claude"
+    }
+   ]
+  },
+  {
+   "id": "SC-CABBAGE",
+   "objectNames": [
+    "cabbage",
+    "cabbages"
+   ],
+   "facts": [
+    "A cabbage."
+   ],
+   "lines": [
+    {
+     "id": "SC-CABBAGE-01",
+     "text": "It's a cabbage.",
+     "emotion": "TEASING",
+     "authorship": "Claude, 12 October 2026; kept after the Gemini pass of the same day (job gemini-world-lines-6)"
+    },
+    {
+     "id": "SC-CABBAGE-02",
+     "text": "You're not eating that off the ground.",
+     "emotion": "CONCERNED",
+     "authorship": "Claude, 12 October 2026; kept after the Gemini pass of the same day (job gemini-world-lines-6)"
+    },
+    {
+     "id": "SC-CABBAGE-03",
+     "text": "Fascinating. A cabbage.",
+     "emotion": "TEASING",
+     "authorship": "Claude, 12 October 2026; kept after the Gemini pass of the same day (job gemini-world-lines-6)"
+    },
+    {
+     "id": "SC-CABBAGE-04",
+     "text": "Hardly noteworthy.",
+     "emotion": "TEASING",
+     "authorship": "Gemini 3.8 Flash High via AGY, 12 October 2026 (job gemini-world-lines-6); chosen by Claude"
+    },
+    {
+     "id": "SC-CABBAGE-05",
+     "text": "Do not touch the cabbage, Potter.",
+     "emotion": "INDIGNANT",
+     "authorship": "Gemini 3.8 Flash High via AGY, 12 October 2026 (job gemini-world-lines-6); chosen by Claude"
+    }
+   ]
+  },
+  {
+   "id": "SC-PORTAL",
+   "objectNames": [
+    "portal"
+   ],
+   "facts": [
+    "A portal."
+   ],
+   "lines": [
+    {
+     "id": "SC-PORTAL-01",
+     "text": "Where does it go? You first.",
+     "emotion": "CONCERNED",
+     "authorship": "Claude, 12 October 2026; kept after the Gemini pass of the same day (job gemini-world-lines-6)"
+    },
+    {
+     "id": "SC-PORTAL-02",
+     "text": "I don't trust it.",
+     "emotion": "CONCERNED",
+     "authorship": "Claude, 12 October 2026; kept after the Gemini pass of the same day (job gemini-world-lines-6)"
+    },
+    {
+     "id": "SC-PORTAL-03",
+     "text": "It hums. I don't like that.",
+     "emotion": "CONCERNED",
+     "authorship": "Claude, 12 October 2026; kept after the Gemini pass of the same day (job gemini-world-lines-6)"
+    }
+   ]
+  }
+ ],
+ "moments": [
+  {
+   "id": "W-WILD-ENTER",
+   "fact": "WILDERNESS_ENTERED",
+   "facts": [
+    "The Wilderness is lawless country where adventurers are attacked and robbed by other adventurers, and where worse things live.",
+    "Nothing has happened yet.",
+    "She does not know why he has come here."
+   ],
+   "lines": [
+    {
+     "id": "W-WILD-ENTER-01",
+     "text": "Keep moving, then.",
+     "emotion": "QUIET",
+     "authorship": "Gemini 3.8 Flash High via AGY, 12 October 2026 (job gemini-world-lines-4); chosen by Claude"
+    },
+    {
+     "id": "W-WILD-ENTER-02",
+     "text": "The Wilderness. How utterly charming.",
+     "emotion": "INDIGNANT",
+     "authorship": "Gemini 3.8 Flash High via AGY, 12 October 2026 (job gemini-world-lines-4); chosen by Claude"
+    },
+    {
+     "id": "W-WILD-ENTER-03",
+     "text": "Right behind you.",
+     "emotion": "QUIET",
+     "authorship": "Gemini 3.8 Flash High via AGY, 12 October 2026 (job gemini-world-lines-4); chosen by Claude"
+    },
+    {
+     "id": "W-WILD-ENTER-04",
+     "text": "Why have you brought us out here?",
+     "emotion": "CURIOUS",
+     "authorship": "Gemini 3.8 Flash High via AGY, 12 October 2026 (job gemini-world-lines-4); chosen by Claude"
+    },
+    {
+     "id": "W-WILD-ENTER-05",
+     "text": "This was not part of any agreement, Potter.",
+     "emotion": "INDIGNANT",
+     "authorship": "Gemini 3.8 Flash High via AGY, 12 October 2026 (job gemini-world-lines-4); chosen by Claude"
+    },
+    {
+     "id": "W-WILD-ENTER-06",
+     "text": "Do not expect me to carry your things if you fall.",
+     "emotion": "TEASING",
+     "authorship": "Gemini 3.8 Flash High via AGY, 12 October 2026 (job gemini-world-lines-4); chosen by Claude"
+    },
+    {
+     "id": "W-WILD-ENTER-07",
+     "text": "If someone approaches, let me speak first.",
+     "emotion": "CONCERNED",
+     "authorship": "Gemini 3.8 Flash High via AGY, 12 October 2026 (job gemini-world-lines-4); chosen by Claude"
+    },
+    {
+     "id": "W-WILD-ENTER-08",
+     "text": "Nothing here looks remotely safe.",
+     "emotion": "INDIGNANT",
+     "authorship": "Gemini 3.8 Flash High via AGY, 12 October 2026 (job gemini-world-lines-4); chosen by Claude"
+    },
+    {
+     "id": "W-WILD-ENTER-09",
+     "text": "There is a plan, I assume?",
+     "emotion": "CURIOUS",
+     "authorship": "Gemini 3.8 Flash High via AGY, 12 October 2026 (job gemini-world-lines-4); chosen by Claude"
+    },
+    {
+     "id": "W-WILD-ENTER-10",
+     "text": "My pulse is perfectly steady. Don't ask.",
+     "emotion": "INDIGNANT",
+     "authorship": "Gemini 3.8 Flash High via AGY, 12 October 2026 (job gemini-world-lines-4); chosen by Claude; edited by Claude",
+     "geminiText": "My pulse is quite steady. Do not ask again."
+    },
+    {
+     "id": "W-WILD-ENTER-11",
+     "text": "Stay alert, Potter.",
+     "emotion": "CONCERNED",
+     "authorship": "Gemini 3.8 Flash High via AGY, 12 October 2026 (job gemini-world-lines-4); chosen by Claude"
+    },
+    {
+     "id": "W-WILD-ENTER-12",
+     "text": "Hardly a proper place for a stroll.",
+     "emotion": "TEASING",
+     "authorship": "Gemini 3.8 Flash High via AGY, 12 October 2026 (job gemini-world-lines-4); chosen by Claude"
+    }
+   ]
+  },
+  {
+   "id": "W-WILD-LEAVE",
+   "fact": "WILDERNESS_LEFT",
+   "facts": [
+    "He is alive.",
+    "Nothing is known about what happened in there."
+   ],
+   "lines": [
+    {
+     "id": "W-WILD-LEAVE-01",
+     "text": "Finally.",
+     "emotion": "QUIET",
+     "authorship": "Gemini 3.8 Flash High via AGY, 12 October 2026 (job gemini-world-lines-4); chosen by Claude"
+    },
+    {
+     "id": "W-WILD-LEAVE-02",
+     "text": "Good riddance to that miserable wasteland.",
+     "emotion": "INDIGNANT",
+     "authorship": "Gemini 3.8 Flash High via AGY, 12 October 2026 (job gemini-world-lines-4); chosen by Claude"
+    },
+    {
+     "id": "W-WILD-LEAVE-03",
+     "text": "Safe ground. At last.",
+     "emotion": "QUIET",
+     "authorship": "Gemini 3.8 Flash High via AGY, 12 October 2026 (job gemini-world-lines-4); chosen by Claude"
+    },
+    {
+     "id": "W-WILD-LEAVE-04",
+     "text": "Took your sweet time, didn't you?",
+     "emotion": "TEASING",
+     "authorship": "Gemini 3.8 Flash High via AGY, 12 October 2026 (job gemini-world-lines-4); chosen by Claude"
+    },
+    {
+     "id": "W-WILD-LEAVE-05",
+     "text": "I was not worried for an instant, Potter.",
+     "emotion": "INDIGNANT",
+     "authorship": "Gemini 3.8 Flash High via AGY, 12 October 2026 (job gemini-world-lines-4); chosen by Claude"
+    },
+    {
+     "id": "W-WILD-LEAVE-06",
+     "text": "Never take me there again.",
+     "emotion": "INDIGNANT",
+     "authorship": "Gemini 3.8 Flash High via AGY, 12 October 2026 (job gemini-world-lines-4); chosen by Claude"
+    },
+    {
+     "id": "W-WILD-LEAVE-07",
+     "text": "Alive, then. What a relief for you.",
+     "emotion": "TEASING",
+     "authorship": "Gemini 3.8 Flash High via AGY, 12 October 2026 (job gemini-world-lines-4); chosen by Claude"
+    },
+    {
+     "id": "W-WILD-LEAVE-08",
+     "text": "Expect no praise for merely surviving.",
+     "emotion": "TEASING",
+     "authorship": "Gemini 3.8 Flash High via AGY, 12 October 2026 (job gemini-world-lines-4); chosen by Claude"
+    }
+   ]
+  },
+  {
+   "id": "W-AFTER-PVP",
+   "fact": "BACK_AFTER_PLAYER_COMBAT",
+   "playerHpAbovePercent": 50,
+   "facts": [
+    "The fight is over.",
+    "He is alive and not badly hurt.",
+    "Nothing is known about who won, who the other person was, or whether anyone died."
+   ],
+   "lines": [
+    {
+     "id": "W-AFTER-PVP-01",
+     "text": "Finished?",
+     "emotion": "QUIET",
+     "authorship": "Gemini 3.8 Flash High via AGY, 12 October 2026 (job gemini-world-lines-4); chosen by Claude"
+    },
+    {
+     "id": "W-AFTER-PVP-02",
+     "text": "Merely giving you room.",
+     "emotion": "INDIGNANT",
+     "authorship": "Gemini 3.8 Flash High via AGY, 12 October 2026 (job gemini-world-lines-4); chosen by Claude"
+    },
+    {
+     "id": "W-AFTER-PVP-03",
+     "text": "Must you brawl with every stranger we encounter?",
+     "emotion": "INDIGNANT",
+     "authorship": "Gemini 3.8 Flash High via AGY, 12 October 2026 (job gemini-world-lines-4); chosen by Claude"
+    },
+    {
+     "id": "W-AFTER-PVP-04",
+     "text": "You made rather a spectacle of yourself, Potter.",
+     "emotion": "TEASING",
+     "authorship": "Gemini 3.8 Flash High via AGY, 12 October 2026 (job gemini-world-lines-4); chosen by Claude"
+    },
+    {
+     "id": "W-AFTER-PVP-05",
+     "text": "Are they gone?",
+     "emotion": "CURIOUS",
+     "authorship": "Gemini 3.8 Flash High via AGY, 12 October 2026 (job gemini-world-lines-4); chosen by Claude"
+    },
+    {
+     "id": "W-AFTER-PVP-06",
+     "text": "Hmph. Reckless as ever.",
+     "emotion": "INDIGNANT",
+     "authorship": "Gemini 3.8 Flash High via AGY, 12 October 2026 (job gemini-world-lines-4); chosen by Claude"
+    },
+    {
+     "id": "W-AFTER-PVP-07",
+     "text": "Of course you managed. I was never in doubt.",
+     "emotion": "TEASING",
+     "authorship": "Gemini 3.8 Flash High via AGY, 12 October 2026 (job gemini-world-lines-4); chosen by Claude"
+    },
+    {
+     "id": "W-AFTER-PVP-08",
+     "text": "Still standing, I see.",
+     "emotion": "APPROVING",
+     "authorship": "Gemini 3.8 Flash High via AGY, 12 October 2026 (job gemini-world-lines-4); chosen by Claude"
+    },
+    {
+     "id": "W-AFTER-PVP-09",
+     "text": "My heart was not racing. Don't be absurd.",
+     "emotion": "INDIGNANT",
+     "authorship": "Gemini 3.8 Flash High via AGY, 12 October 2026 (job gemini-world-lines-4); chosen by Claude"
+    },
+    {
+     "id": "W-AFTER-PVP-10",
+     "text": "That was entirely unnecessary.",
+     "emotion": "INDIGNANT",
+     "authorship": "Gemini 3.8 Flash High via AGY, 12 October 2026 (job gemini-world-lines-4); chosen by Claude"
+    }
+   ]
+  },
+  {
+   "id": "W-AFTER-PVP-HURT",
+   "fact": "BACK_AFTER_PLAYER_COMBAT",
+   "playerHpAtMostPercent": 50,
+   "facts": [
+    "The fight is over.",
+    "He is alive and has lost half his health or more.",
+    "Nothing is known about who won or who the other person was."
+   ],
+   "lines": [
+    {
+     "id": "W-AFTER-PVP-HURT-01",
+     "text": "Idiot!",
+     "emotion": "INDIGNANT",
+     "authorship": "Gemini 3.8 Flash High via AGY, 12 October 2026 (job gemini-world-lines-4); chosen by Claude"
+    },
+    {
+     "id": "W-AFTER-PVP-HURT-02",
+     "text": "You nearly got yourself killed, Potter!",
+     "emotion": "CONCERNED",
+     "authorship": "Gemini 3.8 Flash High via AGY, 12 October 2026 (job gemini-world-lines-4); chosen by Claude"
+    },
+    {
+     "id": "W-AFTER-PVP-HURT-03",
+     "text": "Hold still. Let me see where you are hurt.",
+     "emotion": "CONCERNED",
+     "authorship": "Gemini 3.8 Flash High via AGY, 12 October 2026 (job gemini-world-lines-4); chosen by Claude"
+    },
+    {
+     "id": "W-AFTER-PVP-HURT-04",
+     "text": "Eat something, you stubborn fool.",
+     "emotion": "CONCERNED",
+     "authorship": "Gemini 3.8 Flash High via AGY, 12 October 2026 (job gemini-world-lines-4); chosen by Claude"
+    },
+    {
+     "id": "W-AFTER-PVP-HURT-05",
+     "text": "What were you thinking?!",
+     "emotion": "INDIGNANT",
+     "authorship": "Gemini 3.8 Flash High via AGY, 12 October 2026 (job gemini-world-lines-4); chosen by Claude"
+    },
+    {
+     "id": "W-AFTER-PVP-HURT-06",
+     "text": "Did you forget how to defend yourself?!",
+     "emotion": "INDIGNANT",
+     "authorship": "Gemini 3.8 Flash High via AGY, 12 October 2026 (job gemini-world-lines-4); chosen by Claude"
+    }
+   ]
+  },
+  {
+   "id": "G-WAITING",
+   "fact": "KEPT_WAITING",
+   "timesLatelyAtMost": 2,
+   "facts": [
+    "He has not moved for well over a minute.",
+    "She does not know why he is standing there or what he is doing."
+   ],
+   "lines": [
+    {
+     "id": "G-WAITING-01",
+     "text": "Are we rooted to this spot?",
+     "emotion": "TEASING",
+     "authorship": "Gemini 3.8 Flash High via AGY, 12 October 2026 (job gemini-waiting-lines-5); chosen by Claude"
+    },
+    {
+     "id": "G-WAITING-02",
+     "text": "I am waiting, Potter.",
+     "emotion": "INDIGNANT",
+     "authorship": "Gemini 3.8 Flash High via AGY, 12 October 2026 (job gemini-waiting-lines-5); chosen by Claude"
+    },
+    {
+     "id": "G-WAITING-03",
+     "text": "There is nothing remarkable about this spot.",
+     "emotion": "INDIGNANT",
+     "authorship": "Gemini 3.8 Flash High via AGY, 12 October 2026 (job gemini-waiting-lines-5); chosen by Claude"
+    },
+    {
+     "id": "G-WAITING-04",
+     "text": "Look at me instead.",
+     "emotion": "INDIGNANT",
+     "authorship": "Gemini 3.8 Flash High via AGY, 12 October 2026 (job gemini-waiting-lines-5); chosen by Claude"
+    },
+    {
+     "id": "G-WAITING-05",
+     "text": "We have not got all day.",
+     "emotion": "INDIGNANT",
+     "authorship": "Gemini 3.8 Flash High via AGY, 12 October 2026 (job gemini-waiting-lines-5); chosen by Claude"
+    },
+    {
+     "id": "G-WAITING-06",
+     "text": "Some of us prefer to move.",
+     "emotion": "TEASING",
+     "authorship": "Gemini 3.8 Flash High via AGY, 12 October 2026 (job gemini-waiting-lines-5); chosen by Claude; edited by Claude",
+     "geminiText": "Potter. Some of us prefer to move."
+    },
+    {
+     "id": "G-WAITING-07",
+     "text": "Have you forgotten how to walk?",
+     "emotion": "TEASING",
+     "authorship": "Gemini 3.8 Flash High via AGY, 12 October 2026 (job gemini-waiting-lines-5); chosen by Claude"
+    },
+    {
+     "id": "G-WAITING-08",
+     "text": "You could warn me before you stop like this.",
+     "emotion": "INDIGNANT",
+     "authorship": "Gemini 3.8 Flash High via AGY, 12 October 2026 (job gemini-waiting-lines-5); chosen by Claude"
+    },
+    {
+     "id": "G-WAITING-09",
+     "text": "Can we please get on with it?",
+     "emotion": "INDIGNANT",
+     "authorship": "Gemini 3.8 Flash High via AGY, 12 October 2026 (job gemini-waiting-lines-5); chosen by Claude"
+    },
+    {
+     "id": "G-WAITING-10",
+     "text": "Standing still accomplishes nothing.",
+     "emotion": "INDIGNANT",
+     "authorship": "Gemini 3.8 Flash High via AGY, 12 October 2026 (job gemini-waiting-lines-5); chosen by Claude"
+    },
+    {
+     "id": "G-WAITING-11",
+     "text": "Any century now.",
+     "emotion": "TEASING",
+     "authorship": "Gemini 3.8 Flash High via AGY, 12 October 2026 (job gemini-waiting-lines-5); chosen by Claude"
+    }
+   ]
+  },
+  {
+   "id": "G-WAITING-LONG",
+   "fact": "KEPT_WAITING",
+   "timesLatelyAtLeast": 3,
+   "facts": [
+    "He has not moved for well over a minute.",
+    "It is at least the third time lately."
+   ],
+   "lines": [
+    {
+     "id": "G-WAITING-LONG-01",
+     "text": "You make a dreadful statue, Potter.",
+     "emotion": "TEASING",
+     "authorship": "Gemini 3.8 Flash High via AGY, 12 October 2026 (job gemini-waiting-lines-5); chosen by Claude"
+    },
+    {
+     "id": "G-WAITING-LONG-02",
+     "text": "I suppose we live on this spot now.",
+     "emotion": "TEASING",
+     "authorship": "Gemini 3.8 Flash High via AGY, 12 October 2026 (job gemini-waiting-lines-5); chosen by Claude"
+    },
+    {
+     "id": "G-WAITING-LONG-03",
+     "text": "Fine. A moment, then... but only one.",
+     "emotion": "QUIET",
+     "authorship": "Gemini 3.8 Flash High via AGY, 12 October 2026 (job gemini-waiting-lines-5); chosen by Claude"
+    },
+    {
+     "id": "G-WAITING-LONG-04",
+     "text": "This is becoming a habit.",
+     "emotion": "TEASING",
+     "authorship": "Gemini 3.8 Flash High via AGY, 12 October 2026 (job gemini-waiting-lines-5); chosen by Claude"
+    },
+    {
+     "id": "G-WAITING-LONG-05",
+     "text": "At least you are consistent.",
+     "emotion": "TEASING",
+     "authorship": "Gemini 3.8 Flash High via AGY, 12 October 2026 (job gemini-waiting-lines-5); chosen by Claude"
+    }
+   ]
+  },
+  {
+   "id": "W-KEPT-BACK",
+   "fact": "KEPT_BACK_BY_BEAST",
+   "facts": [
+    "He is standing right next to a dangerous animal.",
+    "She has stopped several steps away and will not come any closer.",
+    "Nothing is known about what the animal is or what he is doing there."
+   ],
+   "lines": [
+    {
+     "id": "W-KEPT-BACK-01",
+     "text": "I am content right here.",
+     "emotion": "INDIGNANT",
+     "authorship": "Gemini 3.8 Flash High via AGY, 12 October 2026 (job gemini-legend-lines-8); chosen by Claude"
+    },
+    {
+     "id": "W-KEPT-BACK-02",
+     "text": "I can hear you perfectly well from this spot.",
+     "emotion": "QUIET",
+     "authorship": "Gemini 3.8 Flash High via AGY, 12 October 2026 (job gemini-legend-lines-8); chosen by Claude"
+    },
+    {
+     "id": "W-KEPT-BACK-03",
+     "text": "If you wish to converse, you may walk over here.",
+     "emotion": "TEASING",
+     "authorship": "Gemini 3.8 Flash High via AGY, 12 October 2026 (job gemini-legend-lines-8); chosen by Claude"
+    },
+    {
+     "id": "W-KEPT-BACK-04",
+     "text": "Why must you stand so dreadfully close to it?",
+     "emotion": "CONCERNED",
+     "authorship": "Gemini 3.8 Flash High via AGY, 12 October 2026 (job gemini-legend-lines-8); chosen by Claude"
+    },
+    {
+     "id": "W-KEPT-BACK-05",
+     "text": "Personal space is a mark of good breeding.",
+     "emotion": "APPROVING",
+     "authorship": "Gemini 3.8 Flash High via AGY, 12 October 2026 (job gemini-legend-lines-8); chosen by Claude"
+    },
+    {
+     "id": "W-KEPT-BACK-06",
+     "text": "Step away from that thing this instant, Potter!",
+     "emotion": "CONCERNED",
+     "authorship": "Gemini 3.8 Flash High via AGY, 12 October 2026 (job gemini-legend-lines-8); chosen by Claude"
+    },
+    {
+     "id": "W-KEPT-BACK-07",
+     "text": "Only a fool would step any closer to that thing.",
+     "emotion": "INDIGNANT",
+     "authorship": "Gemini 3.8 Flash High via AGY, 12 October 2026 (job gemini-legend-lines-8); chosen by Claude"
+    }
+   ]
+  }
+ ]
+}
