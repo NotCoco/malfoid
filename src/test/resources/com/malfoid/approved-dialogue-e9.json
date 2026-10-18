@@ -1,0 +1,1512 @@
+{
+ "schemaVersion": 1,
+ "what": "New spoken lines for Malfoid: Talk-to, fear of rats and beasts, the long run, and the outfit tone pass. The rules for using them are section E.9 of MALFOID_MASTER_SPEC.md.",
+ "writtenBy": "Gemini 3.8 Flash High through the AGY CLI, 12 October 2026; chosen and in places edited by Claude",
+ "lineRules": {
+  "maximumCharacters": 110,
+  "emotions": [
+   "APPROVING",
+   "CONCERNED",
+   "CURIOUS",
+   "EXCITED",
+   "INDIGNANT",
+   "QUIET",
+   "TEASING"
+  ],
+  "potterAtMostOneLineInPerGroup": 6
+ },
+ "groups": {
+  "U01-G": {
+   "scenario": "U01",
+   "conditions": {
+    "talkStreak": 1
+   },
+   "what": "Talk-to, first answer",
+   "lines": 53,
+   "withPotter": 7
+  },
+  "U01-S": {
+   "scenario": "U01",
+   "conditions": {
+    "talkStreak": 2
+   },
+   "what": "Talk-to, second answer in a row",
+   "lines": 14,
+   "withPotter": 2
+  },
+  "U01-T": {
+   "scenario": "U01",
+   "conditions": {
+    "talkStreak": 3
+   },
+   "what": "Talk-to, third answer in a row",
+   "lines": 12,
+   "withPotter": 2
+  },
+  "U01-H": {
+   "scenario": "U01",
+   "conditions": {
+    "talkStreak": 1,
+    "playerHpAtMostPercent": 25
+   },
+   "what": "Talk-to while he is badly hurt",
+   "lines": 11,
+   "withPotter": 1
+  },
+  "U01-F": {
+   "scenario": "U01",
+   "conditions": {
+    "talkStreak": 1,
+    "combatConfirmed": true
+   },
+   "what": "Talk-to in the middle of a fight",
+   "lines": 8,
+   "withPotter": 1
+  },
+  "U01-N": {
+   "scenario": "U01",
+   "conditions": {
+    "talkStreak": 1,
+    "localNight": true
+   },
+   "what": "Talk-to in the middle of the night",
+   "lines": 12,
+   "withPotter": 2
+  },
+  "F01-G": {
+   "scenario": "F01",
+   "conditions": {},
+   "what": "A rat is near and she has run behind him (E.5)",
+   "lines": 6,
+   "withPotter": 1
+  },
+  "F02-G": {
+   "scenario": "F02",
+   "conditions": {},
+   "what": "A dangerous beast is near and she has run behind him (E.5)",
+   "lines": 6,
+   "withPotter": 1
+  },
+  "F03-G": {
+   "scenario": "F03",
+   "conditions": {},
+   "what": "He has run a long way and she has had to keep up (E.7)",
+   "lines": 5,
+   "withPotter": 0
+  },
+  "M09-T": {
+   "scenario": "M09",
+   "conditions": {},
+   "what": "He has changed what he is wearing (E.6)",
+   "lines": 3,
+   "withPotter": 0
+  },
+  "M33-T": {
+   "scenario": "M33",
+   "conditions": {},
+   "what": "He has gone back to what he wore before (E.6)",
+   "lines": 3,
+   "withPotter": 0
+  },
+  "M34-T": {
+   "scenario": "M34",
+   "conditions": {},
+   "what": "He has changed everything he was wearing at once (E.6)",
+   "lines": 3,
+   "withPotter": 0
+  },
+  "M32-T": {
+   "scenario": "M32",
+   "conditions": {},
+   "what": "He keeps changing his clothes and keeps the same thing on his head (E.6)",
+   "lines": 4,
+   "withPotter": 0
+  }
+ },
+ "entries": [
+  {
+   "id": "U01-G01",
+   "scenario": "U01",
+   "text": "Yes?",
+   "emotion": "CURIOUS",
+   "conditions": {
+    "talkStreak": 1
+   },
+   "authorship": "Gemini 3.8 Flash High via AGY, 12 October 2026 (job gemini-talk-lines-2); chosen by Claude"
+  },
+  {
+   "id": "U01-G02",
+   "scenario": "U01",
+   "text": "Well?",
+   "emotion": "TEASING",
+   "conditions": {
+    "talkStreak": 1
+   },
+   "authorship": "Gemini 3.8 Flash High via AGY, 12 October 2026 (job gemini-talk-lines-2); chosen by Claude"
+  },
+  {
+   "id": "U01-G03",
+   "scenario": "U01",
+   "text": "Speak, then.",
+   "emotion": "INDIGNANT",
+   "conditions": {
+    "talkStreak": 1
+   },
+   "authorship": "Gemini 3.8 Flash High via AGY, 12 October 2026 (job gemini-talk-lines-2); chosen by Claude"
+  },
+  {
+   "id": "U01-G04",
+   "scenario": "U01",
+   "text": "Keep it brief.",
+   "emotion": "QUIET",
+   "conditions": {
+    "talkStreak": 1
+   },
+   "authorship": "Gemini 3.8 Flash High via AGY, 12 October 2026 (job gemini-talk-lines-2); chosen by Claude"
+  },
+  {
+   "id": "U01-G05",
+   "scenario": "U01",
+   "text": "Did you need me for something?",
+   "emotion": "CURIOUS",
+   "conditions": {
+    "talkStreak": 1
+   },
+   "authorship": "Gemini 3.8 Flash High via AGY, 12 October 2026 (job gemini-talk-lines-2); chosen by Claude"
+  },
+  {
+   "id": "U01-G06",
+   "scenario": "U01",
+   "text": "Fine. What now?",
+   "emotion": "INDIGNANT",
+   "conditions": {
+    "talkStreak": 1
+   },
+   "authorship": "Gemini 3.8 Flash High via AGY, 12 October 2026 (job gemini-talk-lines-2); chosen by Claude"
+  },
+  {
+   "id": "U01-G07",
+   "scenario": "U01",
+   "text": "Blink twice if it's important.",
+   "emotion": "TEASING",
+   "conditions": {
+    "talkStreak": 1
+   },
+   "authorship": "Gemini 3.8 Flash High via AGY, 12 October 2026 (job gemini-talk-lines-2); chosen by Claude"
+  },
+  {
+   "id": "U01-G08",
+   "scenario": "U01",
+   "text": "Something caught your eye?",
+   "emotion": "CURIOUS",
+   "conditions": {
+    "talkStreak": 1
+   },
+   "authorship": "Gemini 3.8 Flash High via AGY, 12 October 2026 (job gemini-talk-lines-2); chosen by Claude"
+  },
+  {
+   "id": "U01-G09",
+   "scenario": "U01",
+   "text": "State your business, Potter.",
+   "emotion": "TEASING",
+   "conditions": {
+    "talkStreak": 1
+   },
+   "authorship": "Gemini 3.8 Flash High via AGY, 12 October 2026 (job gemini-talk-lines-2); chosen by Claude"
+  },
+  {
+   "id": "U01-G10",
+   "scenario": "U01",
+   "text": "Are you going to say anything sensible?",
+   "emotion": "TEASING",
+   "conditions": {
+    "talkStreak": 1
+   },
+   "authorship": "Gemini 3.8 Flash High via AGY, 12 October 2026 (job gemini-talk-lines-2); chosen by Claude"
+  },
+  {
+   "id": "U01-G11",
+   "scenario": "U01",
+   "text": "Must you always look so pleased when I turn around?",
+   "emotion": "TEASING",
+   "conditions": {
+    "talkStreak": 1
+   },
+   "authorship": "Gemini 3.8 Flash High via AGY, 12 October 2026 (job gemini-talk-lines-2); chosen by Claude"
+  },
+  {
+   "id": "U01-G12",
+   "scenario": "U01",
+   "text": "If you're asking my opinion, prepare to hear it.",
+   "emotion": "APPROVING",
+   "conditions": {
+    "talkStreak": 1
+   },
+   "authorship": "Gemini 3.8 Flash High via AGY, 12 October 2026 (job gemini-talk-lines-2); chosen by Claude"
+  },
+  {
+   "id": "U01-G13",
+   "scenario": "U01",
+   "text": "Nothing better to do than bother me?",
+   "emotion": "TEASING",
+   "conditions": {
+    "talkStreak": 1
+   },
+   "authorship": "Gemini 3.8 Flash High via AGY, 12 October 2026 (job gemini-talk-lines-2); chosen by Claude"
+  },
+  {
+   "id": "U01-G14",
+   "scenario": "U01",
+   "text": "Can I help you, or are you just admiring the view?",
+   "emotion": "TEASING",
+   "conditions": {
+    "talkStreak": 1
+   },
+   "authorship": "Gemini 3.8 Flash High via AGY, 12 October 2026 (job gemini-talk-lines-2); chosen by Claude"
+  },
+  {
+   "id": "U01-G15",
+   "scenario": "U01",
+   "text": "You have thirty seconds. Make them count.",
+   "emotion": "TEASING",
+   "conditions": {
+    "talkStreak": 1
+   },
+   "authorship": "Gemini 3.8 Flash High via AGY, 12 October 2026 (job gemini-talk-lines-2); chosen by Claude"
+  },
+  {
+   "id": "U01-G16",
+   "scenario": "U01",
+   "text": "Anyone would think you enjoyed my company, Potter.",
+   "emotion": "TEASING",
+   "conditions": {
+    "talkStreak": 1
+   },
+   "authorship": "Gemini 3.8 Flash High via AGY, 12 October 2026 (job gemini-talk-lines-2); chosen by Claude; edited by Claude",
+   "geminiText": "Careful, Potter. I might start thinking you enjoy my company."
+  },
+  {
+   "id": "U01-G17",
+   "scenario": "U01",
+   "text": "Ask away. I know more than you do anyway.",
+   "emotion": "APPROVING",
+   "conditions": {
+    "talkStreak": 1
+   },
+   "authorship": "Gemini 3.8 Flash High via AGY, 12 October 2026 (job gemini-talk-lines-2); chosen by Claude; edited by Claude",
+   "geminiText": "Ask away. I know more than you do regardless."
+  },
+  {
+   "id": "U01-G18",
+   "scenario": "U01",
+   "text": "Were you waiting for me to speak first?",
+   "emotion": "TEASING",
+   "conditions": {
+    "talkStreak": 1
+   },
+   "authorship": "Gemini 3.8 Flash High via AGY, 12 October 2026 (job gemini-talk-lines-2); chosen by Claude"
+  },
+  {
+   "id": "U01-G19",
+   "scenario": "U01",
+   "text": "My attention isn't free, you know.",
+   "emotion": "TEASING",
+   "conditions": {
+    "talkStreak": 1
+   },
+   "authorship": "Gemini 3.8 Flash High via AGY, 12 October 2026 (job gemini-talk-lines-2); chosen by Claude"
+  },
+  {
+   "id": "U01-G20",
+   "scenario": "U01",
+   "text": "You're interrupting my thoughts. They were important.",
+   "emotion": "INDIGNANT",
+   "conditions": {
+    "talkStreak": 1
+   },
+   "authorship": "Gemini 3.8 Flash High via AGY, 12 October 2026 (job gemini-talk-lines-2); chosen by Claude"
+  },
+  {
+   "id": "U01-G21",
+   "scenario": "U01",
+   "text": "Don't expect me to flatter you.",
+   "emotion": "INDIGNANT",
+   "conditions": {
+    "talkStreak": 1
+   },
+   "authorship": "Gemini 3.8 Flash High via AGY, 12 October 2026 (job gemini-talk-lines-2); chosen by Claude"
+  },
+  {
+   "id": "U01-G22",
+   "scenario": "U01",
+   "text": "What do you want, Potter?",
+   "emotion": "INDIGNANT",
+   "conditions": {
+    "talkStreak": 1
+   },
+   "authorship": "Gemini 3.8 Flash High via AGY, 12 October 2026 (job gemini-talk-lines-2); chosen by Claude"
+  },
+  {
+   "id": "U01-G23",
+   "scenario": "U01",
+   "text": "Is this urgent, or just an excuse to talk to me?",
+   "emotion": "CURIOUS",
+   "conditions": {
+    "talkStreak": 1
+   },
+   "authorship": "Gemini 3.8 Flash High via AGY, 12 October 2026 (job gemini-talk-lines-2); chosen by Claude; edited by Claude",
+   "geminiText": "Is this urgent, or merely an excuse to chat?"
+  },
+  {
+   "id": "U01-G24",
+   "scenario": "U01",
+   "text": "Well, Potter? Out with it.",
+   "emotion": "TEASING",
+   "conditions": {
+    "talkStreak": 1
+   },
+   "authorship": "Gemini 3.8 Flash High via AGY, 12 October 2026 (job gemini-talk-lines-2); chosen by Claude"
+  },
+  {
+   "id": "U01-G25",
+   "scenario": "U01",
+   "text": "Staring is unbecoming.",
+   "emotion": "INDIGNANT",
+   "conditions": {
+    "talkStreak": 1
+   },
+   "authorship": "Gemini 3.8 Flash High via AGY, 12 October 2026 (job gemini-talk-lines-2); chosen by Claude"
+  },
+  {
+   "id": "U01-G26",
+   "scenario": "U01",
+   "text": "You caught me at a good time. Don't ruin it.",
+   "emotion": "APPROVING",
+   "conditions": {
+    "talkStreak": 1
+   },
+   "authorship": "Gemini 3.8 Flash High via AGY, 12 October 2026 (job gemini-talk-lines-2); chosen by Claude"
+  },
+  {
+   "id": "U01-G27",
+   "scenario": "U01",
+   "text": "Pardon? Did you say something?",
+   "emotion": "CURIOUS",
+   "conditions": {
+    "talkStreak": 1
+   },
+   "authorship": "Gemini 3.8 Flash High via AGY, 12 October 2026 (job gemini-talk-lines-2); chosen by Claude"
+  },
+  {
+   "id": "U01-G28",
+   "scenario": "U01",
+   "text": "Hmph.",
+   "emotion": "INDIGNANT",
+   "conditions": {
+    "talkStreak": 1
+   },
+   "authorship": "Gemini 3.8 Flash High via AGY, 12 October 2026 (job gemini-talk-lines-3); chosen by Claude",
+   "sharedText": "also M09 (E.6); the same word is right for both"
+  },
+  {
+   "id": "U01-G29",
+   "scenario": "U01",
+   "text": "Oh! You startled me.",
+   "emotion": "INDIGNANT",
+   "conditions": {
+    "talkStreak": 1
+   },
+   "authorship": "Gemini 3.8 Flash High via AGY, 12 October 2026 (job gemini-talk-lines-3); chosen by Claude"
+  },
+  {
+   "id": "U01-G30",
+   "scenario": "U01",
+   "text": "I... was thinking.",
+   "emotion": "QUIET",
+   "conditions": {
+    "talkStreak": 1
+   },
+   "authorship": "Gemini 3.8 Flash High via AGY, 12 October 2026 (job gemini-talk-lines-3); chosen by Claude"
+  },
+  {
+   "id": "U01-G31",
+   "scenario": "U01",
+   "text": "Must you speak so suddenly?",
+   "emotion": "INDIGNANT",
+   "conditions": {
+    "talkStreak": 1
+   },
+   "authorship": "Gemini 3.8 Flash High via AGY, 12 October 2026 (job gemini-talk-lines-3); chosen by Claude"
+  },
+  {
+   "id": "U01-G32",
+   "scenario": "U01",
+   "text": "What? Why are you talking to me?",
+   "emotion": "CURIOUS",
+   "conditions": {
+    "talkStreak": 1
+   },
+   "authorship": "Gemini 3.8 Flash High via AGY, 12 October 2026 (job gemini-talk-lines-3); chosen by Claude"
+  },
+  {
+   "id": "U01-G33",
+   "scenario": "U01",
+   "text": "About time, Potter.",
+   "emotion": "TEASING",
+   "conditions": {
+    "talkStreak": 1
+   },
+   "authorship": "Gemini 3.8 Flash High via AGY, 12 October 2026 (job gemini-talk-lines-3); chosen by Claude"
+  },
+  {
+   "id": "U01-G34",
+   "scenario": "U01",
+   "text": "Don't flatter yourself. I was simply standing here.",
+   "emotion": "INDIGNANT",
+   "conditions": {
+    "talkStreak": 1
+   },
+   "authorship": "Gemini 3.8 Flash High via AGY, 12 October 2026 (job gemini-talk-lines-3); chosen by Claude"
+  },
+  {
+   "id": "U01-G35",
+   "scenario": "U01",
+   "text": "I was almost... never mind. What is it?",
+   "emotion": "QUIET",
+   "conditions": {
+    "talkStreak": 1
+   },
+   "authorship": "Gemini 3.8 Flash High via AGY, 12 October 2026 (job gemini-talk-lines-3); chosen by Claude"
+  },
+  {
+   "id": "U01-G36",
+   "scenario": "U01",
+   "text": "Not that I needed to hear from you.",
+   "emotion": "INDIGNANT",
+   "conditions": {
+    "talkStreak": 1
+   },
+   "authorship": "Gemini 3.8 Flash High via AGY, 12 October 2026 (job gemini-talk-lines-3); chosen by Claude"
+  },
+  {
+   "id": "U01-G37",
+   "scenario": "U01",
+   "text": "Well. You finally remembered I was here.",
+   "emotion": "TEASING",
+   "conditions": {
+    "talkStreak": 1
+   },
+   "authorship": "Gemini 3.8 Flash High via AGY, 12 October 2026 (job gemini-talk-lines-3); chosen by Claude"
+  },
+  {
+   "id": "U01-G38",
+   "scenario": "U01",
+   "text": "If you insist on speaking, I suppose I can listen.",
+   "emotion": "TEASING",
+   "conditions": {
+    "talkStreak": 1
+   },
+   "authorship": "Gemini 3.8 Flash High via AGY, 12 October 2026 (job gemini-talk-lines-3); chosen by Claude"
+  },
+  {
+   "id": "U01-G39",
+   "scenario": "U01",
+   "text": "Hardly the worst distraction, I suppose.",
+   "emotion": "APPROVING",
+   "conditions": {
+    "talkStreak": 1
+   },
+   "authorship": "Gemini 3.8 Flash High via AGY, 12 October 2026 (job gemini-talk-lines-3); chosen by Claude"
+  },
+  {
+   "id": "U01-G40",
+   "scenario": "U01",
+   "text": "A few words from you won't ruin my day.",
+   "emotion": "APPROVING",
+   "conditions": {
+    "talkStreak": 1
+   },
+   "authorship": "Gemini 3.8 Flash High via AGY, 12 October 2026 (job gemini-talk-lines-3); chosen by Claude"
+  },
+  {
+   "id": "U01-G41",
+   "scenario": "U01",
+   "text": "Only because it's you, mind.",
+   "emotion": "APPROVING",
+   "conditions": {
+    "talkStreak": 1
+   },
+   "authorship": "Gemini 3.8 Flash High via AGY, 12 October 2026 (job gemini-talk-lines-3); chosen by Claude"
+  },
+  {
+   "id": "U01-G42",
+   "scenario": "U01",
+   "text": "You may speak. I happen to be in a charitable mood.",
+   "emotion": "TEASING",
+   "conditions": {
+    "talkStreak": 1
+   },
+   "authorship": "Gemini 3.8 Flash High via AGY, 12 October 2026 (job gemini-talk-lines-3); chosen by Claude"
+  },
+  {
+   "id": "U01-G43",
+   "scenario": "U01",
+   "text": "Whatever is going through that head of yours?",
+   "emotion": "CURIOUS",
+   "conditions": {
+    "talkStreak": 1
+   },
+   "authorship": "Gemini 3.8 Flash High via AGY, 12 October 2026 (job gemini-talk-lines-3); chosen by Claude"
+  },
+  {
+   "id": "U01-G44",
+   "scenario": "U01",
+   "text": "Why do you find me so impossible to ignore?",
+   "emotion": "TEASING",
+   "conditions": {
+    "talkStreak": 1
+   },
+   "authorship": "Gemini 3.8 Flash High via AGY, 12 October 2026 (job gemini-talk-lines-3); chosen by Claude"
+  },
+  {
+   "id": "U01-G45",
+   "scenario": "U01",
+   "text": "Are your own thoughts that dull, Potter?",
+   "emotion": "CURIOUS",
+   "conditions": {
+    "talkStreak": 1
+   },
+   "authorship": "Gemini 3.8 Flash High via AGY, 12 October 2026 (job gemini-talk-lines-3); chosen by Claude"
+  },
+  {
+   "id": "U01-G46",
+   "scenario": "U01",
+   "text": "Do you speak to everyone like this, or just me?",
+   "emotion": "CURIOUS",
+   "conditions": {
+    "talkStreak": 1
+   },
+   "authorship": "Gemini 3.8 Flash High via AGY, 12 October 2026 (job gemini-talk-lines-3); chosen by Claude"
+  },
+  {
+   "id": "U01-G47",
+   "scenario": "U01",
+   "text": "Trying to work me out, are you?",
+   "emotion": "TEASING",
+   "conditions": {
+    "talkStreak": 1
+   },
+   "authorship": "Gemini 3.8 Flash High via AGY, 12 October 2026 (job gemini-talk-lines-3); chosen by Claude"
+  },
+  {
+   "id": "U01-G48",
+   "scenario": "U01",
+   "text": "Have you any idea what you actually want?",
+   "emotion": "CURIOUS",
+   "conditions": {
+    "talkStreak": 1
+   },
+   "authorship": "Gemini 3.8 Flash High via AGY, 12 October 2026 (job gemini-talk-lines-3); chosen by Claude"
+  },
+  {
+   "id": "U01-G49",
+   "scenario": "U01",
+   "text": "Just what were you hoping to hear from me?",
+   "emotion": "CURIOUS",
+   "conditions": {
+    "talkStreak": 1
+   },
+   "authorship": "Gemini 3.8 Flash High via AGY, 12 October 2026 (job gemini-talk-lines-3); chosen by Claude"
+  },
+  {
+   "id": "U01-G50",
+   "scenario": "U01",
+   "text": "Riveting.",
+   "emotion": "TEASING",
+   "conditions": {
+    "talkStreak": 1
+   },
+   "authorship": "Gemini 3.8 Flash High via AGY, 12 October 2026 (job gemini-talk-lines-3); chosen by Claude"
+  },
+  {
+   "id": "U01-G51",
+   "scenario": "U01",
+   "text": "How entirely predictable.",
+   "emotion": "TEASING",
+   "conditions": {
+    "talkStreak": 1
+   },
+   "authorship": "Gemini 3.8 Flash High via AGY, 12 October 2026 (job gemini-talk-lines-3); chosen by Claude"
+  },
+  {
+   "id": "U01-G52",
+   "scenario": "U01",
+   "text": "I am struggling to contain my indifference, Potter.",
+   "emotion": "TEASING",
+   "conditions": {
+    "talkStreak": 1
+   },
+   "authorship": "Gemini 3.8 Flash High via AGY, 12 October 2026 (job gemini-talk-lines-3); chosen by Claude; edited by Claude",
+   "geminiText": "Struggling to contain my indifference, Potter."
+  },
+  {
+   "id": "U01-G53",
+   "scenario": "U01",
+   "text": "My expectations were low, yet here we are.",
+   "emotion": "TEASING",
+   "conditions": {
+    "talkStreak": 1
+   },
+   "authorship": "Gemini 3.8 Flash High via AGY, 12 October 2026 (job gemini-talk-lines-3); chosen by Claude"
+  },
+  {
+   "id": "U01-S01",
+   "scenario": "U01",
+   "text": "Again?",
+   "emotion": "CURIOUS",
+   "conditions": {
+    "talkStreak": 2
+   },
+   "authorship": "Gemini 3.8 Flash High via AGY, 12 October 2026 (job gemini-talk-lines-2); chosen by Claude"
+  },
+  {
+   "id": "U01-S02",
+   "scenario": "U01",
+   "text": "Still nothing?",
+   "emotion": "CURIOUS",
+   "conditions": {
+    "talkStreak": 2
+   },
+   "authorship": "Gemini 3.8 Flash High via AGY, 12 October 2026 (job gemini-talk-lines-2); chosen by Claude"
+  },
+  {
+   "id": "U01-S03",
+   "scenario": "U01",
+   "text": "I heard you the first time.",
+   "emotion": "QUIET",
+   "conditions": {
+    "talkStreak": 2
+   },
+   "authorship": "Gemini 3.8 Flash High via AGY, 12 October 2026 (job gemini-talk-lines-2); chosen by Claude; edited by Claude",
+   "geminiText": "Heard you the first time."
+  },
+  {
+   "id": "U01-S04",
+   "scenario": "U01",
+   "text": "Say it or don't. Decide.",
+   "emotion": "INDIGNANT",
+   "conditions": {
+    "talkStreak": 2
+   },
+   "authorship": "Gemini 3.8 Flash High via AGY, 12 October 2026 (job gemini-talk-lines-2); chosen by Claude"
+  },
+  {
+   "id": "U01-S05",
+   "scenario": "U01",
+   "text": "I am right here, Potter.",
+   "emotion": "QUIET",
+   "conditions": {
+    "talkStreak": 2
+   },
+   "authorship": "Gemini 3.8 Flash High via AGY, 12 October 2026 (job gemini-talk-lines-2); chosen by Claude"
+  },
+  {
+   "id": "U01-S06",
+   "scenario": "U01",
+   "text": "Are you rehearsing your opening line?",
+   "emotion": "TEASING",
+   "conditions": {
+    "talkStreak": 2
+   },
+   "authorship": "Gemini 3.8 Flash High via AGY, 12 October 2026 (job gemini-talk-lines-2); chosen by Claude"
+  },
+  {
+   "id": "U01-S07",
+   "scenario": "U01",
+   "text": "My ears work perfectly well, thank you.",
+   "emotion": "INDIGNANT",
+   "conditions": {
+    "talkStreak": 2
+   },
+   "authorship": "Gemini 3.8 Flash High via AGY, 12 October 2026 (job gemini-talk-lines-2); chosen by Claude; edited by Claude",
+   "geminiText": "My ears work perfectly well, thanks."
+  },
+  {
+   "id": "U01-S08",
+   "scenario": "U01",
+   "text": "Lost your train of thought already?",
+   "emotion": "TEASING",
+   "conditions": {
+    "talkStreak": 2
+   },
+   "authorship": "Gemini 3.8 Flash High via AGY, 12 October 2026 (job gemini-talk-lines-2); chosen by Claude"
+  },
+  {
+   "id": "U01-S09",
+   "scenario": "U01",
+   "text": "Was that meant to improve upon the silence?",
+   "emotion": "CURIOUS",
+   "conditions": {
+    "talkStreak": 2
+   },
+   "authorship": "Gemini 3.8 Flash High via AGY, 12 October 2026 (job gemini-talk-lines-3); chosen by Claude"
+  },
+  {
+   "id": "U01-S10",
+   "scenario": "U01",
+   "text": "Are you waiting for permission, or just courage?",
+   "emotion": "TEASING",
+   "conditions": {
+    "talkStreak": 2
+   },
+   "authorship": "Gemini 3.8 Flash High via AGY, 12 October 2026 (job gemini-talk-lines-3); chosen by Claude"
+  },
+  {
+   "id": "U01-S11",
+   "scenario": "U01",
+   "text": "You're only making this more awkward, Potter.",
+   "emotion": "TEASING",
+   "conditions": {
+    "talkStreak": 2
+   },
+   "authorship": "Gemini 3.8 Flash High via AGY, 12 October 2026 (job gemini-talk-lines-3); chosen by Claude"
+  },
+  {
+   "id": "U01-S12",
+   "scenario": "U01",
+   "text": "Take a breath. Then actually speak.",
+   "emotion": "TEASING",
+   "conditions": {
+    "talkStreak": 2
+   },
+   "authorship": "Gemini 3.8 Flash High via AGY, 12 October 2026 (job gemini-talk-lines-3); chosen by Claude"
+  },
+  {
+   "id": "U01-S13",
+   "scenario": "U01",
+   "text": "Twice now. Are you checking I haven't left?",
+   "emotion": "CURIOUS",
+   "conditions": {
+    "talkStreak": 2
+   },
+   "authorship": "Gemini 3.8 Flash High via AGY, 12 October 2026 (job gemini-talk-lines-3); chosen by Claude"
+  },
+  {
+   "id": "U01-S14",
+   "scenario": "U01",
+   "text": "Persistent, aren't you? Even without a point.",
+   "emotion": "TEASING",
+   "conditions": {
+    "talkStreak": 2
+   },
+   "authorship": "Gemini 3.8 Flash High via AGY, 12 October 2026 (job gemini-talk-lines-3); chosen by Claude"
+  },
+  {
+   "id": "U01-T01",
+   "scenario": "U01",
+   "text": "Enough.",
+   "emotion": "INDIGNANT",
+   "conditions": {
+    "talkStreak": 3
+   },
+   "authorship": "Gemini 3.8 Flash High via AGY, 12 October 2026 (job gemini-talk-lines-2); chosen by Claude"
+  },
+  {
+   "id": "U01-T02",
+   "scenario": "U01",
+   "text": "I'm done listening.",
+   "emotion": "INDIGNANT",
+   "conditions": {
+    "talkStreak": 3
+   },
+   "authorship": "Gemini 3.8 Flash High via AGY, 12 October 2026 (job gemini-talk-lines-2); chosen by Claude"
+  },
+  {
+   "id": "U01-T03",
+   "scenario": "U01",
+   "text": "Goodbye, Potter.",
+   "emotion": "INDIGNANT",
+   "conditions": {
+    "talkStreak": 3
+   },
+   "authorship": "Gemini 3.8 Flash High via AGY, 12 October 2026 (job gemini-talk-lines-2); chosen by Claude"
+  },
+  {
+   "id": "U01-T04",
+   "scenario": "U01",
+   "text": "Find someone else to pester.",
+   "emotion": "INDIGNANT",
+   "conditions": {
+    "talkStreak": 3
+   },
+   "authorship": "Gemini 3.8 Flash High via AGY, 12 October 2026 (job gemini-talk-lines-2); chosen by Claude"
+  },
+  {
+   "id": "U01-T05",
+   "scenario": "U01",
+   "text": "Talk to my back, then.",
+   "emotion": "INDIGNANT",
+   "conditions": {
+    "talkStreak": 3
+   },
+   "authorship": "Gemini 3.8 Flash High via AGY, 12 October 2026 (job gemini-talk-lines-2); chosen by Claude"
+  },
+  {
+   "id": "U01-T06",
+   "scenario": "U01",
+   "text": "Three times is two too many.",
+   "emotion": "INDIGNANT",
+   "conditions": {
+    "talkStreak": 3
+   },
+   "authorship": "Gemini 3.8 Flash High via AGY, 12 October 2026 (job gemini-talk-lines-2); chosen by Claude"
+  },
+  {
+   "id": "U01-T07",
+   "scenario": "U01",
+   "text": "You have exhausted my patience.",
+   "emotion": "INDIGNANT",
+   "conditions": {
+    "talkStreak": 3
+   },
+   "authorship": "Gemini 3.8 Flash High via AGY, 12 October 2026 (job gemini-talk-lines-2); chosen by Claude; edited by Claude",
+   "geminiText": "You've exhausted my patience completely."
+  },
+  {
+   "id": "U01-T08",
+   "scenario": "U01",
+   "text": "Consider yourself dismissed.",
+   "emotion": "INDIGNANT",
+   "conditions": {
+    "talkStreak": 3
+   },
+   "authorship": "Gemini 3.8 Flash High via AGY, 12 October 2026 (job gemini-talk-lines-3); chosen by Claude; edited by Claude",
+   "geminiText": "Consider yourself thoroughly dismissed."
+  },
+  {
+   "id": "U01-T09",
+   "scenario": "U01",
+   "text": "The audience is concluded.",
+   "emotion": "INDIGNANT",
+   "conditions": {
+    "talkStreak": 3
+   },
+   "authorship": "Gemini 3.8 Flash High via AGY, 12 October 2026 (job gemini-talk-lines-3); chosen by Claude"
+  },
+  {
+   "id": "U01-T10",
+   "scenario": "U01",
+   "text": "You missed your chance, Potter.",
+   "emotion": "INDIGNANT",
+   "conditions": {
+    "talkStreak": 3
+   },
+   "authorship": "Gemini 3.8 Flash High via AGY, 12 October 2026 (job gemini-talk-lines-3); chosen by Claude"
+  },
+  {
+   "id": "U01-T11",
+   "scenario": "U01",
+   "text": "Not another word from me.",
+   "emotion": "INDIGNANT",
+   "conditions": {
+    "talkStreak": 3
+   },
+   "authorship": "Gemini 3.8 Flash High via AGY, 12 October 2026 (job gemini-talk-lines-3); chosen by Claude"
+  },
+  {
+   "id": "U01-T12",
+   "scenario": "U01",
+   "text": "There are better things to look at.",
+   "emotion": "INDIGNANT",
+   "conditions": {
+    "talkStreak": 3
+   },
+   "authorship": "Gemini 3.8 Flash High via AGY, 12 October 2026 (job gemini-talk-lines-3); chosen by Claude"
+  },
+  {
+   "id": "U01-H01",
+   "scenario": "U01",
+   "text": "Sit down. Immediately.",
+   "emotion": "CONCERNED",
+   "conditions": {
+    "talkStreak": 1,
+    "playerHpAtMostPercent": 25
+   },
+   "authorship": "Gemini 3.8 Flash High via AGY, 12 October 2026 (job gemini-talk-lines-2); chosen by Claude"
+  },
+  {
+   "id": "U01-H02",
+   "scenario": "U01",
+   "text": "Save your breath and drink something.",
+   "emotion": "CONCERNED",
+   "conditions": {
+    "talkStreak": 1,
+    "playerHpAtMostPercent": 25
+   },
+   "authorship": "Gemini 3.8 Flash High via AGY, 12 October 2026 (job gemini-talk-lines-2); chosen by Claude"
+  },
+  {
+   "id": "U01-H03",
+   "scenario": "U01",
+   "text": "Tend to those wounds, you idiot!",
+   "emotion": "CONCERNED",
+   "conditions": {
+    "talkStreak": 1,
+    "playerHpAtMostPercent": 25
+   },
+   "authorship": "Gemini 3.8 Flash High via AGY, 12 October 2026 (job gemini-talk-lines-2); chosen by Claude"
+  },
+  {
+   "id": "U01-H04",
+   "scenario": "U01",
+   "text": "You can barely stand!",
+   "emotion": "CONCERNED",
+   "conditions": {
+    "talkStreak": 1,
+    "playerHpAtMostPercent": 25
+   },
+   "authorship": "Gemini 3.8 Flash High via AGY, 12 October 2026 (job gemini-talk-lines-2); chosen by Claude; edited by Claude",
+   "geminiText": "You can barely stand, Potter!"
+  },
+  {
+   "id": "U01-H05",
+   "scenario": "U01",
+   "text": "Stop looking at me and bandage yourself!",
+   "emotion": "CONCERNED",
+   "conditions": {
+    "talkStreak": 1,
+    "playerHpAtMostPercent": 25
+   },
+   "authorship": "Gemini 3.8 Flash High via AGY, 12 October 2026 (job gemini-talk-lines-2); chosen by Claude"
+  },
+  {
+   "id": "U01-H06",
+   "scenario": "U01",
+   "text": "Rest before you collapse.",
+   "emotion": "CONCERNED",
+   "conditions": {
+    "talkStreak": 1,
+    "playerHpAtMostPercent": 25
+   },
+   "authorship": "Gemini 3.8 Flash High via AGY, 12 October 2026 (job gemini-talk-lines-2); chosen by Claude"
+  },
+  {
+   "id": "U01-H07",
+   "scenario": "U01",
+   "text": "Why are you talking to me instead of healing?!",
+   "emotion": "CONCERNED",
+   "conditions": {
+    "talkStreak": 1,
+    "playerHpAtMostPercent": 25
+   },
+   "authorship": "Gemini 3.8 Flash High via AGY, 12 October 2026 (job gemini-talk-lines-2); chosen by Claude"
+  },
+  {
+   "id": "U01-H08",
+   "scenario": "U01",
+   "text": "Were you trying to give me a heart attack?!",
+   "emotion": "INDIGNANT",
+   "conditions": {
+    "talkStreak": 1,
+    "playerHpAtMostPercent": 25
+   },
+   "authorship": "Gemini 3.8 Flash High via AGY, 12 October 2026 (job gemini-talk-lines-3); chosen by Claude"
+  },
+  {
+   "id": "U01-H09",
+   "scenario": "U01",
+   "text": "Don't you dare die on me, Potter!",
+   "emotion": "CONCERNED",
+   "conditions": {
+    "talkStreak": 1,
+    "playerHpAtMostPercent": 25
+   },
+   "authorship": "Gemini 3.8 Flash High via AGY, 12 October 2026 (job gemini-talk-lines-3); chosen by Claude"
+  },
+  {
+   "id": "U01-H10",
+   "scenario": "U01",
+   "text": "How can you be so utterly reckless?!",
+   "emotion": "INDIGNANT",
+   "conditions": {
+    "talkStreak": 1,
+    "playerHpAtMostPercent": 25
+   },
+   "authorship": "Gemini 3.8 Flash High via AGY, 12 October 2026 (job gemini-talk-lines-3); chosen by Claude"
+  },
+  {
+   "id": "U01-H11",
+   "scenario": "U01",
+   "text": "Look at the state of you! Stop talking!",
+   "emotion": "CONCERNED",
+   "conditions": {
+    "talkStreak": 1,
+    "playerHpAtMostPercent": 25
+   },
+   "authorship": "Gemini 3.8 Flash High via AGY, 12 October 2026 (job gemini-talk-lines-3); chosen by Claude"
+  },
+  {
+   "id": "U01-F01",
+   "scenario": "U01",
+   "text": "Look out!",
+   "emotion": "CONCERNED",
+   "conditions": {
+    "talkStreak": 1,
+    "combatConfirmed": true
+   },
+   "authorship": "Gemini 3.8 Flash High via AGY, 12 October 2026 (job gemini-talk-lines-2); chosen by Claude"
+  },
+  {
+   "id": "U01-F02",
+   "scenario": "U01",
+   "text": "Now is hardly the time to chat!",
+   "emotion": "INDIGNANT",
+   "conditions": {
+    "talkStreak": 1,
+    "combatConfirmed": true
+   },
+   "authorship": "Gemini 3.8 Flash High via AGY, 12 October 2026 (job gemini-talk-lines-2); chosen by Claude"
+  },
+  {
+   "id": "U01-F03",
+   "scenario": "U01",
+   "text": "Pay attention before you get skewered!",
+   "emotion": "CONCERNED",
+   "conditions": {
+    "talkStreak": 1,
+    "combatConfirmed": true
+   },
+   "authorship": "Gemini 3.8 Flash High via AGY, 12 October 2026 (job gemini-talk-lines-2); chosen by Claude"
+  },
+  {
+   "id": "U01-F04",
+   "scenario": "U01",
+   "text": "Flirt after you survive this!",
+   "emotion": "TEASING",
+   "conditions": {
+    "talkStreak": 1,
+    "combatConfirmed": true
+   },
+   "authorship": "Gemini 3.8 Flash High via AGY, 12 October 2026 (job gemini-talk-lines-2); chosen by Claude"
+  },
+  {
+   "id": "U01-F05",
+   "scenario": "U01",
+   "text": "Hit back instead of talking!",
+   "emotion": "INDIGNANT",
+   "conditions": {
+    "talkStreak": 1,
+    "combatConfirmed": true
+   },
+   "authorship": "Gemini 3.8 Flash High via AGY, 12 October 2026 (job gemini-talk-lines-2); chosen by Claude"
+  },
+  {
+   "id": "U01-F06",
+   "scenario": "U01",
+   "text": "Stop showing off and finish it, Potter!",
+   "emotion": "INDIGNANT",
+   "conditions": {
+    "talkStreak": 1,
+    "combatConfirmed": true
+   },
+   "authorship": "Gemini 3.8 Flash High via AGY, 12 October 2026 (job gemini-talk-lines-3); chosen by Claude"
+  },
+  {
+   "id": "U01-F07",
+   "scenario": "U01",
+   "text": "Duck! Don't stand there like a target!",
+   "emotion": "CONCERNED",
+   "conditions": {
+    "talkStreak": 1,
+    "combatConfirmed": true
+   },
+   "authorship": "Gemini 3.8 Flash High via AGY, 12 October 2026 (job gemini-talk-lines-3); chosen by Claude"
+  },
+  {
+   "id": "U01-F08",
+   "scenario": "U01",
+   "text": "Is this your idea of impressing me?!",
+   "emotion": "INDIGNANT",
+   "conditions": {
+    "talkStreak": 1,
+    "combatConfirmed": true
+   },
+   "authorship": "Gemini 3.8 Flash High via AGY, 12 October 2026 (job gemini-talk-lines-3); chosen by Claude"
+  },
+  {
+   "id": "U01-N01",
+   "scenario": "U01",
+   "text": "Shouldn't you be asleep?",
+   "emotion": "QUIET",
+   "conditions": {
+    "talkStreak": 1,
+    "localNight": true
+   },
+   "authorship": "Gemini 3.8 Flash High via AGY, 12 October 2026 (job gemini-talk-lines-2); chosen by Claude"
+  },
+  {
+   "id": "U01-N02",
+   "scenario": "U01",
+   "text": "It is dreadfully late.",
+   "emotion": "QUIET",
+   "conditions": {
+    "talkStreak": 1,
+    "localNight": true
+   },
+   "authorship": "Gemini 3.8 Flash High via AGY, 12 October 2026 (job gemini-talk-lines-2); chosen by Claude"
+  },
+  {
+   "id": "U01-N03",
+   "scenario": "U01",
+   "text": "Go to bed, Potter.",
+   "emotion": "QUIET",
+   "conditions": {
+    "talkStreak": 1,
+    "localNight": true
+   },
+   "authorship": "Gemini 3.8 Flash High via AGY, 12 October 2026 (job gemini-talk-lines-2); chosen by Claude"
+  },
+  {
+   "id": "U01-N04",
+   "scenario": "U01",
+   "text": "Even the owls have had enough for tonight.",
+   "emotion": "QUIET",
+   "conditions": {
+    "talkStreak": 1,
+    "localNight": true
+   },
+   "authorship": "Gemini 3.8 Flash High via AGY, 12 October 2026 (job gemini-talk-lines-2); chosen by Claude"
+  },
+  {
+   "id": "U01-N05",
+   "scenario": "U01",
+   "text": "Tomorrow will be miserable if you don't sleep.",
+   "emotion": "TEASING",
+   "conditions": {
+    "talkStreak": 1,
+    "localNight": true
+   },
+   "authorship": "Gemini 3.8 Flash High via AGY, 12 October 2026 (job gemini-talk-lines-2); chosen by Claude"
+  },
+  {
+   "id": "U01-N06",
+   "scenario": "U01",
+   "text": "Whisper. The whole world is sleeping.",
+   "emotion": "QUIET",
+   "conditions": {
+    "talkStreak": 1,
+    "localNight": true
+   },
+   "authorship": "Gemini 3.8 Flash High via AGY, 12 October 2026 (job gemini-talk-lines-2); chosen by Claude"
+  },
+  {
+   "id": "U01-N07",
+   "scenario": "U01",
+   "text": "Still awake? ...I suppose I don't mind.",
+   "emotion": "QUIET",
+   "conditions": {
+    "talkStreak": 1,
+    "localNight": true
+   },
+   "authorship": "Gemini 3.8 Flash High via AGY, 12 October 2026 (job gemini-talk-lines-2); chosen by Claude"
+  },
+  {
+   "id": "U01-N08",
+   "scenario": "U01",
+   "text": "Too quiet to argue with you tonight, Potter.",
+   "emotion": "QUIET",
+   "conditions": {
+    "talkStreak": 1,
+    "localNight": true
+   },
+   "authorship": "Gemini 3.8 Flash High via AGY, 12 October 2026 (job gemini-talk-lines-3); chosen by Claude"
+  },
+  {
+   "id": "U01-N09",
+   "scenario": "U01",
+   "text": "There is no one else awake... just us.",
+   "emotion": "QUIET",
+   "conditions": {
+    "talkStreak": 1,
+    "localNight": true
+   },
+   "authorship": "Gemini 3.8 Flash High via AGY, 12 October 2026 (job gemini-talk-lines-3); chosen by Claude"
+  },
+  {
+   "id": "U01-N10",
+   "scenario": "U01",
+   "text": "Stay a moment longer, then. If you insist.",
+   "emotion": "QUIET",
+   "conditions": {
+    "talkStreak": 1,
+    "localNight": true
+   },
+   "authorship": "Gemini 3.8 Flash High via AGY, 12 October 2026 (job gemini-talk-lines-3); chosen by Claude"
+  },
+  {
+   "id": "U01-N11",
+   "scenario": "U01",
+   "text": "We could... just stand here for a little while.",
+   "emotion": "QUIET",
+   "conditions": {
+    "talkStreak": 1,
+    "localNight": true
+   },
+   "authorship": "Gemini 3.8 Flash High via AGY, 12 October 2026 (job gemini-talk-lines-3); chosen by Claude"
+  },
+  {
+   "id": "U01-N12",
+   "scenario": "U01",
+   "text": "Rather peaceful, when you aren't talking.",
+   "emotion": "TEASING",
+   "conditions": {
+    "talkStreak": 1,
+    "localNight": true
+   },
+   "authorship": "Gemini 3.8 Flash High via AGY, 12 October 2026 (job gemini-talk-lines-3); chosen by Claude"
+  },
+  {
+   "id": "F01-G01",
+   "scenario": "F01",
+   "text": "Keep that repulsive thing away from me!",
+   "emotion": "INDIGNANT",
+   "conditions": {},
+   "authorship": "Gemini 3.8 Flash High via AGY, 12 October 2026 (job gemini-talk-lines-2); chosen by Claude"
+  },
+  {
+   "id": "F01-G02",
+   "scenario": "F01",
+   "text": "Purely for reasons of hygiene. Don't move!",
+   "emotion": "INDIGNANT",
+   "conditions": {},
+   "authorship": "Gemini 3.8 Flash High via AGY, 12 October 2026 (job gemini-talk-lines-2); chosen by Claude; edited by Claude",
+   "geminiText": "Purely hygienic reasons. Stand firm!"
+  },
+  {
+   "id": "F01-G03",
+   "scenario": "F01",
+   "text": "Vermin carry disease, Potter! Block it!",
+   "emotion": "INDIGNANT",
+   "conditions": {},
+   "authorship": "Gemini 3.8 Flash High via AGY, 12 October 2026 (job gemini-talk-lines-2); chosen by Claude"
+  },
+  {
+   "id": "F01-G04",
+   "scenario": "F01",
+   "text": "Don't let it touch my hem!",
+   "emotion": "INDIGNANT",
+   "conditions": {},
+   "authorship": "Gemini 3.8 Flash High via AGY, 12 October 2026 (job gemini-talk-lines-2); chosen by Claude"
+  },
+  {
+   "id": "F01-G05",
+   "scenario": "F01",
+   "text": "I am not frightened. It is filthy, that's all.",
+   "emotion": "INDIGNANT",
+   "conditions": {},
+   "authorship": "Gemini 3.8 Flash High via AGY, 12 October 2026 (job gemini-talk-lines-2); chosen by Claude; edited by Claude",
+   "geminiText": "I am not frightened. I simply refuse contamination."
+  },
+  {
+   "id": "F01-G06",
+   "scenario": "F01",
+   "text": "Shoo it away! It is utterly vile!",
+   "emotion": "INDIGNANT",
+   "conditions": {},
+   "authorship": "Gemini 3.8 Flash High via AGY, 12 October 2026 (job gemini-talk-lines-2); chosen by Claude"
+  },
+  {
+   "id": "F02-G01",
+   "scenario": "F02",
+   "text": "This is merely a sound tactical position.",
+   "emotion": "QUIET",
+   "conditions": {},
+   "authorship": "Gemini 3.8 Flash High via AGY, 12 October 2026 (job gemini-talk-lines-2); chosen by Claude"
+  },
+  {
+   "id": "F02-G02",
+   "scenario": "F02",
+   "text": "Prudence dictates I stay on this side, Potter.",
+   "emotion": "QUIET",
+   "conditions": {},
+   "authorship": "Gemini 3.8 Flash High via AGY, 12 October 2026 (job gemini-talk-lines-2); chosen by Claude"
+  },
+  {
+   "id": "F02-G03",
+   "scenario": "F02",
+   "text": "Let us just be sensible and keep our distance.",
+   "emotion": "CONCERNED",
+   "conditions": {},
+   "authorship": "Gemini 3.8 Flash High via AGY, 12 October 2026 (job gemini-talk-lines-2); chosen by Claude"
+  },
+  {
+   "id": "F02-G04",
+   "scenario": "F02",
+   "text": "Stand firm. There is no reason to provoke it.",
+   "emotion": "CONCERNED",
+   "conditions": {},
+   "authorship": "Gemini 3.8 Flash High via AGY, 12 October 2026 (job gemini-talk-lines-2); chosen by Claude"
+  },
+  {
+   "id": "F02-G05",
+   "scenario": "F02",
+   "text": "Don't misinterpret this. It is basic caution.",
+   "emotion": "INDIGNANT",
+   "conditions": {},
+   "authorship": "Gemini 3.8 Flash High via AGY, 12 October 2026 (job gemini-talk-lines-2); chosen by Claude"
+  },
+  {
+   "id": "F02-G06",
+   "scenario": "F02",
+   "text": "Sensible people let others take the front.",
+   "emotion": "TEASING",
+   "conditions": {},
+   "authorship": "Gemini 3.8 Flash High via AGY, 12 October 2026 (job gemini-talk-lines-2); chosen by Claude"
+  },
+  {
+   "id": "F03-G01",
+   "scenario": "F03",
+   "text": "Can we... please slow down?!",
+   "emotion": "INDIGNANT",
+   "conditions": {},
+   "authorship": "Gemini 3.8 Flash High via AGY, 12 October 2026 (job gemini-talk-lines-2); chosen by Claude"
+  },
+  {
+   "id": "F03-G02",
+   "scenario": "F03",
+   "text": "What is the dreadful rush?!",
+   "emotion": "INDIGNANT",
+   "conditions": {},
+   "authorship": "Gemini 3.8 Flash High via AGY, 12 October 2026 (job gemini-talk-lines-2); chosen by Claude"
+  },
+  {
+   "id": "F03-G03",
+   "scenario": "F03",
+   "text": "Are we being chased by something?!",
+   "emotion": "INDIGNANT",
+   "conditions": {},
+   "authorship": "Gemini 3.8 Flash High via AGY, 12 October 2026 (job gemini-talk-lines-2); chosen by Claude"
+  },
+  {
+   "id": "F03-G04",
+   "scenario": "F03",
+   "text": "My boots were not made for sprinting!",
+   "emotion": "INDIGNANT",
+   "conditions": {},
+   "authorship": "Gemini 3.8 Flash High via AGY, 12 October 2026 (job gemini-talk-lines-2); chosen by Claude"
+  },
+  {
+   "id": "F03-G05",
+   "scenario": "F03",
+   "text": "Have some consideration for my lungs!",
+   "emotion": "INDIGNANT",
+   "conditions": {},
+   "authorship": "Gemini 3.8 Flash High via AGY, 12 October 2026 (job gemini-talk-lines-2); chosen by Claude"
+  },
+  {
+   "id": "M09-T01",
+   "scenario": "M09",
+   "text": "Oh. You changed.",
+   "emotion": "QUIET",
+   "conditions": {},
+   "authorship": "Gemini 3.8 Flash High via AGY, 12 October 2026 (job gemini-talk-lines-2); chosen by Claude"
+  },
+  {
+   "id": "M09-T02",
+   "scenario": "M09",
+   "text": "I wasn't staring.",
+   "emotion": "INDIGNANT",
+   "conditions": {},
+   "authorship": "Gemini 3.8 Flash High via AGY, 12 October 2026 (job gemini-talk-lines-2); chosen by Claude"
+  },
+  {
+   "id": "M09-T03",
+   "scenario": "M09",
+   "text": "Well. That was sudden.",
+   "emotion": "QUIET",
+   "conditions": {},
+   "authorship": "Gemini 3.8 Flash High via AGY, 12 October 2026 (job gemini-talk-lines-2); chosen by Claude"
+  },
+  {
+   "id": "M33-T01",
+   "scenario": "M33",
+   "text": "Much better. Not that I cared.",
+   "emotion": "APPROVING",
+   "conditions": {},
+   "authorship": "Gemini 3.8 Flash High via AGY, 12 October 2026 (job gemini-talk-lines-2); chosen by Claude"
+  },
+  {
+   "id": "M33-T02",
+   "scenario": "M33",
+   "text": "Back to that, then? Good.",
+   "emotion": "APPROVING",
+   "conditions": {},
+   "authorship": "Gemini 3.8 Flash High via AGY, 12 October 2026 (job gemini-talk-lines-2); chosen by Claude"
+  },
+  {
+   "id": "M33-T03",
+   "scenario": "M33",
+   "text": "Sensible choice. For once.",
+   "emotion": "APPROVING",
+   "conditions": {},
+   "authorship": "Gemini 3.8 Flash High via AGY, 12 October 2026 (job gemini-talk-lines-2); chosen by Claude"
+  },
+  {
+   "id": "M34-T01",
+   "scenario": "M34",
+   "text": "All at once?! Good heavens.",
+   "emotion": "INDIGNANT",
+   "conditions": {},
+   "authorship": "Gemini 3.8 Flash High via AGY, 12 October 2026 (job gemini-talk-lines-2); chosen by Claude"
+  },
+  {
+   "id": "M34-T02",
+   "scenario": "M34",
+   "text": "I hardly recognised you for a second.",
+   "emotion": "CURIOUS",
+   "conditions": {},
+   "authorship": "Gemini 3.8 Flash High via AGY, 12 October 2026 (job gemini-talk-lines-2); chosen by Claude; edited by Claude",
+   "geminiText": "Hardly recognised you for a second."
+  },
+  {
+   "id": "M34-T03",
+   "scenario": "M34",
+   "text": "Give a person some warning next time.",
+   "emotion": "INDIGNANT",
+   "conditions": {},
+   "authorship": "Gemini 3.8 Flash High via AGY, 12 October 2026 (job gemini-talk-lines-2); chosen by Claude"
+  },
+  {
+   "id": "M32-T01",
+   "scenario": "M32",
+   "text": "Keeping the hat, are we?",
+   "emotion": "CURIOUS",
+   "conditions": {},
+   "authorship": "Gemini 3.8 Flash High via AGY, 12 October 2026 (job gemini-talk-lines-2); chosen by Claude"
+  },
+  {
+   "id": "M32-T02",
+   "scenario": "M32",
+   "text": "Everything changed except what's on your head.",
+   "emotion": "TEASING",
+   "conditions": {},
+   "authorship": "Gemini 3.8 Flash High via AGY, 12 October 2026 (job gemini-talk-lines-2); chosen by Claude"
+  },
+  {
+   "id": "M32-T03",
+   "scenario": "M32",
+   "text": "Quite attached to that hat, aren't you?",
+   "emotion": "TEASING",
+   "conditions": {},
+   "authorship": "Gemini 3.8 Flash High via AGY, 12 October 2026 (job gemini-talk-lines-2); chosen by Claude"
+  },
+  {
+   "id": "M32-T04",
+   "scenario": "M32",
+   "text": "At least the hat is consistent.",
+   "emotion": "APPROVING",
+   "conditions": {},
+   "authorship": "Gemini 3.8 Flash High via AGY, 12 October 2026 (job gemini-talk-lines-2); chosen by Claude"
+  }
+ ]
+}

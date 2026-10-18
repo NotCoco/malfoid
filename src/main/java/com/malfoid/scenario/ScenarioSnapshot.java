@@ -2,7 +2,6 @@ package com.malfoid.scenario;
 
 import com.malfoid.motion.MotionObservation;
 import com.malfoid.motion.MotionHoldReceipt;
-import com.malfoid.scenario.AdditionalWorldSensor.WorldSnapshot;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -24,7 +23,6 @@ public final class ScenarioSnapshot
 	public final boolean activeSceneCommitted;
 	public final MotionHoldReceipt motionHold;
 	public final CancelledInterestObservation cancelledInterest;
-	public final WorldSnapshot world;
 	public final int currentHp, realHp, weaponId;
 	public final Position player, companion;
 	public final Target target;
@@ -47,7 +45,6 @@ public final class ScenarioSnapshot
 		worldViewId = b.worldViewId; placementGeneration = b.placementGeneration; motion = b.motion; motionCompletion = b.motionCompletion;
 		activeSceneCandidateId = b.activeSceneCandidateId; activeSceneCommitted = activeSceneCandidateId >= 0 && b.activeSceneCommitted; motionHold = b.motionHold;
 		cancelledInterest = b.cancelledInterest;
-		world = b.world;
 		currentHp = b.currentHp; realHp = b.realHp; weaponId = b.weaponId;
 		player = b.player; companion = b.companion; target = b.target;
 		liveNpcKeys = b.liveNpcKeys == null ? null : Collections.unmodifiableSet(new HashSet<>(b.liveNpcKeys));
@@ -69,7 +66,6 @@ public final class ScenarioSnapshot
 		observedFacing = f.observedFacing; animation = f.animation; worldViewId = f.worldViewId; placementGeneration = placement;
 		motion = currentMotion; motionCompletion = completion; activeSceneCandidateId = candidateId; activeSceneCommitted = candidateId >= 0 && committed; motionHold = hold;
 		cancelledInterest = interest;
-		world = f.world;
 		currentHp = f.currentHp; realHp = f.realHp; weaponId = f.weaponId; player = f.player; target = f.target;
 		companion = hold != null && hold.legalStanding && hold.candidateId == candidateId && hold.worldViewId == f.worldViewId
 			&& hold.placementGeneration == placement && f.player != null && hold.plane == f.player.plane
@@ -202,7 +198,6 @@ public final class ScenarioSnapshot
 		public boolean activeSceneCommitted;
 		public MotionHoldReceipt motionHold;
 		public CancelledInterestObservation cancelledInterest;
-		public WorldSnapshot world;
 		public int currentHp = 99, realHp = 99, weaponId = -1;
 		public Position player, companion;
 		public Target target;

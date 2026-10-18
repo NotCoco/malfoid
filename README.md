@@ -48,4 +48,5 @@ She is drawn on your screen only. Other players cannot see her, and she never cl
 Design and direction by NotCoco. The code, model, animations and dialogue were produced with AI tools (Claude, Codex and
 Gemini) under the author's direction and play-tested in game.
 
-Released under the BSD 2-Clause licence; see [LICENSE](LICENSE).
+The BSD 2-Clause licence covers this entire repository, including the code, dialogue, model, animations and images;
+see [LICENSE](LICENSE).

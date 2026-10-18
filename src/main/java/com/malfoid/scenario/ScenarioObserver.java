@@ -3,17 +3,6 @@ package com.malfoid.scenario;
 import com.malfoid.presence.OtherPlayerPolicy;
 import com.malfoid.motion.MotionObservation;
 import com.malfoid.motion.MotionHoldReceipt;
-import com.malfoid.additional.AdditionalSourceCollector;
-import com.malfoid.additional.AdditionalSnapshot;
-import com.malfoid.additional.AdditionalUiSnapshot;
-import com.malfoid.additional.AdditionalTypes.SourceKind;
-import com.malfoid.additional.AdditionalTypes.Truth;
-import com.malfoid.additional.AdditionalTypes.UiKind;
-import com.malfoid.additional.OwnFollowerCopy;
-import com.malfoid.additional.TzhaarActivityCopy;
-import com.malfoid.additional.SceneKey;
-import com.malfoid.additional.MarkOfGraceSpawn;
-import com.malfoid.additional.SharedItemSummary;
 import com.malfoid.scenario.ScenarioBatch.Hit;
 import com.malfoid.scenario.ScenarioBatch.Loot;
 import com.malfoid.scenario.ScenarioBatch.NpcDeath;
@@ -21,9 +10,6 @@ import com.malfoid.scenario.ScenarioBatch.Stack;
 import com.malfoid.scenario.ScenarioSnapshot.InspectionTarget;
 import com.malfoid.scenario.ScenarioSnapshot.Position;
 import com.malfoid.scenario.ScenarioSnapshot.Target;
-import com.malfoid.scenario.AdditionalWorldSensor.VisitorCopy;
-import com.malfoid.scenario.AdditionalWorldSensor.RootsCopy;
-import com.malfoid.scenario.AdditionalWorldSensor.WorldSnapshot;
 import com.malfoid.speech.SceneCandidate;
 import com.malfoid.speech.SpeechCancellationReceipt;
 import com.malfoid.speech.SpeechPacket;
@@ -35,6 +21,7 @@ import java.util.Comparator;
 import java.util.EnumSet;
 import java.util.IdentityHashMap;
 import java.util.HashSet;
+import java.util.HashMap;
 import java.util.Set;
 import java.util.LinkedHashMap;
 import java.util.List;
@@ -48,6 +35,7 @@ import net.runelite.api.GameObject;
 import net.runelite.api.GameState;
 import net.runelite.api.Hitsplat;
 import net.runelite.api.Item;
+import net.runelite.api.ItemComposition;
 import net.runelite.api.ItemContainer;
 import net.runelite.api.NPC;
 import net.runelite.api.NPCComposition;
@@ -73,13 +61,9 @@ import net.runelite.api.events.ItemQuantityChanged;
 import net.runelite.api.events.NpcChanged;
 import net.runelite.api.events.NpcDespawned;
 import net.runelite.api.events.NpcSpawned;
-import net.runelite.api.events.ScriptPostFired;
-import net.runelite.api.events.ScriptPreFired;
 import net.runelite.api.events.StatChanged;
-import net.runelite.api.events.VarbitChanged;
-import net.runelite.api.events.WidgetClosed;
-import net.runelite.api.events.WidgetLoaded;
 import net.runelite.api.gameval.InventoryID;
+import net.runelite.api.gameval.InterfaceID;
 import net.runelite.client.events.NpcLootReceived;
 import net.runelite.client.game.ItemManager;
 import net.runelite.client.game.ItemStack;
@@ -91,7 +75,8 @@ public final class ScenarioObserver
 	private final Client client;
 	private final ItemManager itemManager;
 	private final ScenarioRules rules = new ScenarioRules();
-	private final AdditionalSourceCollector additionalSources;
+	private static final int COPIED_ITEM_SLOTS = 42, UNKNOWN_ITEM_ID = -2;
+	private final PersonalMilestones milestones;
 	private final GroundOutcomeObserver groundOutcomes;
 	private final Map<NPC, NpcIdentity> npcs = new IdentityHashMap<>();
 	private final Map<GameObject, String> objects = new IdentityHashMap<>();
@@ -99,7 +84,7 @@ public final class ScenarioObserver
 	private final List<Loot> loot = new ArrayList<>();
 	private final List<NpcDeath> npcDeaths = new ArrayList<>();
 	private final List<String> localTargetChanges = new ArrayList<>();
-	private final int[] sharedItemIds = new int[SharedItemSummary.SLOT_COUNT], sharedItemQuantities = new int[SharedItemSummary.SLOT_COUNT];
+	private final int[] sharedItemIds = new int[COPIED_ITEM_SLOTS], sharedItemQuantities = new int[COPIED_ITEM_SLOTS];
 	private boolean inventoryCopyDirty = true, equipmentCopyDirty = true;
 	private final EnumSet<Skill> witnessedSkills = EnumSet.noneOf(Skill.class);
 	private long tick, sequence, spawnSequence, objectSequence, sessionGeneration = Long.MIN_VALUE, sceneRevision = Long.MIN_VALUE;
@@ -124,15 +109,6 @@ public final class ScenarioObserver
 	private Scene worldSceneLease;
 	private int worldBaseX, worldBaseY, worldSizeX, worldSizeY, worldPlane;
 	private boolean worldInstanced;
-	private NPC visitorNpc;
-	private String attentionKey;
-	private long attentionSerial, attentionTick = -1;
-	private int attentionDefinitionId = -1;
-	private boolean firstPersonalAttention, attentionWitnessed, visitorAmbiguous;
-	private GameObject rootsObject;
-	private long rootsSpawnSerial, rootsSpawnTick = -1;
-	private int rootsSpawnDefinitionId = -1;
-	private boolean rootsSpawnWitnessed, rootsSpawnNearby, rootsIngressPending;
 	private final Map<String, InspectionTarget> inspectionProofs = new LinkedHashMap<>();
 	private final Set<String> sceneryProbeAttempts = new HashSet<>();
 	// A first missing proof gives the existing actor one more eligible tick to finish its probe.
@@ -142,62 +118,24 @@ public final class ScenarioObserver
 	public ScenarioObserver(Client client, ItemManager itemManager)
 	{
 		this.client = client; this.itemManager = itemManager;
-		additionalSources = new AdditionalSourceCollector(client);
+		milestones = new PersonalMilestones(client);
 		groundOutcomes = new GroundOutcomeObserver(client);
-		Arrays.fill(sharedItemIds, SharedItemSummary.UNKNOWN_ID); Arrays.fill(sharedItemQuantities, -1);
+		Arrays.fill(sharedItemIds, UNKNOWN_ITEM_ID); Arrays.fill(sharedItemQuantities, -1);
 		rules.setScenarioEnabled(id -> id.matches("M0[1-9]|M10"));
 	}
 	public void setScenarioEnabled(Predicate<String> enabled) { rules.setScenarioEnabled(enabled); }
 	public void setEmergencySceneActive(boolean active) { emergencySceneActive = active; }
-	/** Fresh copied UI guards revoke dependent eligibility without advancing committed observation. */
 	public void setLiveUiGuards(boolean outfitBlocked, boolean inventoryBlocked)
 	{
 		boolean guarded = outfitBlocked || inventoryBlocked;
-		if (guarded && !liveInventoryBlocked)
-		{
-			additionalSources.invalidatePouchUi(); rules.invalidateAdditionalPouch(); rules.invalidateAdditionalItemUi();
-		}
 		liveOutfitBlocked = outfitBlocked; liveInventoryBlocked = guarded;
 	}
 	/** Callback bucket is the next committed observer tick, including packets preceding GameTick. */
 	public void beginAdditionalInterval(long originalTick, long generation, long revision, long presentSinceTick, boolean witness)
 	{
 		openTick = originalTick; openGeneration = generation; openRevision = revision; openPresenceEpoch = presentSinceTick; openWitness = witness;
-		additionalSources.beginInterval(originalTick, new SceneKey(generation, revision), presentSinceTick, witness);
-		if (additionalSources.pouchSourceInvalidated()) { rules.invalidateAdditionalPouch(); }
+		milestones.beginInterval(originalTick, generation, revision, presentSinceTick, witness);
 	}
-	public void onChatMessage(ChatMessage event)
-	{
-		OwnFollowerCopy follower = copiedOwnFollower(); refreshOwnFollowerLease(follower);
-		long priorWaveSerial = additionalSources.currentTzhaarWaveSerial();
-		TzhaarActivityCopy activity = AdditionalSourceCollector.requiresTzhaarBinding(event) ? copiedTzhaarActivity() : null;
-		additionalSources.onChatMessage(event, follower, activity); refreshOwnFollowerLease(follower);
-		if (priorWaveSerial != additionalSources.currentTzhaarWaveSerial()) { rules.invalidateAdditionalTzhaar(); }
-		refreshAdditionalReportLeases();
-		if (additionalSources.sourceInvalidated(SourceKind.GAME_MESSAGE) || additionalSources.sourceInvalidated(SourceKind.SPAM_MESSAGE))
-		{ rules.invalidateAdditionalCannon(); }
-	}
-	public void onVarbitChanged(VarbitChanged event)
-	{
-		if (additionalSources.onVarbitChanged(event)) { refreshPouchLease(); }
-		if (event.getVarpId() == 261) { refreshPuzzleLease(); }
-		refreshCollectionLogLease();
-	}
-	/** Root also calls this before client-cycle validation so a pending edge cannot cross a current UNKNOWN. */
-	public void refreshPouchLease()
-	{
-		if (!additionalSources.refreshPouchLease()) { rules.invalidateAdditionalPouch(); }
-	}
-	public void onPuzzleScriptPre(ScriptPreFired event)
-	{ if (additionalSources.onPuzzleScriptPre(event)) { rules.invalidateAdditionalPuzzle(); } }
-	public void onPuzzleScriptPost(ScriptPostFired event)
-	{ if (additionalSources.onPuzzleScriptPost(event)) { rules.invalidateAdditionalPuzzle(); } }
-	public void onPuzzleWidgetClosed(WidgetClosed event)
-	{ if (additionalSources.onPuzzleWidgetClosed(event)) { rules.invalidateAdditionalPuzzle(); } }
-	public void onPuzzleWidgetLoaded(WidgetLoaded event)
-	{ if (additionalSources.onPuzzleWidgetLoaded(event)) { rules.invalidateAdditionalPuzzle(); } }
-	public void refreshPuzzleLease()
-	{ if (!additionalSources.refreshPuzzleLease()) { rules.invalidateAdditionalPuzzle(); } }
 	public void setActiveSceneMotion(long candidateId, MotionHoldReceipt hold)
 	{
 		setActiveSceneMotion(candidateId, hold, false);
@@ -206,34 +144,6 @@ public final class ScenarioObserver
 	{
 		activeSceneCandidateId = candidateId; activeSceneCommitted = candidateId >= 0 && committed; motionHold = hold;
 		rules.setActiveSceneMotion(candidateId, hold, activeSceneCommitted);
-	}
-	/** Direct current relation lookup, without advancing committed observations or retaining another actor. */
-	public void refreshOwnFollowerLease() { refreshOwnFollowerLease(copiedOwnFollower()); refreshAdditionalReportLeases(); }
-	private void refreshOwnFollowerLease(OwnFollowerCopy follower)
-	{
-		if (rules.refreshOwnFollowerLease(follower)) { additionalSources.markFollowerChanged(); }
-		additionalSources.refreshOwnCatLease(follower);
-		if (additionalSources.sourceInvalidated(SourceKind.GAME_MESSAGE) || additionalSources.sourceInvalidated(SourceKind.FOLLOWER))
-		{ rules.invalidateAdditionalKitten(0); }
-		else if (additionalSources.hasPendingOwnCatFed(follower)) { rules.invalidateAdditionalKitten(follower.incarnationSerial); }
-	}
-	private TzhaarActivityCopy copiedTzhaarActivity()
-	{ return TzhaarActivityCopy.capture(client, openTick, new SceneKey(openGeneration, openRevision), openPresenceEpoch, worldWitnessCurrent()); }
-	private void refreshCollectionLogLease()
-	{
-		if ((additionalSources.hasPendingCollectionLogReport() || rules.hasAdditionalCollectionLogEvidence())
-			&& (!additionalSources.refreshCollectionLogLease() || additionalSources.sourceInvalidated(SourceKind.GAME_MESSAGE)))
-		{ rules.invalidateAdditionalCollectionLog(); }
-	}
-	/** Existing ClientTick follower refresh also refreshes only armed/issued report dependencies. */
-	public void refreshAdditionalReportLeases()
-	{
-		refreshCollectionLogLease();
-		if (additionalSources.hasTzhaarActivityLease() || rules.hasAdditionalTzhaarEvidence())
-		{
-			if (!additionalSources.refreshTzhaarActivity(copiedTzhaarActivity()) || additionalSources.sourceInvalidated(SourceKind.GAME_MESSAGE))
-			{ rules.invalidateAdditionalTzhaar(); }
-		}
 	}
 	public void setCancelledInterest(CancelledInterestObservation interest)
 	{
@@ -255,8 +165,8 @@ public final class ScenarioObserver
 		groundOutcomes.setPresence(present && !userHidden && !autoAbsent);
 		if (this.present && !present)
 		{
-			additionalSources.reset();
-			clearWorldLeases(); cancelledInterest = null; openWitness = false;
+			milestones.reset(); captureSceneScope(null);
+			cancelledInterest = null; openWitness = false;
 			inventoryCopyDirty = equipmentCopyDirty = true;
 			rules.presenceLost(); inspectionProofs.clear(); resetSceneryProbeCycle(); hits.clear(); loot.clear(); npcDeaths.clear(); localTargetChanges.clear(); witnessedSkills.clear();
 			targetChangesUnknown = false;
@@ -296,7 +206,7 @@ public final class ScenarioObserver
 		frame.animation = player == null ? -2 : player.getAnimation();
 		if (interacting instanceof NPC) { frame.target = target((NPC) interacting); frame.targetUnknown = frame.target == null; }
 		frame.liveNpcKeys = liveNpcKeys(view);
-		frame.world = committedWorldSnapshot(frame, player, view);
+		captureSceneScope(view);
 		int[] copiedIds = sharedItemIds, copiedQuantities = sharedItemQuantities;
 		if (inventoryCopyDirty) { copyContainer(InventoryID.INV, copiedIds, copiedQuantities, 0, 28); inventoryCopyDirty = !knownSlots(copiedIds, 0, 28); }
 		if (equipmentCopyDirty) { copyContainer(InventoryID.WORN, copiedIds, copiedQuantities, 28, 14); equipmentCopyDirty = !knownSlots(copiedIds, 28, 14); }
@@ -309,23 +219,14 @@ public final class ScenarioObserver
 			frame.equipment = new int[] {copiedIds[28], copiedIds[29], copiedIds[32], copiedIds[35]}; frame.weaponId = copiedIds[31];
 		}
 		beginAdditionalInterval(tick, generation, revision, presentSinceTick, frame.present && frame.valid && !frame.dead && !frame.userHidden && !frame.autoAbsent);
-		List<AdditionalUiSnapshot> roots = additionalSources.captureUi();
-		frame.outfitBlocked = liveOutfitBlocked || rootVisible(roots, UiKind.BANK) || rootVisible(roots, UiKind.DEPOSIT);
-		frame.inventoryBlocked = liveInventoryBlocked || frame.outfitBlocked || rootVisible(roots, UiKind.TRADE) || rootVisible(roots, UiKind.TRADE_CONFIRM);
+		frame.outfitBlocked = liveOutfitBlocked || rootVisible(InterfaceID.Bankmain.UNIVERSE) || rootVisible(InterfaceID.BankDepositbox.UNIVERSE);
+		frame.inventoryBlocked = liveInventoryBlocked || frame.outfitBlocked || rootVisible(InterfaceID.Trademain.UNIVERSE) || rootVisible(InterfaceID.Tradeconfirm.UNIVERSE);
 		frame.inspectionSuppressed = frame.inventoryBlocked || frame.interactionPresent || inspectionSuppression.getAsBoolean();
 		frame.objects = frame.valid && present ? inspectObjects(view, player, frame.companion, directorIdle && !frame.inspectionSuppressed) : Collections.emptyList();
 		ScenarioBatch batch = new ScenarioBatch(localDeath, deathUserHidden, engagementInterrupted, hits, resolvedLoot(), witnessedSkills, npcDeaths, localTargetChanges, targetChangesUnknown);
 		ScenarioSnapshot snapshot = frame.build();
 		groundOutcomes.closeGameTick(snapshot, batch.loot);
-		if (!groundOutcomes.markSourceKnown() || !groundOutcomes.refreshSelectedMark())
-		{ additionalSources.invalidateGroundMark(); }
-		OwnFollowerCopy follower = copiedOwnFollower(); refreshOwnFollowerLease(follower);
-		refreshCollectionLogLease();
-		TzhaarActivityCopy activity = additionalSources.hasTzhaarActivityLease() || rules.hasAdditionalTzhaarEvidence() ? copiedTzhaarActivity() : null;
-		AdditionalSnapshot additional = additionalSources.commit(snapshot, copiedIds, copiedQuantities, follower, activity);
-		rules.setAdditionalSourceAccounting(additionalSources.retainedNonSnapshotRecords(), additionalSources.retainedSnapshot());
-		List<SceneCandidate> result = rules.close(snapshot, batch, additional);
-		if (rules.didAdditionalOverflow()) { additionalSources.invalidateForReducerOverflow(); }
+		List<SceneCandidate> result = rules.close(snapshot, batch, milestones.drain());
 		clearBatch(); this.present = present;
 		beginAdditionalInterval(tick + 1, generation, revision, presentSinceTick, snapshot.present && snapshot.valid && !snapshot.dead && !snapshot.userHidden && !snapshot.autoAbsent);
 		npcs.entrySet().removeIf(entry -> entry.getValue().retiredTick >= 0 && tick - entry.getValue().retiredTick > 2);
@@ -345,7 +246,6 @@ public final class ScenarioObserver
 	}
 	public void onStatChanged(StatChanged event)
 	{
-		additionalSources.onStatChanged(event);
 		if (present && event.getSkill() != null) { witnessedSkills.add(event.getSkill()); }
 		else if (event.getSkill() != null) { rules.observeAbsentStat(event.getSkill(), event.getXp(), client.getRealSkillLevel(event.getSkill())); }
 	}
@@ -360,17 +260,13 @@ public final class ScenarioObserver
 		{
 			if (npcDeaths.size() >= MAX_HITS) { incomplete = true; return; }
 			NpcIdentity identity = identity((NPC) event.getActor()); identity.deathObserved = true;
-			rules.invalidateWorldVisitor(identity.key);
-			rules.invalidateAdditionalKitten(identity.serial);
 			npcDeaths.add(new NpcDeath(++sequence, identity.key, present));
 		}
 	}
 	public void onInteractingChanged(InteractingChanged event)
 	{
-		if (event.getSource() instanceof NPC) { observeVisitorAttention((NPC) event.getSource(), event.getTarget()); }
 		if (isLocal(event.getSource()))
 		{
-			if (event.getTarget() == visitorNpc) { rules.invalidateWorldVisitor(attentionKey); }
 			engagementInterrupted = true;
 			if (localTargetChanges.size() >= MAX_HITS) { incomplete = true; return; }
 			Actor actor = event.getTarget();
@@ -383,28 +279,24 @@ public final class ScenarioObserver
 	{
 		NPC npc = event.getNpc(); if (npc == null) { return; }
 		NpcIdentity old = npcs.get(npc);
-		if (old != null && (old.retiredTick >= 0 || old.deathObserved)) { rules.invalidateAdditionalKitten(old.serial); npcs.remove(npc); }
+		if (old != null && (old.retiredTick >= 0 || old.deathObserved)) { npcs.remove(npc); }
 		NpcIdentity identity = identity(npc);
 		if (old == null || old.retiredTick >= 0 || old.deathObserved)
 		{
 			WorldPoint location = npc.getWorldLocation();
-			identity.witnessedSpawnEpoch = worldWitnessCurrent() && npc.getWorldView() == worldViewLease
-				&& location != null && location.getPlane() == worldPlane ? openPresenceEpoch : -1;
 		}
 	}
 	public void onNpcDespawned(NpcDespawned event)
 	{
 		NpcIdentity identity = identity(event.getNpc()); identity.retiredTick = tick + 1;
-		rules.invalidateWorldVisitor(identity.key);
-		rules.invalidateAdditionalKitten(identity.serial);
-	}
+		}
 	public void onNpcChanged(NpcChanged event)
 	{
 		NPC npc = event.getNpc();
 		if (npc != null)
 		{
 			if (!npcs.containsKey(npc) && npcs.size() >= MAX_NPCS) { incomplete = true; return; }
-			NpcIdentity old = npcs.get(npc); if (old != null) { rules.invalidateWorldVisitor(old.key); rules.invalidateAdditionalKitten(old.serial); }
+			NpcIdentity old = npcs.get(npc); if (old != null) { }
 			NpcIdentity replacement = new NpcIdentity(++spawnSequence); replacement.personalAttentionConsumed = true;
 			npcs.put(npc, replacement);
 			// A composition transformation invalidates an engagement; it is no witnessed target switch or spawn.
@@ -427,6 +319,7 @@ public final class ScenarioObserver
 	private List<Loot> resolvedLoot()
 	{
 		List<Loot> result = new ArrayList<>();
+		Map<Integer, String> names = new HashMap<>();
 		for (Loot report : loot)
 		{
 			Stack selected = null;
@@ -435,7 +328,13 @@ public final class ScenarioObserver
 				if (stack.quantity > 0 && stack.total() >= 500_000 && (selected == null || stack.total() > selected.total()
 					|| stack.total() == selected.total() && (stack.id < selected.id || stack.id == selected.id && stack.quantity < selected.quantity))) { selected = stack; }
 			}
-			String name = selected == null ? null : additionalSources.resolveReportedName(selected.id);
+			if (selected != null && !names.containsKey(selected.id) && names.size() < 8)
+			{
+				ItemComposition definition = client.getItemDefinition(selected.id);
+				String raw = definition == null || definition.getId() != selected.id ? null : definition.getName();
+				names.put(selected.id, raw == null ? null : raw.replaceAll("<[^>]*>", "").replaceAll("\\s+", " ").trim());
+			}
+			String name = selected == null ? null : names.get(selected.id);
 			List<Stack> stacks = new ArrayList<>();
 			for (Stack stack : report.stacks) { stacks.add(new Stack(stack.id, stack.quantity, stack == selected ? name : null, stack.unitPrice)); }
 			result.add(new Loot(report.id, report.npcKey, report.witnessed, stacks));
@@ -444,35 +343,8 @@ public final class ScenarioObserver
 	}
 	public void onItemContainerChanged(ItemContainerChanged event)
 	{
-		if (event.getContainerId() == InventoryID.INV) { inventoryCopyDirty = true; rules.invalidateAdditionalPouch(); }
+		if (event.getContainerId() == InventoryID.INV) { inventoryCopyDirty = true; }
 		if (event.getContainerId() == InventoryID.WORN) { equipmentCopyDirty = true; }
-		additionalSources.onItemContainerChanged(event);
-	}
-	public void onItemSpawned(ItemSpawned event)
-	{
-		MarkOfGraceSpawn copy = groundOutcomes.copyMarkSpawn(event);
-		if (copy != null && !additionalSources.onMarkSpawn(copy)) { groundOutcomes.retireCopiedMark(copy.entitySerial); }
-		if (!groundOutcomes.markSourceKnown()) { additionalSources.invalidateGroundMark(); }
-	}
-	public void onItemDespawned(ItemDespawned event)
-	{ if (groundOutcomes.retireDespawnedItem(event)) { additionalSources.invalidateGroundMark(); } }
-	public void onItemQuantityChanged(ItemQuantityChanged event)
-	{ if (groundOutcomes.retireQuantityChangedItem(event)) { additionalSources.invalidateGroundMark(); } }
-	public void onGameObjectSpawned(GameObjectSpawned event)
-	{
-		GameObject object = event.getGameObject(); objectIdentity(object);
-		if (object == null || !AdditionalWorldSensor.rootsDefinitionSupported(object.getId()) || rootsIngressPending) { return; }
-		rootsObject = object; rootsIngressPending = true; rootsSpawnSerial = ++sequence; rootsSpawnTick = openTick;
-		rootsSpawnDefinitionId = object.getId(); rootsSpawnWitnessed = worldWitnessCurrent();
-		Player player = client.getLocalPlayer(); Position location = player == null ? null : position(player.getWorldLocation());
-		RootsCopy copied = copiedRoots(); rootsSpawnNearby = copied.anchorKnown && copied.sameView && location != null
-			&& location.plane == copied.plane && Math.max(Math.max(copied.minX - location.x, location.x - copied.maxX),
-				Math.max(copied.minY - location.y, location.y - copied.maxY)) <= 6;
-	}
-	public void onGameObjectDespawned(GameObjectDespawned event)
-	{
-		GameObject object = event.getGameObject(); objects.remove(object);
-		if (object == rootsObject) { rootsObject = null; rules.invalidateWorldRoots(); }
 	}
 	public void onGameStateChanged(GameStateChanged event)
 	{
@@ -487,11 +359,39 @@ public final class ScenarioObserver
 	{
 		rules.resetSession(); groundOutcomes.resetSession(); clearSceneReferences(); clearBatch(); lastPlayer = null; present = false;
 	}
-	private void clearSceneReferences() { npcs.clear(); objects.clear(); inspectionProofs.clear(); resetSceneryProbeCycle(); motion = null; motionCompletion = null; motionHold = null; cancelledInterest = null; activeSceneCandidateId = -1; activeSceneCommitted = false; placementGeneration = -1; additionalSources.reset(); groundOutcomes.resetScene(); clearWorldLeases(); openWitness = false; inventoryCopyDirty = equipmentCopyDirty = true; }
+	public void onChatMessage(ChatMessage event) { milestones.onChatMessage(event); }
+	public void onItemSpawned(ItemSpawned event) { groundOutcomes.onItemSpawned(event); }
+	public void onItemDespawned(ItemDespawned event) { groundOutcomes.onItemDespawned(event); }
+	public void onItemQuantityChanged(ItemQuantityChanged event) { groundOutcomes.onItemQuantityChanged(event); }
+	public void onGameObjectSpawned(GameObjectSpawned event) { objectIdentity(event.getGameObject()); }
+	public void onGameObjectDespawned(GameObjectDespawned event) { objects.remove(event.getGameObject()); }
+	private boolean rootVisible(int id)
+	{
+		net.runelite.api.widgets.Widget root = client.getWidget(id);
+		return root != null && !root.isHidden();
+	}
+
+	private boolean worldScopeMatches(Player player)
+	{
+		WorldView view = player == null ? null : player.getWorldView(); WorldPoint point = player == null ? null : player.getWorldLocation();
+		return view != null && point != null && view == worldViewLease && view.getScene() == worldSceneLease
+			&& view.getBaseX() == worldBaseX && view.getBaseY() == worldBaseY && view.getSizeX() == worldSizeX && view.getSizeY() == worldSizeY
+			&& view.getPlane() == worldPlane && point.getPlane() == worldPlane && view.isInstance() == worldInstanced;
+	}
+	private void captureSceneScope(WorldView view)
+	{
+		worldViewLease = view; worldSceneLease = view == null ? null : view.getScene();
+		if (view != null)
+		{
+			worldBaseX = view.getBaseX(); worldBaseY = view.getBaseY(); worldSizeX = view.getSizeX(); worldSizeY = view.getSizeY();
+			worldPlane = view.getPlane(); worldInstanced = view.isInstance();
+		}
+	}
+	public void refreshMilestoneSources() { milestones.refresh(); }
+	private void clearSceneReferences() { npcs.clear(); objects.clear(); inspectionProofs.clear(); resetSceneryProbeCycle(); motion = null; motionCompletion = null; motionHold = null; cancelledInterest = null; activeSceneCandidateId = -1; activeSceneCommitted = false; placementGeneration = -1; milestones.reset(); captureSceneScope(null); groundOutcomes.resetScene(); openWitness = false; inventoryCopyDirty = equipmentCopyDirty = true; }
 	private void clearBatch()
 	{
 		hits.clear(); loot.clear(); npcDeaths.clear(); localTargetChanges.clear(); witnessedSkills.clear(); localDeath = false; deathUserHidden = false; engagementInterrupted = false; targetChangesUnknown = false; incomplete = false;
-		visitorAmbiguous = false; rootsIngressPending = false;
 	}
 	public boolean isCombatConfirmed() { return rules.getCombatState() == ScenarioRules.CombatState.CONFIRMED; }
 	public boolean isPlayerMoving() { return rules.isPlayerMoving(); }
@@ -621,55 +521,9 @@ public final class ScenarioObserver
 		String id = candidate.getScenarioId();
 		if (com.malfoid.motion.CreatureAwareness.isE5(id)
 			&& !creatureCurrent.test(candidate.getConditionFacts().get("creatureKey"), id)) { return false; }
-		if (candidate.getAdditionalContext() != null && candidate.getAdditionalContext().ruleIndex == 123
-			&& (liveInventoryBlocked || !additionalSources.currentPouchLeaseMatches(candidate.getAdditionalContext())))
-		{ rules.invalidateAdditionalPouch(); return false; }
+		if (candidate.getMilestone() != null && !milestones.current(candidate.getMilestone())) { return false; }
 		if (liveOutfitBlocked && id.matches("M(09|31|32|33|34|44|47)")) { return false; }
 		if (liveInventoryBlocked && (id.matches("M(08|3[5-9]|4[0-7]|49|5[1-9]|6[0-3]|69|70)") || ScenarioRules.isScenery(candidate))) { return false; }
-		if (candidate.getAdditionalContext() != null && liveInventoryBlocked
-			&& candidate.getAdditionalContext().ruleIndex >= 106 && candidate.getAdditionalContext().ruleIndex <= 140) { return additionalFactLost(candidate); }
-		if (candidate.getAdditionalContext() != null && "M91".equals(id)
-			&& !groundOutcomes.currentMarkLeaseMatches(candidate.getAdditionalContext()))
-		{ additionalSources.invalidateGroundMark(); return additionalFactLost(candidate); }
-		if (candidate.getAdditionalContext() != null && "M158".equals(id)
-			&& (additionalSources.sourceInvalidated(SourceKind.GAME_MESSAGE) || additionalSources.sourceInvalidated(SourceKind.SPAM_MESSAGE)))
-		{ rules.invalidateAdditionalCannon(); return false; }
-		if (candidate.getAdditionalContext() != null && candidate.getAdditionalContext().ruleIndex != 123
-			&& additionalSources.sourceInvalidated(candidate.getAdditionalContext().sourceKind)) { return additionalFactLost(candidate); }
-		if (candidate.getAdditionalContext() != null && "M142".equals(id)
-			&& !additionalSources.currentCollectionLogLeaseMatches(candidate.getAdditionalContext()))
-		{ rules.invalidateAdditionalCollectionLog(); return additionalFactLost(candidate); }
-		if (candidate.getAdditionalContext() != null && "M160".equals(id)
-			&& !additionalSources.currentSepulchreLeaseMatches(candidate.getAdditionalContext())) { return additionalFactLost(candidate); }
-		if (candidate.getAdditionalContext() != null && "M162".equals(id)
-			&& !additionalSources.currentTzhaarLeaseMatches(candidate.getAdditionalContext(), copiedTzhaarActivity()))
-		{ rules.invalidateAdditionalTzhaar(); return additionalFactLost(candidate); }
-		if (candidate.getAdditionalContext() != null && "M118".equals(id)
-			&& !additionalSources.currentDodgyLeaseMatches(candidate.getAdditionalContext())) { return additionalFactLost(candidate); }
-		if (candidate.getAdditionalContext() != null && "M128".equals(id))
-		{
-			OwnFollowerCopy follower = copiedOwnFollower(); refreshOwnFollowerLease(follower);
-			if (!additionalSources.currentOwnCatLeaseMatches(candidate.getAdditionalContext(), follower))
-			{ rules.invalidateAdditionalKitten(candidate.getAdditionalContext().payload.entitySerial); return false; }
-		}
-		if (candidate.getAdditionalContext() != null && candidate.getAdditionalContext().sourceKind == com.malfoid.additional.AdditionalTypes.SourceKind.UI
-			&& !additionalSources.currentUiLeaseMatches(candidate.getAdditionalContext())) { return additionalFactLost(candidate); }
-		if (candidate.getAdditionalContext() != null && ("M93".equals(id) || "M131".equals(id) || "M132".equals(id))
-			&& !additionalSources.currentScalarLeaseMatches(candidate.getAdditionalContext())) { return additionalFactLost(candidate); }
-		if ("M150".equals(id) || "M167".equals(id))
-		{
-			ScenarioSnapshot frame = rules.getCurrent(); Player player = client.getLocalPlayer();
-			WorldSnapshot live = copiedWorldSnapshot(frame.tick, frame.sessionGeneration, frame.sceneRevision, frame.presentSinceTick, !worldScopeMatches(player));
-			Position currentPlayer = player == null ? null : position(player.getWorldLocation());
-			boolean range = !"M150".equals(id) || currentPlayer != null
-				&& currentPlayer.distance(new Position(live.visitorX, live.visitorY, live.visitorPlane)) <= 6;
-			if (!range || !rules.worldContinuationValid(candidate, live))
-			{
-				if ("M150".equals(id)) { rules.invalidateWorldVisitor(candidate.getConditionFacts().get("visitorKey")); }
-				else { rules.invalidateWorldRoots(); }
-				return false;
-			}
-		}
 		Map<String, String> facts = candidate.getConditionFacts();
 		if ("M14".equals(candidate.getScenarioId()) && (!npcKeyLive(facts.get("firstNpcKey")) || !npcKeyLive(facts.get("secondNpcKey")))) { return false; }
 		if (facts.containsKey("equipmentIds"))
@@ -700,7 +554,6 @@ public final class ScenarioObserver
 		}
 		return true;
 	}
-	private boolean additionalFactLost(SceneCandidate candidate) { rules.revokeAdditionalCandidate(candidate); return false; }
 	private boolean npcKeyLive(String key)
 	{
 		Player player = client.getLocalPlayer(); if (player == null || player.getWorldView() == null || player.getWorldLocation() == null || key == null) { return false; }
@@ -714,104 +567,6 @@ public final class ScenarioObserver
 			}
 		}
 		return false;
-	}
-	private void observeVisitorAttention(NPC npc, Actor target)
-	{
-		NpcIdentity identity = identity(npc);
-		if (npc == visitorNpc && !isLocal(target)) { rules.invalidateWorldVisitor(identity.key); }
-		if (!isLocal(target)) { return; }
-		boolean first = !identity.personalAttentionConsumed; identity.personalAttentionConsumed = true;
-		if (!first) { return; }
-		if (attentionTick == openTick && attentionKey != null && !attentionKey.equals(identity.key))
-		{ visitorAmbiguous = true; rules.invalidateWorldVisitor(null); }
-		Player player = client.getLocalPlayer(); NPCComposition composition = npc.getTransformedComposition();
-		visitorNpc = npc; attentionKey = identity.key; attentionSerial = ++sequence; attentionTick = openTick;
-		attentionDefinitionId = composition == null ? -1 : composition.getId();
-		firstPersonalAttention = player != null && target == player && player.getInteracting() != npc;
-		Position npcPosition = position(npc.getWorldLocation()), playerPosition = player == null ? null : position(player.getWorldLocation());
-		attentionWitnessed = firstPersonalAttention && identity.witnessedSpawnEpoch == openPresenceEpoch && worldWitnessCurrent()
-			&& npc.getWorldView() == worldViewLease && npcPosition != null && npcPosition.distance(playerPosition) <= 6;
-	}
-	private boolean worldWitnessCurrent()
-	{
-		ScenarioSnapshot frame = rules.getCurrent(); Player player = client.getLocalPlayer();
-		return openWitness && present && !userHidden && !autoAbsent && frame != null && frame.valid && frame.present && !frame.dead
-			&& frame.sessionGeneration == openGeneration && frame.sceneRevision == openRevision && frame.presentSinceTick == openPresenceEpoch
-			&& openTick == frame.tick + 1 && client.getGameState() == GameState.LOGGED_IN && player != null && !player.isDead()
-			&& worldScopeMatches(player);
-	}
-	private OwnFollowerCopy copiedOwnFollower()
-	{
-		SceneKey scene = new SceneKey(openGeneration, openRevision); Player player = client.getLocalPlayer();
-		if (!worldWitnessCurrent() || player == null || player.isDead() || client.getGameState() != GameState.LOGGED_IN)
-		{ return new OwnFollowerCopy(openTick, scene, openPresenceEpoch, Truth.UNKNOWN, 0, -1); }
-		NPC npc = client.getFollower();
-		if (npc == null) { return new OwnFollowerCopy(openTick, scene, openPresenceEpoch, Truth.FALSE, 0, -1); }
-		NpcIdentity identity = identity(npc); NPCComposition composition = npc.getTransformedComposition(); WorldPoint point = npc.getWorldLocation();
-		boolean known = !incomplete && !identity.deathObserved && identity.retiredTick < 0 && !npc.isDead()
-			&& npc.getWorldView() == player.getWorldView() && point != null && point.getPlane() == player.getWorldLocation().getPlane()
-			&& composition != null && composition.getId() >= 0;
-		return new OwnFollowerCopy(openTick, scene, openPresenceEpoch, known ? Truth.TRUE : Truth.UNKNOWN,
-			known ? identity.serial : 0, known ? composition.getId() : -1);
-	}
-	private boolean worldScopeMatches(Player player)
-	{
-		WorldView view = player == null ? null : player.getWorldView(); WorldPoint point = player == null ? null : player.getWorldLocation();
-		return view != null && point != null && view == worldViewLease && view.getScene() == worldSceneLease
-			&& view.getBaseX() == worldBaseX && view.getBaseY() == worldBaseY && view.getSizeX() == worldSizeX && view.getSizeY() == worldSizeY
-			&& view.getPlane() == worldPlane && point.getPlane() == worldPlane && view.isInstance() == worldInstanced;
-	}
-	private WorldSnapshot committedWorldSnapshot(ScenarioSnapshot.Builder frame, Player player, WorldView view)
-	{
-		ScenarioSnapshot old = rules.getCurrent(); boolean changed = !worldScopeMatches(player);
-		boolean baseline = changed || old == null || frame.tick != old.tick + 1 || frame.sessionGeneration != old.sessionGeneration
-			|| frame.sceneRevision != old.sceneRevision || frame.presentSinceTick != old.presentSinceTick;
-		if (changed)
-		{
-			rules.invalidateWorldVisitor(null); rules.invalidateWorldRoots();
-			worldViewLease = view; worldSceneLease = view == null ? null : view.getScene();
-			if (view != null)
-			{
-				worldBaseX = view.getBaseX(); worldBaseY = view.getBaseY(); worldSizeX = view.getSizeX(); worldSizeY = view.getSizeY(); worldPlane = view.getPlane(); worldInstanced = view.isInstance();
-			}
-		}
-		return copiedWorldSnapshot(frame.tick, frame.sessionGeneration, frame.sceneRevision, frame.presentSinceTick, baseline);
-	}
-	private WorldSnapshot copiedWorldSnapshot(long atTick, long generation, long revision, long epoch, boolean baseline)
-	{
-		Player player = client.getLocalPlayer();
-		return new WorldSnapshot(atTick, new SceneKey(generation, revision), epoch, baseline, copiedVisitor(player), copiedRoots());
-	}
-	private VisitorCopy copiedVisitor(Player player)
-	{
-		NpcIdentity identity = visitorNpc == null ? null : npcs.get(visitorNpc);
-		NPCComposition composition = visitorNpc == null ? null : visitorNpc.getTransformedComposition();
-		WorldPoint point = visitorNpc == null ? null : visitorNpc.getWorldLocation();
-		boolean known = !visitorAmbiguous && !incomplete && identity != null && composition != null && point != null && worldScopeMatches(player);
-		return new VisitorCopy(known, identity == null ? null : identity.key, composition == null ? -1 : composition.getId(),
-			composition == null ? null : composition.getName(), point == null ? 0 : point.getX(), point == null ? 0 : point.getY(), point == null ? -1 : point.getPlane(),
-			identity != null && !identity.deathObserved && identity.retiredTick < 0 && !visitorNpc.isDead(),
-			visitorNpc != null && visitorNpc.getWorldView() == worldViewLease && worldScopeMatches(player),
-			player == null || visitorNpc == null ? Truth.UNKNOWN : visitorNpc.getInteracting() == player ? Truth.TRUE : Truth.FALSE,
-			player == null || visitorNpc == null ? Truth.UNKNOWN : player.getInteracting() == visitorNpc ? Truth.TRUE : Truth.FALSE,
-			attentionSerial, attentionTick, attentionKey, attentionDefinitionId, firstPersonalAttention, attentionWitnessed);
-	}
-	private RootsCopy copiedRoots()
-	{
-		GameObject object = rootsObject;
-		net.runelite.api.Point min = object == null ? null : object.getSceneMinLocation(), max = object == null ? null : object.getSceneMaxLocation();
-		boolean known = object != null && objects.containsKey(object) && min != null && max != null && max.getX() >= min.getX() && max.getY() >= min.getY();
-		// The existing inspection index covers a neighborhood. It cannot certify a whole-scene inactive Roots phase.
-		return new RootsCopy(false, Truth.UNKNOWN, known, object != null && object.getWorldView() == worldViewLease,
-			object == null ? -1 : object.getId(), min == null ? 0 : worldBaseX + min.getX(), min == null ? 0 : worldBaseY + min.getY(),
-			max == null ? 0 : worldBaseX + max.getX(), max == null ? 0 : worldBaseY + max.getY(), object == null ? -1 : object.getPlane(),
-			rootsSpawnSerial, rootsSpawnTick, rootsSpawnDefinitionId, rootsSpawnWitnessed, rootsSpawnNearby);
-	}
-	private void clearWorldLeases()
-	{
-		worldViewLease = null; worldSceneLease = null; visitorNpc = null; rootsObject = null; attentionKey = null;
-		attentionSerial = rootsSpawnSerial = 0; attentionTick = rootsSpawnTick = -1; attentionDefinitionId = rootsSpawnDefinitionId = -1;
-		firstPersonalAttention = attentionWitnessed = visitorAmbiguous = rootsSpawnWitnessed = rootsSpawnNearby = rootsIngressPending = false;
 	}
 
 	private boolean isLocal(Actor actor)
@@ -863,7 +618,7 @@ public final class ScenarioObserver
 	}
 	private void copyContainer(int containerId, int[] ids, int[] quantities, int offset, int size)
 	{
-		Arrays.fill(ids, offset, offset + size, SharedItemSummary.UNKNOWN_ID); Arrays.fill(quantities, offset, offset + size, -1);
+		Arrays.fill(ids, offset, offset + size, UNKNOWN_ITEM_ID); Arrays.fill(quantities, offset, offset + size, -1);
 		ItemContainer container = client.getItemContainer(containerId);
 		if (container == null) { return; }
 		Item[] items = container.getItems();
@@ -877,12 +632,7 @@ public final class ScenarioObserver
 	}
 	private static boolean knownSlots(int[] ids, int offset, int size)
 	{
-		for (int i = offset; i < offset + size; i++) { if (ids[i] == SharedItemSummary.UNKNOWN_ID) { return false; } }
-		return true;
-	}
-	private static boolean rootVisible(List<AdditionalUiSnapshot> roots, UiKind kind)
-	{
-		for (AdditionalUiSnapshot root : roots) { if (root.kind == kind) { return root.visibility != Truth.FALSE; } }
+		for (int i = offset; i < offset + size; i++) { if (ids[i] == UNKNOWN_ITEM_ID) { return false; } }
 		return true;
 	}
 

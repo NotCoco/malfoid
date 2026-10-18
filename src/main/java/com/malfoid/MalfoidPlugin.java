@@ -69,12 +69,8 @@ import net.runelite.api.events.MenuOptionClicked;
 import net.runelite.api.events.NpcDespawned;
 import net.runelite.api.events.NpcChanged;
 import net.runelite.api.events.NpcSpawned;
-import net.runelite.api.events.ScriptPostFired;
-import net.runelite.api.events.ScriptPreFired;
 import net.runelite.api.events.StatChanged;
 import net.runelite.api.events.VarbitChanged;
-import net.runelite.api.events.WidgetClosed;
-import net.runelite.api.events.WidgetLoaded;
 import net.runelite.api.gameval.VarbitID;
 import net.runelite.client.callback.ClientThread;
 import net.runelite.client.config.ConfigManager;
@@ -402,9 +398,6 @@ public final class MalfoidPlugin extends Plugin
             }
             session.observer.setMotionObservations(session.actor.getMotionObservation(),
                 session.actor.getLatestMotionCompletion(), session.actor.getPlacementGeneration());
-            session.observer.refreshOwnFollowerLease();
-            session.observer.refreshPouchLease();
-            session.observer.refreshPuzzleLease();
             refreshInspectionReturn(session, false);
             validateActive(session);
             updatePostures(session, false);
@@ -685,50 +678,6 @@ public final class MalfoidPlugin extends Plugin
             s.notices.onChatMessage(event);
         });
     }
-    @Subscribe public void onScriptPreFired(ScriptPreFired event)
-    {
-        if (event == null || event.getScriptId() != 688 && event.getScriptId() != 690) { return; }
-        RuntimeSession s = current;
-        guarded(s, "puzzle-script-pre", () ->
-        {
-            beginAdditionalInterval(s);
-            s.observer.onPuzzleScriptPre(event);
-            validateActive(s);
-        });
-    }
-    @Subscribe public void onScriptPostFired(ScriptPostFired event)
-    {
-        if (event == null || event.getScriptId() != 688 && event.getScriptId() != 690) { return; }
-        RuntimeSession s = current;
-        guarded(s, "puzzle-script-post", () ->
-        {
-            beginAdditionalInterval(s);
-            s.observer.onPuzzleScriptPost(event);
-            validateActive(s);
-        });
-    }
-    @Subscribe public void onWidgetClosed(WidgetClosed event)
-    {
-        if (event == null || event.getGroupId() != 306) { return; }
-        RuntimeSession s = current;
-        guarded(s, "puzzle-widget-close", () ->
-        {
-            beginAdditionalInterval(s);
-            s.observer.onPuzzleWidgetClosed(event);
-            validateActive(s);
-        });
-    }
-    @Subscribe public void onWidgetLoaded(WidgetLoaded event)
-    {
-        if (event == null || event.getGroupId() != 306) { return; }
-        RuntimeSession s = current;
-        guarded(s, "puzzle-widget-load", () ->
-        {
-            beginAdditionalInterval(s);
-            s.observer.onPuzzleWidgetLoaded(event);
-            validateActive(s);
-        });
-    }
     @Subscribe public void onVarbitChanged(VarbitChanged event)
     {
         RuntimeSession s = current;
@@ -741,7 +690,7 @@ public final class MalfoidPlugin extends Plugin
                 hide(s, decision.getReason().name());
             }
             beginAdditionalInterval(s);
-            s.observer.onVarbitChanged(event);
+            s.observer.refreshMilestoneSources();
             validateActive(s);
         });
     }

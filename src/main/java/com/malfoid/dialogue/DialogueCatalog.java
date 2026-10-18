@@ -4,13 +4,6 @@ import com.google.gson.Gson;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
-import com.malfoid.additional.AdditionalSceneContext;
-import com.malfoid.additional.AdditionalSceneContext.Subject;
-import com.malfoid.additional.AdditionalTypes.ActivityKind;
-import com.malfoid.additional.AdditionalTypes.Branch;
-import com.malfoid.additional.AdditionalTypes.OutcomeKind;
-import com.malfoid.additional.AdditionalTypes.ResourceKind;
-import com.malfoid.additional.AdditionalTypes.SourceKind;
 import com.malfoid.speech.SceneCandidate;
 import com.malfoid.world.LivingWorldData;
 import java.io.IOException;
@@ -300,39 +293,15 @@ public final class DialogueCatalog
     /** New contracts use their immutable source context, never presentation strings as evidence. */
     public Long situationFingerprint(SceneCandidate candidate)
     {
-        if (additionalIndex(candidate.getScenarioId()) == 0)
-        {
-            return situationFingerprint(candidate.getScenarioId(), candidate.getConditionFacts());
-        }
-        if (!hasValidOriginalContext(candidate)) { return null; }
-        String key = repeatKey(candidate.getScenarioId());
-        SubjectBinding binding = subjects.get(key);
-        return binding == null || binding.moment ? null : fingerprint(key, canonicalAdditionalSubject(candidate.getAdditionalContext()));
-    }
-
-    String canonicalAdditionalSubject(AdditionalSceneContext context)
-    {
-        SubjectBinding binding = subjects.get(repeatKey(context.ruleId));
-        return binding == null || binding.moment ? null : binding.subject(context.subject);
+        return situationFingerprint(candidate.getScenarioId(), candidate.getConditionFacts());
     }
 
     /** Original ownership only. The observer separately proves current first-paint validity. */
     public boolean hasValidOriginalContext(SceneCandidate candidate)
     {
-        int index = additionalIndex(candidate.getScenarioId());
-        AdditionalSceneContext context = candidate.getAdditionalContext();
-        if (index == 0) { return context == null; }
-        if (context == null || context.ruleIndex != index || context.sourceKind == SourceKind.UNKNOWN
-            || context.scene.sessionGeneration != candidate.getSessionGeneration()
-            || context.scene.sceneRevision != candidate.getSceneRevision()
-            || context.originalDeadline != candidate.getExpiresTick()
-            || context.occurrenceTick > candidate.getCreatedTick() || context.presenceEpoch > context.occurrenceTick
-            || !sourceAndClaimsValid(context))
-        {
-            return false;
-        }
-        SubjectBinding binding = subjects.get(repeatKey(candidate.getScenarioId()));
-        return binding != null && (binding.moment ? knownMomentSubject(context) : binding.subject(context.subject) != null);
+        com.malfoid.scenario.PersonalMilestones.Proof proof = candidate.getMilestone();
+        return additionalIndex(candidate.getScenarioId()) == 0 ? proof == null
+            : proof != null && (proof.ruleIndex == 142 || proof.ruleIndex == 147) && proof.owns(candidate);
     }
 
     private static int additionalIndex(String scenario)
@@ -356,139 +325,6 @@ public final class DialogueCatalog
             hash *= 0x100000001b3L;
         }
         return hash;
-    }
-
-    private static boolean knownMomentSubject(AdditionalSceneContext context)
-    {
-        Subject subject = context.subject;
-        return subject.type == Subject.Type.UNIT || subject.type == Subject.Type.ANNOUNCEMENT_KIND
-            && subject.outcomeKind != null && subject.outcomeKind.ruleIndex == context.ruleIndex;
-    }
-
-    private static boolean sourceAndClaimsValid(AdditionalSceneContext context)
-    {
-        int id = context.ruleIndex;
-        SourceKind source = context.sourceKind;
-        long claims = context.permittedClaimMask;
-        switch (id)
-        {
-            case 71: case 72: case 73: case 74: case 78: case 81: case 87: case 88:
-                return claims == 1 && source == SourceKind.SPAM_MESSAGE;
-            case 80: case 82: case 83: case 84: case 85: case 86: case 94: case 95:
-                return claims == 1 && source == SourceKind.GAME_MESSAGE;
-            case 96: case 99: return claims == 97 && source == SourceKind.GAME_MESSAGE;
-            case 77: case 79: case 89: case 90: case 97: case 103:
-                return claims == 1 && (source == SourceKind.SPAM_MESSAGE || source == SourceKind.GAME_MESSAGE);
-            case 100: return claims == 1 && (source == SourceKind.SPAM_MESSAGE || source == SourceKind.GAME_MESSAGE || source == SourceKind.MESSAGE_BOX);
-            case 91: return claims == 16 && source == SourceKind.GROUND_ITEM_SPAWN
-                && context.subject.type == Subject.Type.UNIT && context.sourceSerial == context.causeSerial
-                && context.occurrenceTick <= Long.MAX_VALUE - 12
-                && context.originalDeadline == context.occurrenceTick + 12
-                && context.payload.definitionId == 11849 && context.payload.currentLive
-                && context.payload.entitySerial > 0 && context.payload.position != null;
-            case 92: case 93: case 104: case 131: case 132: case 133: case 134:
-                return claims == 2 && source == SourceKind.NUMERIC;
-            case 101: return claims == 16 && source == SourceKind.HITSPLAT;
-            case 102: return claims == 2 && source == SourceKind.VARP;
-            case 105: return claims == 2 && source == SourceKind.VARBIT;
-            case 106: return claims == 12 && source == SourceKind.INVENTORY;
-            case 114: case 115: case 116: case 124: return claims == 4 && source == SourceKind.EQUIPMENT;
-            case 123: return claims == 6 && source == SourceKind.VARBIT
-                && context.subject.type == Subject.Type.RESOURCE_KIND
-                && context.subject.resourceKind == ResourceKind.STANDARD_RUNE_POUCH
-                && context.sourceSerial == context.causeSerial
-                && context.occurrenceTick <= Long.MAX_VALUE - 12
-                && context.originalDeadline == context.occurrenceTick + 12
-                && context.payload.definitionId == 12791 && context.payload.currentLive
-                && context.payload.entitySerial > 0 && context.payload.activitySerial > 0;
-            case 121: case 122: case 125: case 127: case 129: case 130: case 135:
-                return claims == 4 && source == SourceKind.INVENTORY;
-            case 107: case 108: case 109: case 110: case 111: case 112: case 117: case 126:
-                return claims == 1 && source == SourceKind.GAME_MESSAGE;
-            case 113: case 118: case 119: case 120: case 128: case 136: case 137: case 138: case 139: case 140:
-                return claims == 1 && (source == SourceKind.GAME_MESSAGE || source == SourceKind.SPAM_MESSAGE);
-            case 142: return claims == 1 && source == SourceKind.GAME_MESSAGE
-                && reportedMoment(context, OutcomeKind.COLLECTION_LOG_ENTRY)
-                && context.payload.branch == Branch.UNKNOWN && context.payload.activity == ActivityKind.UNKNOWN
-                && context.payload.value == -1 && context.payload.activitySerial == -1
-                && reportedText(context.payload.displayText, 96);
-            case 147: return claims == 65 && source == SourceKind.GAME_MESSAGE
-                && reportedMoment(context, OutcomeKind.COMBAT_ACHIEVEMENT)
-                && achievementTier(context.payload.branch) && context.payload.activity == ActivityKind.UNKNOWN
-                && context.payload.value == -1 && context.payload.activitySerial == -1
-                && reportedText(context.payload.displayText, 120);
-            case 160: return claims == 65 && source == SourceKind.GAME_MESSAGE
-                && reportedMoment(context, OutcomeKind.SEPULCHRE_FLOOR)
-                && context.payload.branch == Branch.UNKNOWN && context.payload.activity == ActivityKind.SEPULCHRE
-                && context.payload.value >= 1 && context.payload.value <= 5
-                && context.payload.activitySerial == -1 && context.payload.displayText.isEmpty();
-            case 162: return claims == 1 && source == SourceKind.GAME_MESSAGE
-                && reportedMoment(context, OutcomeKind.TZHAAR_WAVE)
-                && context.payload.branch == Branch.UNKNOWN && context.payload.activitySerial > 0
-                && context.payload.displayText.isEmpty()
-                && (context.payload.activity == ActivityKind.FIGHT_CAVE
-                    && (context.payload.value == 31 || context.payload.value == 61 || context.payload.value == 63)
-                    || context.payload.activity == ActivityKind.INFERNO
-                    && (context.payload.value == 35 || context.payload.value == 67 || context.payload.value == 68 || context.payload.value == 69));
-            case 163: return claims == 1 && source == SourceKind.GAME_MESSAGE
-                && context.subject.type == Subject.Type.ANNOUNCEMENT_KIND
-                && context.subject.outcomeKind == OutcomeKind.PERSONAL_BEST
-                && context.sourceSerial == context.causeSerial && context.occurrenceTick <= Long.MAX_VALUE - 20
-                && context.originalDeadline == context.occurrenceTick + 20
-                && context.payload.branch == Branch.UNKNOWN && context.payload.activity == ActivityKind.THEATRE
-                && context.payload.durationMillis > 0 && context.payload.durationMillis <= 128849018879990L
-                && context.payload.durationMillis % 10 == 0 && context.payload.displayText.isEmpty()
-                && context.payload.value == -1 && context.payload.secondaryValue == -1 && context.payload.definitionId == -1
-                && context.payload.entitySerial == -1 && context.payload.activitySerial == -1
-                && context.payload.position == null && !context.payload.currentLive;
-            case 141: case 149: case 151:
-                return claims == 1 && source == SourceKind.GAME_MESSAGE;
-            case 144: case 159: case 165:
-                return claims == 65 && source == SourceKind.GAME_MESSAGE;
-            case 145: return claims == 72 && source == SourceKind.GAME_MESSAGE;
-            case 148: return claims == 32 && source == SourceKind.VARBIT;
-            case 150: return claims == 16 && source == SourceKind.ACTOR_INTERACTION
-                && context.subject.type == Subject.Type.UNIT;
-            case 152: case 157: return claims == 1 && source == SourceKind.SPAM_MESSAGE;
-            case 153: case 154: case 156: case 170: return claims == 8 && source == SourceKind.UI;
-            case 155: return claims == 1 && source == SourceKind.TRADE_REQUEST;
-            case 158: return claims == 65 && (source == SourceKind.GAME_MESSAGE || source == SourceKind.SPAM_MESSAGE);
-            case 168: return claims == 16 && source == SourceKind.FOLLOWER;
-            // Unproved selected-entity/current-association paths remain closed.
-            default: return false;
-        }
-    }
-
-    private static boolean reportedMoment(AdditionalSceneContext context, OutcomeKind kind)
-    {
-        return context.subject.type == Subject.Type.ANNOUNCEMENT_KIND && context.subject.outcomeKind == kind
-            && context.sourceSerial == context.causeSerial && context.occurrenceTick <= Long.MAX_VALUE - 20
-            && context.originalDeadline == context.occurrenceTick + 20
-            && context.payload.secondaryValue == -1 && context.payload.definitionId == -1
-            && context.payload.durationMillis == -1 && context.payload.entitySerial == -1
-            && context.payload.position == null && !context.payload.currentLive;
-    }
-
-    private static boolean achievementTier(Branch branch)
-    {
-        return branch == Branch.EASY || branch == Branch.MEDIUM || branch == Branch.HARD
-            || branch == Branch.ELITE || branch == Branch.MASTER || branch == Branch.GRANDMASTER;
-    }
-
-    private static boolean reportedText(String value, int limit)
-    {
-        if (value.trim().isEmpty() || value.codePointCount(0, value.length()) > limit) { return false; }
-        for (int i = 0; i < value.length(); i++)
-        {
-            char c = value.charAt(i);
-            if (Character.isISOControl(c) || c == '<' || c == '>' || c == '@') { return false; }
-            if (Character.isHighSurrogate(c))
-            {
-                if (++i >= value.length() || !Character.isLowSurrogate(value.charAt(i))) { return false; }
-            }
-            else if (Character.isLowSurrogate(c)) { return false; }
-        }
-        return true;
     }
 
     public boolean isSituation(String scenario)
@@ -614,88 +450,12 @@ public final class DialogueCatalog
                 "QUALIFYING_NPC_RESOLVED_NAME", "FOUR_SLOT_EQUIPMENT_IDS", "MATCHED_HEAD_ITEM_ID",
                 "NAMED_PREDICATE_ITEM_ID_SET", "ANCHOR_BAG_ITEM_ID_SET", "SELECTED_COMBAT_SKILL_SET",
                 "SELECTED_PRIMARY_SKILL", "FIXED_SKILL_SET", "CURRENT_OBJECT_KIND", "UNIT",
-                "SKILL", "RESOURCE_KIND", "FINITE_ITEM_FAMILY", "ANNOUNCEMENT_KIND", "RECOVERY_SUBJECT",
-                "WIDGET_KIND", "WORLD_OBJECT_KIND").contains(type), "Unknown subject binding");
-            String expected = additionalSubjectType(logicalKey);
-            if (expected != null) { require(expected.equals(type), "Changed finite additional subject binding"); }
-            else { require(!Arrays.asList("SKILL", "RESOURCE_KIND", "FINITE_ITEM_FAMILY", "ANNOUNCEMENT_KIND",
-                "RECOVERY_SUBJECT", "WIDGET_KIND", "WORLD_OBJECT_KIND").contains(type), "Unmapped typed subject binding"); }
+                "NOT_APPLICABLE").contains(type), "Unknown subject binding");
         }
 
         private boolean hasRuntimeExtractor()
         {
             return moment || !"NOT_APPLICABLE".equals(type);
-        }
-
-        private static String additionalSubjectType(String key)
-        {
-            switch (key)
-            {
-                case "M71": case "M73": case "M75": case "M77": case "M79": case "M81": case "M100": return "SKILL";
-                case "M114": return "RESOURCE_KIND";
-                case "M118": case "M121": case "M125": case "M127": case "M130": case "M135": return "FINITE_ITEM_FAMILY";
-                case "M128": return "ANNOUNCEMENT_KIND";
-                case "M131": return "RECOVERY_SUBJECT";
-                case "M153": case "M154": case "M156": case "M170": return "WIDGET_KIND";
-                case "M169": return "WORLD_OBJECT_KIND";
-                default: return null;
-            }
-        }
-
-        private String subject(Subject subject)
-        {
-            if (!type.equals(subject.type.name())) { return null; }
-            switch (type)
-            {
-                case "UNIT": return "UNIT";
-                case "SKILL":
-                    Skill expected = "M71".equals(logicalKey) ? Skill.COOKING : "M73".equals(logicalKey) ? Skill.THIEVING
-                        : "M77".equals(logicalKey) ? Skill.MINING : "M79".equals(logicalKey) ? Skill.WOODCUTTING
-                        : "M81".equals(logicalKey) ? Skill.FISHING : Skill.HUNTER;
-                    return subject.skill == expected ? expected.name() : null;
-                case "RESOURCE_KIND":
-                    return subject.resourceKind == null || "UNKNOWN".equals(subject.resourceKind.name()) ? null : subject.resourceKind.name();
-                case "FINITE_ITEM_FAMILY":
-                    if (subject.itemFamily == null) { return null; }
-                    String family = subject.itemFamily.name();
-                    switch (logicalKey)
-                    {
-                        case "M118": return "DODGY_NECKLACE".equals(family) || "RING_OF_DUELING".equals(family) ? family : null;
-                        case "M121": return "OIL_LANTERN".equals(family) ? family : null;
-                        case "M125": return "STANDARD_PRAYER_POTION".equals(family) ? family : null;
-                        case "M127": return "TOY_HORSE".equals(family) || "DWARVEN_ROCK_CAKE".equals(family) ? family : null;
-                        case "M130": return "SMALL_COMFORT_SNACK".equals(family) ? family : null;
-                        case "M135": return "BEGINNER_CLUE".equals(family) ? "BEGINNER_CLUE_SCROLL" : null;
-                        default: return null;
-                    }
-                case "ANNOUNCEMENT_KIND":
-                    return subject.outcomeKind == com.malfoid.additional.AdditionalTypes.OutcomeKind.CAT_NEEDS_FOOD ? "OWN_CAT_NEEDS_FOOD" : null;
-                case "RECOVERY_SUBJECT":
-                    if (subject.recoveryKind == null) { return null; }
-                    switch (subject.recoveryKind)
-                    {
-                        case RUN_ENERGY: return subject.skill == null ? "RUN_ENERGY" : null;
-                        case PRAYER: return subject.skill == null ? "PRAYER_POINTS" : null;
-                        case SKILL:
-                            return Arrays.asList(Skill.AGILITY, Skill.THIEVING, Skill.CRAFTING, Skill.WOODCUTTING,
-                                Skill.FISHING, Skill.COOKING, Skill.FARMING).contains(subject.skill)
-                                ? "RESTORED_CURRENT_SKILL:" + subject.skill.name() : null;
-                        default: return null;
-                    }
-                case "WIDGET_KIND":
-                    if (subject.uiKind == null) { return null; }
-                    switch (logicalKey)
-                    {
-                        case "M153": return subject.uiKind == com.malfoid.additional.AdditionalTypes.UiKind.WORLD_MAP ? "WORLD_MAP_OPEN" : null;
-                        case "M154": return subject.uiKind == com.malfoid.additional.AdditionalTypes.UiKind.SHOP ? "SHOP_POST_CLOSE" : null;
-                        case "M156": return subject.uiKind == com.malfoid.additional.AdditionalTypes.UiKind.FAIRY_RING ? "FAIRY_RING_SELECTION" : null;
-                        case "M170": return subject.uiKind == com.malfoid.additional.AdditionalTypes.UiKind.CLUE_PUZZLE ? "CLUE_PUZZLE_BOX_OPEN" : null;
-                        default: return null;
-                    }
-                case "WORLD_OBJECT_KIND":
-                    return subject.worldObjectKind == com.malfoid.additional.AdditionalTypes.WorldObjectKind.NEARBY_CAMPFIRE ? "NEARBY_CAMPFIRE" : null;
-                default: return null;
-            }
         }
 
         private String subject(Map<String, String> facts)

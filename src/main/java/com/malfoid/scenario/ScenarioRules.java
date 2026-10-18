@@ -1,16 +1,6 @@
 package com.malfoid.scenario;
 
-import com.malfoid.additional.AdditionalSceneContext;
-import com.malfoid.additional.AdditionalSnapshot;
-import com.malfoid.additional.AdditionalSourceCollector;
-import com.malfoid.additional.AdditionalStateBudget;
-import com.malfoid.additional.AdditionalTypes.OutcomeKind;
-import com.malfoid.additional.AdditionalTypes.SourceKind;
-import com.malfoid.additional.AdditionalTypes.Truth;
-import com.malfoid.additional.OwnFollowerCopy;
-import com.malfoid.additional.PersonalOutcomeFact;
-import com.malfoid.additional.RunePouchSource;
-import com.malfoid.additional.SceneKey;
+import com.malfoid.scenario.PersonalMilestones.Proof;
 import com.malfoid.motion.MotionHoldReceipt;
 import com.malfoid.motion.MotionObservation;
 import com.malfoid.scenario.ScenarioBatch.Hit;
@@ -33,12 +23,9 @@ import java.util.Deque;
 import java.util.EnumMap;
 import java.util.EnumSet;
 import java.util.HashMap;
-import java.util.HashSet;
-import java.util.IdentityHashMap;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.Set;
 import java.util.function.Predicate;
 import java.util.function.BooleanSupplier;
 import net.runelite.api.HitsplatID;
@@ -94,19 +81,6 @@ public final class ScenarioRules
 	private final FearRules fear = new FearRules();
 	private boolean following;
 	private final QuietOutfitRules quietOutfit = new QuietOutfitRules();
-	private final AdditionalSkillRules additionalSkills = new AdditionalSkillRules();
-	private final AdditionalItemRules additionalItems = new AdditionalItemRules();
-	private final AdditionalWorldRules additionalWorld = new AdditionalWorldRules();
-	private final AdditionalWorldSensor worldSensor = new AdditionalWorldSensor();
-	private final Map<Long, SceneCandidate> additionalIssued = new LinkedHashMap<>();
-	private AdditionalSnapshot additionalSnapshot;
-	private int additionalCauseCount;
-	private int additionalSourceRecords;
-	private AdditionalSnapshot accountedSourceSnapshot;
-	private boolean additionalOverflow;
-	private CombatState additionalCombat = CombatState.UNKNOWN;
-	// Chosen source/reducer ceiling includes exact typed descriptors in the same128 consumed records; measured heap remains separate.
-	private static final int ADDITIONAL_FIXED_STATE_CEILING = 114688 + RunePouchSource.FIXED_STATE_BYTES;
 	private Predicate<String> scenarioEnabled = id -> true;
 	public void setScenarioEnabled(Predicate<String> predicate) { scenarioEnabled = predicate; }
 	public void setLivingWorldData(LivingWorldData data) { livingWorldData = data; }
@@ -119,12 +93,11 @@ public final class ScenarioRules
 
 	public List<SceneCandidate> close(ScenarioSnapshot frame, ScenarioBatch batch)
 	{
-		return close(frame, batch, AdditionalSnapshot.unknown(frame.tick, new SceneKey(frame.sessionGeneration, frame.sceneRevision), frame.presentSinceTick));
+		return close(frame, batch, Collections.emptyList());
 	}
 
-	public List<SceneCandidate> close(ScenarioSnapshot frame, ScenarioBatch batch, AdditionalSnapshot additional)
+	public List<SceneCandidate> close(ScenarioSnapshot frame, ScenarioBatch batch, List<Proof> milestones)
 	{
-		additionalOverflow = false;
 		if (frame.sessionGeneration != session)
 		{
 			resetSession(); session = frame.sessionGeneration;
@@ -148,7 +121,6 @@ public final class ScenarioRules
 		}
 		olderPlayer = previous == null ? null : previous.player;
 		previous = current; current = frame;
-		additionalSnapshot = supportedFacts(additional);
 		SceneCandidate fearCandidate = fear.close(frame, this::candidate);
 		if (!frame.valid || frame.player == null)
 		{
@@ -162,7 +134,6 @@ public final class ScenarioRules
 		{
 			longRun.close(frame, batch.localDeath, CombatState.UNKNOWN, following, this::candidate);
 			travelExpanded.reset(frame.tick); travelContinuation.reset(frame.tick);
-			worldSensor.advanceQuiet(frame, frame.world);
 			emotes.close(frame, previous, batch, deltas, CombatState.UNKNOWN, lastDamage, this::candidate);
 			baselineCommits++; initialized = baselineCommits >= 2;
 			updateSkills(frame); outfit = frame.equipment(); outfitAge = 1;
@@ -236,278 +207,26 @@ public final class ScenarioRules
 			{
 				for (int i = 0; i < result.size(); i++) { result.set(i, quietOutfit.decorate(frame, result.get(i), combat, lastDamage, this::candidate)); }
 			}
-			closeAdditional(frame, batch, result);
+			if (combat != CombatState.UNKNOWN && !frame.emergencySceneActive && frame.tick - frame.presentSinceTick >= 10)
+			{
+				for (Proof context : milestones)
+				{
+					if (scenarioEnabled.test(context.ruleId) && frame.tick < context.originalDeadline)
+					{
+						result.add(new SceneCandidate(++nextId, context.ruleId, 70, frame.tick, context.originalDeadline,
+							frame.sessionGeneration, frame.sceneRevision, "personal-report:" + context.sourceSerial,
+							regionFacts(frame), false, 4, context));
+					}
+				}
+			}
 		}
-		else { expanded.reset(); combatExpanded.reset(); skillExpanded.reset(); inventoryExpanded.reset(); travelExpanded.reset(frame.tick); travelContinuation.reset(frame.tick); resetAdditional(); }
+		else { expanded.reset(); combatExpanded.reset(); skillExpanded.reset(); inventoryExpanded.reset(); travelExpanded.reset(frame.tick); travelContinuation.reset(frame.tick); }
 		updateSkills(frame); finishPosition(frame);
 		if (canWitness && result.isEmpty()) { sceneryInspection(frame, result); }
 		result.sort(Comparator.comparingInt(SceneCandidate::getPriority).reversed().thenComparingLong(SceneCandidate::getId));
 		Map<String, SceneCandidate> episodes = new LinkedHashMap<>();
 		for (SceneCandidate candidate : result) { episodes.putIfAbsent(candidate.getCausalToken(), candidate); }
 		return Collections.unmodifiableList(new ArrayList<>(episodes.values()));
-	}
-
-	private static AdditionalSnapshot supportedFacts(AdditionalSnapshot source)
-	{
-		List<PersonalOutcomeFact> facts = new ArrayList<>();
-		for (PersonalOutcomeFact fact : source.outcomes)
-		{
-			if (AdditionalSourceCollector.sourceGateSupported(fact.kind)) { facts.add(fact); }
-		}
-		return facts.size() == source.outcomes.size() ? source : new AdditionalSnapshot(source.tick, source.scene, source.presenceEpoch,
-			source.known, source.baseline, facts, source.ui, source.items, source.numeric, source.unknownSources,
-			source.pendingPetAnnouncement, source.followerKnown, source.followerSerial, source.followerDefinitionId, source.changedSources);
-	}
-
-	private void closeAdditional(ScenarioSnapshot f, ScenarioBatch batch, List<SceneCandidate> result)
-	{
-		List<SceneCandidate> offers = new ArrayList<>();
-		List<Integer> skillActive = new ArrayList<>();
-		for (SceneCandidate candidate : additionalIssued.values())
-		{
-			if (candidate.getAdditionalContext().ruleIndex <= 105) { skillActive.add(candidate.getAdditionalContext().ruleIndex); }
-		}
-		additionalSkills.setActiveRuleIndices(skillActive);
-		long skillMask = additionalSkills.activeRuleMask();
-		for (SourceKind source : additionalSnapshot.changedSources) { skillMask |= AdditionalSkillRules.sourceRuleMask(source); }
-		if (!batch.hits.isEmpty()) { skillMask |= AdditionalSkillRules.ruleMask(101); }
-		boolean guardChanged = previous == null || previous.player == null || f.dead || batch.localDeath || !f.valid || additionalSnapshot.baseline || !additionalSnapshot.known
-			|| f.worldViewId != previous.worldViewId || f.presentSinceTick != previous.presentSinceTick || f.player.plane != previous.player.plane || combat != additionalCombat;
-		additionalCombat = combat;
-		List<AdditionalSceneContext> skillOffers;
-		if (skillMask != 0 || guardChanged || combat == CombatState.UNKNOWN) { skillOffers = additionalSkills.close(f, batch, additionalSnapshot, combat); }
-		else { additionalSkills.advanceQuiet(f, additionalSnapshot); skillOffers = Collections.emptyList(); }
-		for (AdditionalSceneContext context : skillOffers)
-		{
-			if (additionalSourceSupported(context)) { offers.add(additionalCandidate(f, context)); }
-		}
-		Set<SourceKind> itemDispatch = dispatch(additionalSnapshot.changedSources, additionalItems.watchedSources(), additionalItems.armedSources());
-		List<AdditionalSceneContext> itemOffers;
-		if (!itemDispatch.isEmpty() || guardChanged) { itemOffers = additionalItems.close(f, batch, additionalSnapshot, combat, lastDamage, itemDispatch); }
-		else { additionalItems.advanceQuiet(f, additionalSnapshot); itemOffers = Collections.emptyList(); }
-		for (AdditionalSceneContext context : itemOffers)
-		{
-			if (additionalSourceSupported(context)) { offers.add(additionalCandidate(f, context)); }
-		}
-		Set<SourceKind> worldDispatch = dispatch(additionalSnapshot.changedSources, additionalWorld.watchedSources(), additionalWorld.armedSources());
-		List<SceneCandidate> worldOffers;
-		if (!worldDispatch.isEmpty() || guardChanged) { worldOffers = additionalWorld.close(f, batch, additionalSnapshot, combat, this::candidate, worldDispatch); }
-		else { additionalWorld.advanceQuiet(f, additionalSnapshot); worldOffers = Collections.emptyList(); }
-		for (SceneCandidate candidate : worldOffers)
-		{
-			AdditionalSceneContext context = additionalWorld.context(candidate);
-			if (context != null && additionalSourceSupported(context))
-			{
-				offers.add(new SceneCandidate(candidate.getId(), context.ruleId, additionalPriority(context.ruleIndex), candidate.getCreatedTick(),
-					context.originalDeadline, f.sessionGeneration, f.sceneRevision, additionalCause(context), candidate.getConditionFacts(), false, 4, context));
-			}
-		}
-		Set<SourceKind> sensorDispatch = worldSensor.armedSources();
-		if (f.world != null)
-		{
-			AdditionalWorldSensor.WorldSnapshot old = previous == null ? null : previous.world;
-			if (old == null || f.world.attentionSerial != old.attentionSerial || f.world.visitorKnown != old.visitorKnown
-				|| f.world.visitorLive != old.visitorLive || f.world.visitorTargetsLocal != old.visitorTargetsLocal
-				|| f.world.localTargetsVisitor != old.localTargetsVisitor) { sensorDispatch.add(SourceKind.ACTOR_INTERACTION); }
-			if (old == null || f.world.rootsSpawnSerial != old.rootsSpawnSerial || f.world.rootsActive != old.rootsActive
-				|| f.world.rootsIndexComplete != old.rootsIndexComplete) { sensorDispatch.add(SourceKind.OBJECT_TRANSITION); }
-		}
-		List<SceneCandidate> sensorOffers;
-		if (!additionalSnapshot.sourceKnown(SourceKind.ACTOR_INTERACTION) || !additionalSnapshot.sourceKnown(SourceKind.OBJECT_TRANSITION))
-		{
-			if (!additionalSnapshot.sourceKnown(SourceKind.ACTOR_INTERACTION)) { worldSensor.invalidateVisitor(null); }
-			if (!additionalSnapshot.sourceKnown(SourceKind.OBJECT_TRANSITION)) { worldSensor.invalidateRoots(); }
-			worldSensor.advanceQuiet(f, f.world); sensorOffers = Collections.emptyList();
-		}
-		else if (!sensorDispatch.isEmpty() || guardChanged) { sensorOffers = worldSensor.close(f, batch, f.world, combat, this::candidate, sensorDispatch); }
-		else { worldSensor.advanceQuiet(f, f.world); sensorOffers = Collections.emptyList(); }
-		for (SceneCandidate candidate : sensorOffers)
-		{
-			AdditionalSceneContext context = worldSensor.context(candidate);
-			if (context != null && additionalSourceSupported(context))
-			{
-				offers.add(new SceneCandidate(candidate.getId(), context.ruleId, candidate.getPriority(), candidate.getCreatedTick(),
-					context.originalDeadline, f.sessionGeneration, f.sceneRevision, candidate.getCausalToken(), candidate.getConditionFacts(), false,
-					candidate.getHoldTicks(), context));
-			}
-		}
-		additionalIssued.entrySet().removeIf(entry -> !additionalContinuation(entry.getValue(), f)
-			|| f.tick > entry.getValue().getExpiresTick() + 40);
-		Set<String> causes = new HashSet<>();
-		causes.addAll(additionalSkills.retainedCauseKeys()); causes.addAll(additionalItems.retainedCauseKeys()); causes.addAll(additionalWorld.retainedCauseKeys());
-		causes.addAll(worldSensor.retainedCauseKeys());
-		for (SceneCandidate candidate : additionalIssued.values()) { causes.add(candidate.getCausalToken()); }
-		for (SceneCandidate candidate : offers) { causes.add(candidate.getCausalToken()); }
-		int records = additionalSkills.retainedReducerRecords() + additionalItems.retainedReducerRecords() + additionalWorld.retainedReducerRecords()
-			+ worldSensor.retainedReducerRecords();
-		if (!AdditionalStateBudget.permits(records, causes.size(), 3, ADDITIONAL_FIXED_STATE_CEILING) || additionalIssued.size() + offers.size() > 16
-			|| additionalRetainedRecords(causes.size(), offers.size()) > AdditionalSnapshot.MAX_RECORDS)
-		{
-			resetAdditional(); additionalOverflow = true; return;
-		}
-		additionalCauseCount = causes.size();
-		offers.sort(Comparator.comparingInt(SceneCandidate::getPriority).reversed().thenComparingLong(SceneCandidate::getId));
-		Set<String> offeredCauses = new HashSet<>();
-		for (SceneCandidate candidate : offers)
-		{
-			if (!offeredCauses.add(candidate.getCausalToken())) { continue; }
-			additionalIssued.put(candidate.getId(), candidate);
-			if (scenarioEnabled.test(candidate.getScenarioId())) { result.add(candidate); }
-		}
-	}
-	private static Set<SourceKind> dispatch(Set<SourceKind> changed, Set<SourceKind> watched, Set<SourceKind> armed)
-	{
-		EnumSet<SourceKind> result = EnumSet.noneOf(SourceKind.class);
-		for (SourceKind source : changed) { if (watched.contains(source)) { result.add(source); } }
-		result.addAll(armed); return result;
-	}
-
-	private SceneCandidate additionalCandidate(ScenarioSnapshot f, AdditionalSceneContext context)
-	{
-		Map<String, String> facts = regionFacts(f);
-		facts.put("occurredTick", Long.toString(context.occurrenceTick)); facts.put("witnessPresenceEpoch", Long.toString(context.presenceEpoch));
-		facts.put("witnessedPresent", "true"); facts.put("settlingNotBeforeTick", Long.toString(context.presenceEpoch + 10));
-		facts.put("maximumApproachTicks", context.ruleIndex >= 106 && context.ruleIndex <= 140 ? "6" : "12");
-		return new SceneCandidate(++nextId, context.ruleId, additionalPriority(context.ruleIndex), f.tick, context.originalDeadline,
-			f.sessionGeneration, f.sceneRevision, additionalCause(context), facts, false,
-			context.ruleIndex >= 106 && context.ruleIndex <= 113 || context.ruleIndex == 126 ? 3 : 4, context);
-	}
-
-	private static int additionalPriority(int id)
-	{
-		switch (id)
-		{
-			case 101: return 24; case 102: case 103: case 151: case 158: case 161: case 166: case 167: return 35;
-			case 104: return 38; case 105: case 150: case 155: case 157: case 168: case 170: return 30;
-			case 141: return 80; case 142: case 147: return 70; case 143: case 144: return 65;
-			case 145: case 152: case 160: case 164: return 40; case 146: case 163: return 75;
-			case 148: case 159: case 165: return 45; case 149: return 60; case 162: return 55; default: return 25;
-		}
-	}
-
-	private static String additionalCause(AdditionalSceneContext c)
-	{
-		if (c.sourceKind == SourceKind.HITSPLAT) { return "hitsplat:" + c.causeSerial; }
-		String producer = c.sourceKind == SourceKind.NUMERIC || c.sourceKind == SourceKind.EQUIPMENT || c.sourceKind == SourceKind.FOLLOWER
-			|| c.sourceKind == SourceKind.VARP || c.sourceKind == SourceKind.VARBIT
-			? c.ruleIndex <= 105 ? "skill" : c.ruleIndex <= 140 ? "items" : "world" : "source";
-		return producer + ":" + c.sourceKind.name() + ":" + c.causeSerial;
-	}
-
-	/** Fixture-only predicates never enter the production scene registry. */
-	public static boolean additionalSourceSupported(String id)
-	{
-		try
-		{
-			int index = id != null && id.startsWith("M") ? Integer.parseInt(id.substring(1)) : -1;
-			if (index == 92 || index == 93 || index == 101 || index == 102 || index == 104 || index == 105
-				|| index == 106 || index >= 114 && index <= 116 || index >= 121 && index <= 125
-				|| index == 127 || index >= 129 && index <= 135 || index == 150 || index == 153 || index == 154 || index == 156 || index == 170) { return true; }
-			for (OutcomeKind kind : AdditionalSourceCollector.sourceGatedOutcomeKinds()) { if (kind.ruleIndex == index) { return true; } }
-		}
-		catch (NumberFormatException ignored) { }
-		return false;
-	}
-	private static boolean additionalSourceSupported(AdditionalSceneContext context)
-	{
-		return context.sourceKind != SourceKind.UNKNOWN && additionalSourceSupported(context.ruleId);
-	}
-	private boolean additionalContinuation(SceneCandidate candidate, ScenarioSnapshot f)
-	{
-		AdditionalSceneContext context = candidate.getAdditionalContext();
-		if (context == null || additionalSnapshot == null || !additionalSourceSupported(context)) { return false; }
-		if (context.ruleIndex <= 105) { return additionalSkills.continuationValid(context, f, additionalSnapshot, combat); }
-		if (context.ruleIndex <= 140) { return additionalItems.continuationValid(context, f, additionalSnapshot, combat, lastDamage); }
-		if (context.ruleIndex == 150 || context.ruleIndex == 167) { return worldSensor.continuationValid(candidate, f, f.world, combat); }
-		return additionalWorld.continuationValid(candidate, f, additionalSnapshot, combat);
-	}
-	private void resetAdditional()
-	{
-		additionalSkills.reset(); additionalItems.reset(); additionalWorld.reset(); worldSensor.reset(); additionalIssued.clear(); additionalCauseCount = 0;
-		additionalCombat = CombatState.UNKNOWN;
-	}
-	public int getAdditionalCauseCount() { return additionalCauseCount; }
-	public void setAdditionalSourceAccounting(int records, AdditionalSnapshot snapshot)
-	{
-		additionalSourceRecords = records; accountedSourceSnapshot = snapshot;
-	}
-	private int additionalRetainedRecords(int causes, int incoming)
-	{
-		Set<Object> shared = Collections.newSetFromMap(new IdentityHashMap<>());
-		for (AdditionalSnapshot snapshot : Arrays.asList(accountedSourceSnapshot, additionalSnapshot))
-		{
-			if (snapshot == null) { continue; }
-			shared.add(snapshot); shared.addAll(snapshot.outcomes); shared.addAll(snapshot.ui);
-		}
-		if (current != null && current.world != null) { shared.add(current.world); }
-		if (previous != null && previous.world != null) { shared.add(previous.world); }
-		return additionalSourceRecords + shared.size() + additionalSkills.retainedReducerRecords()
-			+ additionalItems.retainedReducerRecords() + additionalWorld.retainedReducerRecords() + worldSensor.retainedReducerRecords()
-			+ additionalIssued.size() + incoming + causes + 3;
-	}
-	public int getAdditionalRetainedRecords() { return additionalRetainedRecords(additionalCauseCount, 0); }
-	public boolean didAdditionalOverflow() { return additionalOverflow; }
-	boolean worldContinuationValid(SceneCandidate candidate, AdditionalWorldSensor.WorldSnapshot live)
-	{
-		return current != null && worldSensor.continuationValid(candidate, current, live, combat);
-	}
-	void invalidateWorldVisitor(String key) { worldSensor.invalidateVisitor(key); }
-	void invalidateWorldRoots() { worldSensor.invalidateRoots(); }
-	void revokeAdditionalCandidate(SceneCandidate candidate) { additionalIssued.remove(candidate.getId(), candidate); }
-	/** Permanent negative-only retirement of the exact pouch interval and issued ownership. */
-	void invalidateAdditionalPouch()
-	{
-		additionalItems.invalidatePouch();
-		additionalIssued.entrySet().removeIf(entry -> entry.getValue().getAdditionalContext().ruleIndex == 123);
-	}
-	void invalidateAdditionalItemUi()
-	{
-		additionalItems.invalidateUi();
-		additionalIssued.entrySet().removeIf(entry -> entry.getValue().getAdditionalContext().ruleIndex >= 106
-			&& entry.getValue().getAdditionalContext().ruleIndex <= 140);
-	}
-	/** A current follower copy changes certainty, never the report's cause or committed ordinal. */
-	boolean refreshOwnFollowerLease(OwnFollowerCopy follower)
-	{
-		if (follower.ownLive == Truth.UNKNOWN) { invalidateAdditionalKitten(0); }
-		AdditionalSnapshot old = additionalSnapshot;
-		boolean changed = old == null || !old.scene.equals(follower.scene) || old.presenceEpoch != follower.presenceEpoch
-			|| old.followerKnown != follower.ownLive || old.followerSerial != follower.incarnationSerial
-			|| old.followerDefinitionId != follower.resolvedDefinitionId;
-		if (changed && old != null && old.followerKnown == Truth.TRUE) { invalidateAdditionalKitten(old.followerSerial); }
-		return changed;
-	}
-	void invalidateAdditionalKitten(long incarnationSerial)
-	{
-		if (incarnationSerial > 0 && (additionalSnapshot == null || additionalSnapshot.followerKnown != Truth.TRUE
-			|| additionalSnapshot.followerSerial != incarnationSerial)) { return; }
-		additionalItems.invalidateKitten(incarnationSerial);
-		additionalIssued.entrySet().removeIf(entry -> entry.getValue().getAdditionalContext().ruleIndex == 128
-			&& (incarnationSerial <= 0 || entry.getValue().getAdditionalContext().payload.entitySerial == incarnationSerial));
-	}
-	boolean hasAdditionalCollectionLogEvidence()
-	{ for (SceneCandidate c : additionalIssued.values()) { if (c.getAdditionalContext().ruleIndex == 142) { return true; } } return false; }
-	boolean hasAdditionalTzhaarEvidence()
-	{ for (SceneCandidate c : additionalIssued.values()) { if (c.getAdditionalContext().ruleIndex == 162) { return true; } } return false; }
-	void invalidateAdditionalCollectionLog()
-	{
-		additionalWorld.invalidateCollectionLogEvidence();
-		additionalIssued.entrySet().removeIf(entry -> entry.getValue().getAdditionalContext().ruleIndex == 142);
-	}
-	void invalidateAdditionalTzhaar()
-	{
-		additionalWorld.invalidateTzhaarEvidence();
-		additionalIssued.entrySet().removeIf(entry -> entry.getValue().getAdditionalContext().ruleIndex == 162);
-	}
-	void invalidateAdditionalPuzzle()
-	{
-		additionalWorld.invalidatePuzzleEvidence();
-		additionalIssued.entrySet().removeIf(entry -> entry.getValue().getAdditionalContext().ruleIndex == 170);
-	}
-	void invalidateAdditionalCannon()
-	{
-		additionalWorld.invalidateCannonEvidence();
-		additionalIssued.entrySet().removeIf(entry -> entry.getValue().getAdditionalContext().ruleIndex == 158);
 	}
 
 	private void largeHit(ScenarioSnapshot f, ScenarioBatch b, List<SceneCandidate> out)
@@ -1063,12 +782,7 @@ public final class ScenarioRules
 	{
 		if (current == null || current.tick >= candidate.getExpiresTick() || !continuationValid(candidate)) { return false; }
 		if ("F03".equals(candidate.getScenarioId())) { return longRun.stillValid(candidate, current, combat, following); }
-		AdditionalSceneContext context = candidate.getAdditionalContext();
-		if (context == null) { return true; }
-		if (context.ruleIndex <= 105) { return additionalSkills.stillValid(context, current, additionalSnapshot, combat); }
-		if (context.ruleIndex <= 140) { return additionalItems.stillValid(context, current, additionalSnapshot, combat, lastDamage); }
-		if (context.ruleIndex == 150 || context.ruleIndex == 167) { return worldSensor.stillValid(candidate, current, current.world, combat); }
-		return additionalWorld.stillValid(candidate, current, additionalSnapshot, combat);
+		return true;
 	}
 
 	/** Committed presentation and physical holds ignore only their admission deadline. */
@@ -1079,9 +793,12 @@ public final class ScenarioRules
 			|| candidate.getSceneRevision() != f.sceneRevision) { return false; }
 		if (candidate.getCreatedTick() < latestDiscontinuityTick && !validLevelRebind(candidate, f)) { return false; }
 		Map<String, String> facts = candidate.getConditionFacts(); String id = candidate.getScenarioId();
-		if (candidate.getAdditionalContext() != null)
+		Proof context = candidate.getMilestone();
+		if (context != null)
 		{
-			return additionalIssued.get(candidate.getId()) == candidate && additionalContinuation(candidate, f);
+			return (context.ruleIndex == 142 || context.ruleIndex == 147)
+				&& context.sessionGeneration == f.sessionGeneration && context.sceneRevision == f.sceneRevision
+				&& context.presenceEpoch == f.presentSinceTick;
 		}
 		if (id.matches("M(7[1-9]|[89][0-9]|1[0-6][0-9]|170)")) { return false; }
 		if ("F03".equals(id)) { return longRun.continuationValid(candidate, f, combat, following); }
@@ -1193,7 +910,7 @@ public final class ScenarioRules
 		resetChicken(); resetGrind(); parent = null; expanded.reset(); combatExpanded.reset(); skillExpanded.reset(); inventoryExpanded.reset();
 		if (invalidThroughTick == Long.MIN_VALUE) { travelExpanded.reset(); travelContinuation.reset(); }
 		else { travelExpanded.reset(invalidThroughTick); travelContinuation.reset(invalidThroughTick); }
-		emotes.reset(); quietOutfit.reset(); resetAdditional();
+		emotes.reset(); quietOutfit.reset();
 		outfits.clear(); hatChanges.clear(); objectOffered = null; inspectionCompletions.clear(); inspectionPlacementGeneration = -1;
 	}
 	public static final class SkillDelta

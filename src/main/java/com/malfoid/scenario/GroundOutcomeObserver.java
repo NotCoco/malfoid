@@ -1,9 +1,5 @@
 package com.malfoid.scenario;
 
-import com.malfoid.additional.AdditionalSceneContext;
-import com.malfoid.additional.AdditionalTypes.SourceKind;
-import com.malfoid.additional.MarkOfGraceSpawn;
-import com.malfoid.additional.SceneKey;
 import com.malfoid.scenario.GroundOutcomeRules.Pile;
 import com.malfoid.scenario.ScenarioBatch.Loot;
 import com.malfoid.scenario.ScenarioSnapshot.Position;
@@ -32,7 +28,6 @@ import net.runelite.api.events.ItemQuantityChanged;
 import net.runelite.api.events.ItemSpawned;
 import net.runelite.api.gameval.InterfaceID;
 import net.runelite.api.gameval.InventoryID;
-import net.runelite.api.gameval.ItemID;
 import net.runelite.api.widgets.Widget;
 
 /** Shared client-thread pile index. C.4 reports and M91 borrow exact callback attachments, never a scene scan. */
@@ -49,9 +44,8 @@ public final class GroundOutcomeObserver
 	private boolean pinnedInstance;
 	private int[][][] pinnedTemplates;
 	private long sequence;
-	private boolean present, incomplete, markSourceUnknown;
+	private boolean present, incomplete;
 	// A borrowed pointer into piles, never a second entity record/map or a retained DTO queue.
-	private Tracked selectedMark;
 
 	@Inject public GroundOutcomeObserver(Client client) { this.client = client; }
 
@@ -62,17 +56,16 @@ public final class GroundOutcomeObserver
 		this.present = present;
 	}
 
-	public void onItemSpawned(ItemSpawned event) { copyMarkSpawn(event); }
-	public MarkOfGraceSpawn copyMarkSpawn(ItemSpawned event)
+	public void onItemSpawned(ItemSpawned event)
 	{
 		Tile tile = event.getTile(); TileItem item = event.getItem();
-		if (tile == null || item == null) { incomplete = markSourceUnknown = true; retireMark(); return null; }
+		if (tile == null || item == null) { incomplete = true; return; }
 		boolean scope = ensureIndexScope();
 		LocalPoint local = tile.getLocalLocation();
-		if (scope && local != null && local.getWorldView() != pinnedView.getId()) { return null; }
-		if (piles.containsKey(item)) { return null; } // Physical identity outlives every reaction window.
+		if (scope && local != null && local.getWorldView() != pinnedView.getId()) { return; }
+		if (piles.containsKey(item)) { return; } // Physical identity outlives every reaction window.
 		if (piles.size() >= MAX_PILES || sequence == Long.MAX_VALUE)
-		{ incomplete = markSourceUnknown = true; retireMark(); return null; }
+		{ incomplete = true; return; }
 		WorldPoint world = tile.getWorldLocation();
 		boolean attached = scope && tileCurrent(tile) && world != null && world.getPlane() == pinnedPlane
 			&& containsCurrentItem(tile, item);
@@ -80,17 +73,7 @@ public final class GroundOutcomeObserver
 		boolean witnessed = attached && lastFrame != null && lastFrame.tick < Long.MAX_VALUE && liveMatches(lastFrame);
 		Tracked pile = new Tracked(++sequence, tile, item, witnessed ? lastFrame : null, position);
 		piles.put(item, pile); // Initial/absent/unknown observations are consumed here, permanently silently.
-		if (!attached && scope) { incomplete = markSourceUnknown = true; retireMark(); }
-		if (!witnessed || markSourceUnknown || pile.spawnId != ItemID.GRACE || pile.spawnQuantity <= 0
-			|| pile.spawnTick - pile.presentSinceTick < 10 || pile.spawnTick > Long.MAX_VALUE - 12) { return null; }
-		WorldPoint player = client.getLocalPlayer().getWorldLocation();
-		if (player == null || player.getPlane() != position.plane
-			|| new Position(player.getX(), player.getY(), player.getPlane()).distance(position) > 5) { return null; }
-		if (selectedMark != null && pile.spawnTick >= selectedMark.spawnTick + 12) { retireMark(); }
-		if (selectedMark != null) { return null; } // A later insertion never replaces an earlier pending/issued lease.
-		selectedMark = pile; pile.markRetired = false;
-		return new MarkOfGraceSpawn(pile.identity, pile.spawnTick, pile.presentSinceTick,
-			new SceneKey(pile.sessionGeneration, pile.sceneRevision), pile.spawnQuantity, position);
+		if (!attached && scope) { incomplete = true; }
 	}
 
 	public void onItemDespawned(ItemDespawned event) { retireDespawnedItem(event); }
@@ -98,10 +81,8 @@ public final class GroundOutcomeObserver
 	{
 		Tracked pile = piles.get(event.getItem());
 		if (pile == null || pile.tile != event.getTile()) { return false; }
-		boolean selected = pile == selectedMark;
-		if (selected) { retireMark(); }
 		piles.remove(event.getItem()); // This exact certified despawn retires the physical incarnation.
-		return selected;
+		return true;
 	}
 
 	public void onItemQuantityChanged(ItemQuantityChanged event) { retireQuantityChangedItem(event); }
@@ -110,9 +91,7 @@ public final class GroundOutcomeObserver
 		Tracked pile = piles.get(event.getItem());
 		if (pile == null || pile.tile != event.getTile() || event.getOldQuantity() == event.getNewQuantity()) { return false; }
 		pile.quantityChanged = true;
-		boolean selected = pile == selectedMark;
-		if (selected) { retireMark(); }
-		return selected;
+		return true;
 	}
 
 	/** Integrator calls once per committed tick, after copying the report batch and current snapshot. */
@@ -134,7 +113,6 @@ public final class GroundOutcomeObserver
 		}
 		List<GroundOutcomeProof> result = rules.close(frame, reports, incomplete ? null : fresh);
 		lastFrame = frame; incomplete = false;
-		if (selectedMark != null && frame.tick >= selectedMark.spawnTick + 12) { retireMark(); }
 		return result;
 	}
 
@@ -160,7 +138,7 @@ public final class GroundOutcomeObserver
 	public void settled(long reportId) { rules.settled(reportId); }
 	public void resetScene()
 	{
-		retireMark(); rules.resetScene(); lastFrame = null; incomplete = false;
+		rules.resetScene(); lastFrame = null; incomplete = false;
 		WorldView current = indexView();
 		if (current != null && current.getScene() != null && pinnedView != null
 			&& (current != pinnedView || current.getScene() != pinnedScene)) { clearPhysicalIndex(); }
@@ -169,47 +147,9 @@ public final class GroundOutcomeObserver
 	{ resetScene(); clearPhysicalIndex(); rules.reset(); present = false; sequence = 0; }
 	/** Separate bounded source storage under section 15.5, not a new reducer/envelope record pool. */
 	public int retainedPhysicalPileRecords() { return piles.size(); }
-	public boolean markSourceKnown() { return !markSourceUnknown; }
 	/** A rejected/baseline copied ingress is consumed silently without holding a pending lease. */
-	public void retireCopiedMark(long identity)
-	{ if (selectedMark != null && selectedMark.identity == identity) { retireMark(); } }
 	/** Only armed mark work reads its one selected attachment; quiet commits do not poll tiles. */
-	public boolean refreshSelectedMark()
-	{
-		if (selectedMark == null) { return true; }
-		if (selectedMarkCurrent()) { return true; }
-		retireMark(); return false;
-	}
 	/** Client-thread negative lease. Any observed loss permanently retires this original opportunity. */
-	public boolean currentMarkLeaseMatches(AdditionalSceneContext context)
-	{
-		Tracked pile = selectedMark;
-		if (pile == null || context == null || context.ruleIndex != 91 || context.sourceKind != SourceKind.GROUND_ITEM_SPAWN
-			|| context.subject.type != AdditionalSceneContext.Subject.Type.UNIT || context.permittedClaimMask != AdditionalSceneContext.CLAIM_SCENE_EDGE
-			|| context.payload.entitySerial != pile.identity || context.payload.definitionId != ItemID.GRACE || !context.payload.currentLive
-			|| context.occurrenceTick != pile.spawnTick || context.originalDeadline != pile.spawnTick + 12
-			|| context.presenceEpoch != pile.presentSinceTick || context.scene.sessionGeneration != pile.sessionGeneration
-			|| context.scene.sceneRevision != pile.sceneRevision || !pile.position.equals(context.payload.position)) { return false; }
-		return refreshSelectedMark();
-	}
-	private boolean selectedMarkCurrent()
-	{
-		Tracked pile = selectedMark;
-		if (pile == null || pile.markRetired || markSourceUnknown || lastFrame == null || !liveMatches(lastFrame)
-			|| pile.sessionGeneration != lastFrame.sessionGeneration || pile.sceneRevision != lastFrame.sceneRevision
-			|| pile.presentSinceTick != lastFrame.presentSinceTick || pile.worldViewId != lastFrame.worldViewId
-			|| piles.get(pile.item) != pile || pile.quantityChanged || pile.spawnId != ItemID.GRACE
-			|| pile.item.getId() != ItemID.GRACE || pile.spawnQuantity <= 0 || pile.item.getQuantity() != pile.spawnQuantity
-			|| !tileCurrent(pile.tile) || !containsCurrentItem(pile.tile, pile.item)) { return false; }
-		WorldPoint ground = pile.tile.getWorldLocation(), player = client.getLocalPlayer().getWorldLocation();
-		return ground != null && player != null && ground.getPlane() == pinnedPlane && player.getPlane() == pinnedPlane
-			&& pile.position.equals(new Position(ground.getX(), ground.getY(), ground.getPlane()))
-			&& new Position(player.getX(), player.getY(), player.getPlane()).distance(pile.position) <= 5;
-	}
-	private void retireMark()
-	{
-		if (selectedMark != null) { selectedMark.markRetired = true; selectedMark = null; }
-	}
 	private WorldView indexView()
 	{
 		Player player = client.getLocalPlayer();
@@ -222,12 +162,12 @@ public final class GroundOutcomeObserver
 		if (pinnedView != null && (current != pinnedView || current.getScene() != pinnedScene))
 		{ resetScene(); clearPhysicalIndex(); }
 		else if (pinnedView != null && !sceneMatches(current))
-		{ retireMark(); rules.resetScene(); lastFrame = null; } // Retain silently consumed identities across in-place metadata loss.
+		{ rules.resetScene(); lastFrame = null; } // Retain silently consumed identities across in-place metadata loss.
 		return pinnedView != null && sceneMatches(current) || pinScene(current);
 	}
 	private void clearPhysicalIndex()
 	{
-		piles.clear(); retireMark(); pinnedView = null; pinnedScene = null; pinnedTemplates = null; markSourceUnknown = false;
+		piles.clear(); pinnedView = null; pinnedScene = null; pinnedTemplates = null;
 	}
 
 	private boolean pinScene(WorldView view)
@@ -343,7 +283,7 @@ public final class GroundOutcomeObserver
 		private final Tile tile;
 		private final TileItem item;
 		private final Position position;
-		private boolean quantityChanged, markRetired = true;
+		private boolean quantityChanged;
 		private Tracked(long identity, Tile tile, TileItem item, ScenarioSnapshot frame, Position position)
 		{
 			this.identity = identity; this.tile = tile; this.item = item; this.position = position;
